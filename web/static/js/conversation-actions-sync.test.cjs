@@ -2,7 +2,9 @@ const fs = require('node:fs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
-const chat = fs.readFileSync('web/static/js/chat.js', 'utf8');
+// chat.js 已按功能域拆分，合并读取以保证被测函数仍可检索
+const chat = ['chat.js', 'chat-attack-chain.js', 'chat-conversations.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 const projects = fs.readFileSync('web/static/js/projects.js', 'utf8');
 const template = fs.readFileSync('web/templates/index.html', 'utf8');
 

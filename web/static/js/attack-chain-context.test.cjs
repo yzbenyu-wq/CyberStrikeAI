@@ -3,7 +3,9 @@ const vm = require('node:vm');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const contextSource = fs.readFileSync('web/static/js/attack-chain-context.js', 'utf8');
-const chatSource = fs.readFileSync('web/static/js/chat.js', 'utf8');
+// chat.js 已按功能域拆分（攻击链、会话侧边栏），合并读取以保证被测函数仍可检索
+const chatSource = ['chat.js', 'chat-attack-chain.js', 'chat-conversations.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 
 class Element {
     constructor(tagName, sinks) {

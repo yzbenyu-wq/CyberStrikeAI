@@ -1,6 +1,7 @@
 # Runtime data
 data/
 chat_uploads/
+logs/
 *.db
 *.db-shm
 *.db-wal

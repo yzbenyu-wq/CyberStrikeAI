@@ -5,7 +5,9 @@ const vm = require('node:vm');
 
 const scroll = fs.readFileSync('web/static/js/chat-scroll.js', 'utf8');
 const monitor = fs.readFileSync('web/static/js/monitor.js', 'utf8');
-const chat = fs.readFileSync('web/static/js/chat.js', 'utf8');
+// chat.js 已按功能域拆分，合并读取以保证被测函数仍可检索
+const chat = ['chat.js', 'chat-attack-chain.js', 'chat-conversations.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 const projects = fs.readFileSync('web/static/js/projects.js', 'utf8');
 const router = fs.readFileSync('web/static/js/router.js', 'utf8');
 const auth = fs.readFileSync('web/static/js/auth.js', 'utf8');
