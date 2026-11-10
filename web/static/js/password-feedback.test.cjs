@@ -3,7 +3,8 @@ const vm=require('node:vm');
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const auth=fs.readFileSync('web/static/js/auth.js','utf8');
-const settings=fs.readFileSync('web/static/js/settings.js','utf8');
+// settings.js 已拆出外部 MCP 管理模块，合并读取以保证被测函数可检索
+const settings=['settings.js','settings-mcp.js'].map(f=>fs.readFileSync(`web/static/js/${f}`,'utf8')).join('\n');
 function input(id,value='') {
  const attrs={};
  return {id,value,type:'password',style:{},classList:{toggle(){},remove(){}},focus(){this.focused=true;},setAttribute(k,v){attrs[k]=v;},getAttribute:k => attrs[k]};
@@ -22,7 +23,9 @@ function harness(values={}) {
  start=auth.indexOf('function clearLoginFormError(');
  vm.runInContext(auth.slice(start,auth.indexOf('\nfunction ',start)),ctx);
  start=settings.indexOf('function setPasswordFieldError(');
- vm.runInContext(settings.slice(start,settings.indexOf('// ==================== 外部MCP管理',start)),ctx);
+ // 终点取导出语句之前：settings.js 拆出 settings-mcp.js 后，原「外部MCP管理」注释
+ // 已不在主文件，且主文件末尾新增了导出语句（其引用的函数不在此切片范围内）
+ vm.runInContext(settings.slice(start,settings.indexOf('window.initSettingsCustomSelects',start)),ctx);
  return {ctx,fields,button,calls:() => calls};
 }
 test('empty login password explains the error and never calls the server',async () => {
