@@ -4,7 +4,9 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 
 const scroll = fs.readFileSync('web/static/js/chat-scroll.js', 'utf8');
-const monitor = fs.readFileSync('web/static/js/monitor.js', 'utf8');
+// monitor.js 已按功能域拆分，合并读取以保证被测函数可检索
+const monitor = ['monitor.js', 'monitor-hitl.js', 'monitor-mcp-stats.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 // chat.js 已按功能域拆分，合并读取以保证被测函数仍可检索
 const chat = ['chat.js', 'chat-attack-chain.js', 'chat-conversations.js']
     .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');

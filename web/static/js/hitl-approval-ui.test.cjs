@@ -3,7 +3,9 @@ const vm = require('node:vm');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
-const monitor = fs.readFileSync('web/static/js/monitor.js', 'utf8');
+// monitor.js 已按功能域拆分（HITL 审批移至 monitor-hitl.js），合并读取
+const monitor = ['monitor.js', 'monitor-hitl.js', 'monitor-mcp-stats.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 const chatScroll = fs.readFileSync('web/static/js/chat-scroll.js', 'utf8');
 const projects = fs.readFileSync('web/static/js/projects.js', 'utf8');
 const chat = fs.readFileSync('web/static/js/chat.js', 'utf8');
