@@ -2,6 +2,7 @@
 data/
 chat_uploads/
 logs/
+.workbuddy/
 *.db
 *.db-shm
 *.db-wal

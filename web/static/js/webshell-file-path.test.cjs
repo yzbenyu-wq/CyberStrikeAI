@@ -2,7 +2,9 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const source = fs.readFileSync('web/static/js/webshell.js', 'utf8');
+// webshell.js 已拆出文件管理模块（webshell-files.js），合并读取以保证被测函数可检索
+const source = ['webshell.js', 'webshell-files.js']
+    .map((f) => fs.readFileSync(`web/static/js/${f}`, 'utf8')).join('\n');
 function declaration(name) {
     const start = source.indexOf(`function ${name}(`);
     const end = source.indexOf('\nfunction ', start + 1);
