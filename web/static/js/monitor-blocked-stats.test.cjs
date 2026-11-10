@@ -3,8 +3,17 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 
-const source = fs.readFileSync('web/static/js/monitor.js', 'utf8');
-const statsSource = source.slice(source.indexOf('const MCP_STATS_TOP_N'), source.indexOf('function renderMonitorExecutions('));
+// monitor.js 已拆出 MCP 统计面板（monitor-mcp-stats.js），故跨两个文件取源码：
+// MCP 统计部分取新文件的常量及其后全部内容，renderMonitorStats 仍留在 monitor.js
+const mcpStatsSource = fs.readFileSync('web/static/js/monitor-mcp-stats.js', 'utf8');
+const monitorSource = fs.readFileSync('web/static/js/monitor.js', 'utf8');
+const statsSource = [
+    mcpStatsSource.slice(mcpStatsSource.indexOf('const MCP_STATS_TOP_N')),
+    monitorSource.slice(
+        monitorSource.indexOf('function renderMonitorStats('),
+        monitorSource.indexOf('function renderMonitorExecutions(')
+    ),
+].join('\n');
 
 function harness() {
     const container = { innerHTML: '' };
