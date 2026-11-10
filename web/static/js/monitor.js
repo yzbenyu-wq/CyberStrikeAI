@@ -1,3 +1,7 @@
+/* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
+   必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
+
+
 const progressTaskState = new Map();
 /** @type {{ progressId: string, conversationId: string } | null} */
 let userInterruptModalPending = null;
@@ -620,19 +624,14 @@ function applyEinoTimelineRole(item, data) {
     }
 }
 
-function escapeHtmlLocal(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = String(text);
-    return div.innerHTML;
-}
+
 
 function escapeJsString(text) {
     return JSON.stringify(String(text == null ? '' : text));
 }
 
 function escapeAttrLocal(text) {
-    return escapeHtmlLocal(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    return escapeHtml(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function escapeJsStringAttr(text) {
@@ -1048,7 +1047,7 @@ function formatAssistantMarkdownContent(text) {
         return window.csMarkdownSanitize.formatMarkdownToHtml(text, { profile: 'chat' });
     }
     const raw = text == null ? '' : String(text);
-    return escapeHtmlLocal(raw).replace(/\n/g, '<br>');
+    return escapeHtml(raw).replace(/\n/g, '<br>');
 }
 
 function updateAssistantBubbleContent(assistantMessageId, content, renderMarkdown) {
@@ -1069,7 +1068,7 @@ function updateAssistantBubbleContent(assistantMessageId, content, renderMarkdow
     }
     const html = renderMarkdown
         ? formatAssistantMarkdownContent(newContent)
-        : escapeHtmlLocal(newContent).replace(/\n/g, '<br>');
+        : escapeHtml(newContent).replace(/\n/g, '<br>');
 
     bubble.innerHTML = html;
 
@@ -4712,7 +4711,7 @@ function buildInlineHitlApprovalHtml(data, opts) {
             ${requestDetails}
             <details class="hitl-approval-details hitl-approval-comment-details">
                 <summary>${escapeHtml(tr('hitl.addApprovalComment', '添加审批备注（可选）'))}</summary>
-                <input class="hitl-config-input hitl-inline-comment" type="text" placeholder="${escapeHtml(tr('hitl.commentPlaceholder', '例如：仅允许只读操作'))}">
+                <input class="hitl-config-input hitl-inline-comment" type="text" placeholder="${escapeAttr(tr('hitl.commentPlaceholder', '例如：仅允许只读操作'))}">
             </details>
         </div>
         <div class="hitl-pending-actions hitl-inline-actions">
@@ -8075,7 +8074,7 @@ function renderMcpTimelineActiveMoments(points, rangeKey) {
         const failedLabel = mcpMonitorT('failedCount', { n: failed }) || `失败 ${failed}`;
         const blocked = p.blocked || 0;
         const blockedLabel = mcpMonitorT('blockedCount', { n: blocked }) || monitorFallback(`安全拦截 ${blocked}`, `Blocked ${blocked}`);
-        return `<span class="mcp-stats-timeline-moment" title="${escapeHtml(time)}">
+        return `<span class="mcp-stats-timeline-moment" title="${escapeAttr(time)}">
             <span class="mcp-stats-timeline-moment__time">${escapeHtml(time)}</span>
             <span class="mcp-stats-timeline-moment__count">${p.total || 0}</span>
             ${failed > 0 ? `<span class="mcp-stats-timeline-moment__fail">${escapeHtml(failedLabel)}</span>` : ''}
@@ -8083,7 +8082,7 @@ function renderMcpTimelineActiveMoments(points, rangeKey) {
         </span>`;
     }).join('');
     const moreChip = hiddenCount > 0
-        ? `<span class="mcp-stats-timeline-moment mcp-stats-timeline-moment--more" title="${escapeHtml(mcpMonitorT('timelineMoreMomentsTitle', { n: hiddenCount }) || `还有 ${hiddenCount} 个活跃时段`)}">${escapeHtml(moreLabel)}</span>`
+        ? `<span class="mcp-stats-timeline-moment mcp-stats-timeline-moment--more" title="${escapeAttr(mcpMonitorT('timelineMoreMomentsTitle', { n: hiddenCount }) || `还有 ${hiddenCount} 个活跃时段`)}">${escapeHtml(moreLabel)}</span>`
         : '';
     return `<div class="mcp-stats-timeline-moments">
         <span class="mcp-stats-timeline-moments__label">${escapeHtml(label)}</span>
@@ -8190,14 +8189,14 @@ function renderMcpStatsCombinedSection(topTools, totals, activeToolFilter, timel
 
     const filterChipLabel = activeToolFilter ? formatMonitorToolName(activeToolFilter) : '';
     const filterChip = activeToolFilter
-        ? `<span class="mcp-stats-filter-chip" title="${escapeHtml(mcpMonitorT('filterByToolTitle', { tool: filterChipLabel }) || filterChipLabel)}">
+        ? `<span class="mcp-stats-filter-chip" title="${escapeAttr(mcpMonitorT('filterByToolTitle', { tool: filterChipLabel }) || filterChipLabel)}">
             <span class="mcp-stats-filter-chip__label">${escapeHtml(mcpMonitorT('filterActive', { tool: filterChipLabel }) || `已筛选：${filterChipLabel}`)}</span>
-            <button type="button" class="mcp-stats-filter-chip__clear mcp-stats-clear-filter" aria-label="${escapeHtml(mcpMonitorT('clearToolFilter') || '清除工具筛选')}">×</button>
+            <button type="button" class="mcp-stats-filter-chip__clear mcp-stats-clear-filter" aria-label="${escapeAttr(mcpMonitorT('clearToolFilter') || '清除工具筛选')}">×</button>
         </span>`
         : '';
 
     const rangeButtons = showTimeline
-        ? `<div class="mcp-stats-timeline__ranges" role="group" aria-label="${escapeHtml(timelineTitle)}">${renderMcpStatsTimelineRangeButtons()}</div>`
+        ? `<div class="mcp-stats-timeline__ranges" role="group" aria-label="${escapeAttr(timelineTitle)}">${renderMcpStatsTimelineRangeButtons()}</div>`
         : '';
 
     const panelTitle = showTimeline && hasTools
@@ -8224,7 +8223,7 @@ function renderMcpStatsCombinedSection(topTools, totals, activeToolFilter, timel
         : '';
 
     return `
-        <section class="mcp-stats-combined" aria-label="${escapeHtml(panelTitle)}">
+        <section class="mcp-stats-combined" aria-label="${escapeAttr(panelTitle)}">
             <header class="mcp-stats-combined__head">
                 <div class="mcp-stats-combined__head-text">
                     <h4 class="mcp-stats-combined__title">${escapeHtml(panelTitle)}</h4>
@@ -8305,7 +8304,7 @@ function renderMcpStatsToolVolumeBar(total, success, failed, maxTotal) {
     const failPct = total > 0 ? (failed / total) * 100 : 0;
     const legend = mcpMonitorT('barVolumeLegend') || '条长表示相对调用量';
     const volumeTitle = `${total} / ${maxTotal}`;
-    return `<div class="mcp-stats-tool-bar-track" title="${escapeHtml(legend)} · ${escapeHtml(volumeTitle)}">
+    return `<div class="mcp-stats-tool-bar-track" title="${escapeAttr(legend)} · ${escapeHtml(volumeTitle)}">
         <div class="mcp-stats-tool-bar-fill" style="width:${volumePct.toFixed(2)}%">
             <div class="mcp-stats-tool-bar-inner">
                 <span class="mcp-stats-tool-bar-seg mcp-stats-tool-bar-seg--success" style="width:${successPct.toFixed(2)}%"></span>
@@ -8529,10 +8528,10 @@ function renderMcpStatsInsightPanel(topTools, totals, activeToolFilter = '', opt
         const isActive = !s.isOthers && activeToolFilter && activeToolFilter === s.name;
         const inner = `
             <span class="mcp-stats-dist-swatch" style="--swatch-color:${s.color}"></span>
-            <span class="mcp-stats-dist-legend-name" title="${escapeHtml(s.name)}">${escapeHtml(s.name)}</span>
+            <span class="mcp-stats-dist-legend-name" title="${escapeAttr(s.name)}">${escapeHtml(s.name)}</span>
             <span class="mcp-stats-dist-legend-pct">${s.pct}%</span>`;
         if (s.isOthers) {
-            return `<li class="mcp-stats-dist-legend-item is-others" title="${escapeHtml(distOthersTitle)}" data-is-others="1">${inner}</li>`;
+            return `<li class="mcp-stats-dist-legend-item is-others" title="${escapeAttr(distOthersTitle)}" data-is-others="1">${inner}</li>`;
         }
         const rowAria = mcpMonitorT('toolRowAriaLabel', { name: s.name, total: s.calls, rate: s.pct })
             || `${s.name}，${s.calls} 次调用，占 ${s.pct}%`;
@@ -8577,7 +8576,7 @@ function renderMcpStatsInsightPanel(topTools, totals, activeToolFilter = '', opt
             <div class="${bodyClass}">
                 <div class="mcp-stats-dist-chart-stage">
                     <div class="mcp-stats-dist-chart-wrap">
-                        <svg class="mcp-stats-dist-svg" viewBox="0 0 100 100" role="img" aria-label="${escapeHtml(top6ShareLabel)} ${top6SharePct}%">
+                        <svg class="mcp-stats-dist-svg" viewBox="0 0 100 100" role="img" aria-label="${escapeAttr(top6ShareLabel)} ${top6SharePct}%">
                             <g class="mcp-stats-dist-segments">${segmentPathsHtml}</g>
                         </svg>
                         <div class="mcp-stats-dist-donut-hole" aria-hidden="true">
@@ -8729,7 +8728,7 @@ function renderMcpStatsMetricsBar(totals, successRate, rateTone, rateSubText, la
         : '';
 
     return `
-        <div class="mcp-stats-kpi" role="group" aria-label="${escapeHtml(totalCallsLabel)}">
+        <div class="mcp-stats-kpi" role="group" aria-label="${escapeAttr(totalCallsLabel)}">
             <article class="mcp-stats-kpi__item mcp-stats-kpi__item--calls">
                 <span class="mcp-stats-kpi__accent" aria-hidden="true"></span>
                 <div class="mcp-stats-kpi__content">
@@ -8843,14 +8842,14 @@ function renderMcpStatsToolsPanel(topTools, totals, activeToolFilter = '') {
         const title = `${displayName} · ${s.pct}% · ${s.calls}`;
         if (s.isOthers) {
             return `<span class="mcp-stats-proportion-seg is-others" data-is-others="1" role="presentation"
-                style="flex:${s.pctNum} 1 0;background:${s.color}" title="${escapeHtml(title)}"></span>`;
+                style="flex:${s.pctNum} 1 0;background:${s.color}" title="${escapeAttr(title)}"></span>`;
         }
         const segAria = mcpMonitorT('distSegmentAria', { name: displayName, pct: s.pct, calls: s.calls })
             || `${displayName}，占 ${s.pct}%，${s.calls} 次`;
         return `<span class="mcp-stats-proportion-seg${isActive ? ' is-active' : ''}"
             data-tool-name="${escapeAttrLocal(s.name)}" data-pct="${s.pct}" data-calls="${s.calls}" data-is-others="0"
             role="button" tabindex="0" aria-label="${escapeAttrLocal(segAria)}"
-            style="flex:${s.pctNum} 1 0;background:${s.color}" title="${escapeHtml(title)}"></span>`;
+            style="flex:${s.pctNum} 1 0;background:${s.color}" title="${escapeAttr(title)}"></span>`;
     }).join('');
 
     const maxCalls = Math.max(1, ...topTools.map((t) => t.totalCalls || 0));
@@ -8907,9 +8906,9 @@ function renderMcpStatsToolsPanel(topTools, totals, activeToolFilter = '') {
     }).join('');
 
     return `
-        <div class="mcp-stats-tools-panel" role="region" aria-label="${escapeHtml(mcpMonitorT('toolStatsTitle') || '工具统计')}">
+        <div class="mcp-stats-tools-panel" role="region" aria-label="${escapeAttr(mcpMonitorT('toolStatsTitle') || '工具统计')}">
             <div class="mcp-stats-tools-panel__hero">
-                <div class="mcp-stats-proportion-bar" role="img" aria-label="${escapeHtml(distAria)}">${stackedHtml}</div>
+                <div class="mcp-stats-proportion-bar" role="img" aria-label="${escapeAttr(distAria)}">${stackedHtml}</div>
                 <p class="mcp-stats-tools-panel__caption">
                     <span class="mcp-stats-scope-badge mcp-stats-scope-badge--cumulative mcp-stats-scope-badge--inline">${escapeHtml(mcpMonitorT('scopeCumulative') || '累计')}</span>
                     ${escapeHtml(caption)}
@@ -8954,7 +8953,7 @@ function renderMcpStatsChartAside(topTools, totals, activeToolFilter = '') {
             data-center-suffix="%">
             <p class="mcp-stats-panel__aside-title">${escapeHtml(distTitle)}</p>
             <div class="mcp-stats-panel__chart">
-                <svg class="mcp-stats-dist-svg" viewBox="0 0 100 100" role="img" aria-label="${escapeHtml(top6ShareLabel)} ${top6SharePct}%">
+                <svg class="mcp-stats-dist-svg" viewBox="0 0 100 100" role="img" aria-label="${escapeAttr(top6ShareLabel)} ${top6SharePct}%">
                     <g class="mcp-stats-dist-segments">${segmentPathsHtml}</g>
                 </svg>
                 <div class="mcp-stats-dist-donut-hole" aria-hidden="true">
@@ -9134,7 +9133,7 @@ function renderMonitorExecutions(executions = [], statusFilter = 'all') {
                         <div class="monitor-execution-actions">
                             <button class="btn-secondary" onclick="showMCPDetail(${jsExecId})">${escapeHtml(viewDetailLabel)}</button>
                             ${terminateBtn}
-                            <button class="btn-secondary btn-delete" data-require-permission="monitor:delete" onclick="deleteExecution(${jsExecId})" title="${escapeHtml(deleteExecTitle)}">${escapeHtml(deleteLabel)}</button>
+                            <button class="btn-secondary btn-delete" data-require-permission="monitor:delete" onclick="deleteExecution(${jsExecId})" title="${escapeAttr(deleteExecTitle)}">${escapeHtml(deleteLabel)}</button>
                         </div>
                     </td>
                 </tr>

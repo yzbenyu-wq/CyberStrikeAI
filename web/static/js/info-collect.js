@@ -158,17 +158,10 @@ let fofaParseToastHandle = null;
 
 // HTML转义（如果未定义）
 if (typeof escapeHtml === 'undefined') {
-    function escapeHtml(text) {
-        if (text == null) return '';
-        const div = document.createElement('div');
-        div.textContent = String(text);
-        return div.innerHTML;
-    }
+
 }
 
-function escapeAttr(text) {
-    return escapeHtml(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
+
 
 function getFofaFormElements() {
     return {
@@ -922,7 +915,7 @@ function showFofaParseModal(nlText, parsed) {
 
                 <div class="form-group info-collect-parse-form-group">
                     <label for="fofa-parse-query">${escapeHtml(cfg.label)} 查询语法（可编辑）</label>
-                    <textarea id="fofa-parse-query" class="info-collect-query-input" rows="2" placeholder="${escapeHtml(cfg.placeholder)}"></textarea>
+                    <textarea id="fofa-parse-query" class="info-collect-query-input" rows="2" placeholder="${escapeAttr(cfg.placeholder)}"></textarea>
                     <small class="form-hint">${_t('infoCollect.confirmBeforeQuery')}</small>
                 </div>
 
@@ -1129,20 +1122,20 @@ function renderFofaResults(payload) {
 
         const actionHtml = `
             <div class="info-collect-actions">
-                <button class="btn-icon" onclick="copyFofaTargetEncoded('${encodedTarget}'); event.stopPropagation();" title="${escapeHtml(_t('infoCollect.copyTarget'))}">
+                <button class="btn-icon" onclick="copyFofaTargetEncoded('${encodedTarget}'); event.stopPropagation();" title="${escapeAttr(_t('infoCollect.copyTarget'))}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </button>
-                <button class="btn-icon" onclick="scanFofaRow('${encoded}', event); event.stopPropagation();" title="${escapeHtml(_t('infoCollect.sendToChat'))}">
+                <button class="btn-icon" onclick="scanFofaRow('${encoded}', event); event.stopPropagation();" title="${escapeAttr(_t('infoCollect.sendToChat'))}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.5 13.5l3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         <path d="M8 8H5a4 4 0 1 0 0 8h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         <path d="M16 8h3a4 4 0 0 1 0 8h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </button>
-                <button class="btn-icon" data-require-permission="asset:write" onclick="importFofaRowAsset(${idx}); event.stopPropagation();" title="${escapeHtml(_t('assets.importOne'))}">
+                <button class="btn-icon" data-require-permission="asset:write" onclick="importFofaRowAsset(${idx}); event.stopPropagation();" title="${escapeAttr(_t('assets.importOne'))}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
             </div>

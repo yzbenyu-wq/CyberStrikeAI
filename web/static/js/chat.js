@@ -1,3 +1,7 @@
+/* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
+   必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
+
+
 let currentConversationId = null;
 
 /** Persist the visible chat in the URL so a reload can restore and reconnect it. */
@@ -3479,17 +3483,12 @@ function refreshSystemReadyMessageBubbles() {
     const text = getChatWelcomeText();
     const welcome = document.querySelector('.chat-welcome-empty-state-title');
     if (welcome) updateChatWelcomeTitle(welcome);
-    const escapeHtmlLocal = (s) => {
-        if (!s) return '';
-        const div = document.createElement('div');
-        div.textContent = s;
-        return div.innerHTML;
-    };
+
     let formattedContent;
     if (typeof window.csMarkdownSanitize !== 'undefined') {
         formattedContent = window.csMarkdownSanitize.formatMarkdownToHtml(text, { profile: 'chat' });
     } else {
-        formattedContent = escapeHtmlLocal(text).replace(/\n/g, '<br>');
+        formattedContent = escapeHtml(text).replace(/\n/g, '<br>');
     }
 
     document.querySelectorAll('.message.assistant[data-system-ready-message]').forEach(function (messageDiv) {
@@ -3575,12 +3574,7 @@ function addMessage(role, content, mcpExecutionIds = null, progressId = null, cr
 
     // 解析 Markdown 或 HTML 格式
     let formattedContent;
-    const escapeHtml = (text) => {
-        if (!text) return '';
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    };
+
 
     // 助手消息中的已知中文错误前缀做国际化替换（后端固定返回中文）
     let displayContent = content;
@@ -9951,9 +9945,9 @@ function renderConversationsPagination(visibleCount) {
         <div class="sidebar-list-pagination-inner sidebar-list-pagination-inner--compact">
             <span class="pagination-info">${escapeHtml(infoText)}</span>
             <div class="pagination-controls">
-                <button type="button" class="btn-icon-pagination" data-conv-page="${prevPage}" ${page <= 1 || navDisabled ? 'disabled' : ''} title="${escapeHtml(prevLabel)}" aria-label="${escapeHtml(prevLabel)}">‹</button>
+                <button type="button" class="btn-icon-pagination" data-conv-page="${prevPage}" ${page <= 1 || navDisabled ? 'disabled' : ''} title="${escapeAttr(prevLabel)}" aria-label="${escapeAttr(prevLabel)}">‹</button>
                 <span class="pagination-page">${escapeHtml(pageText)}</span>
-                <button type="button" class="btn-icon-pagination" data-conv-page="${nextPage}" ${page >= totalPages || navDisabled ? 'disabled' : ''} title="${escapeHtml(nextLabel)}" aria-label="${escapeHtml(nextLabel)}">›</button>
+                <button type="button" class="btn-icon-pagination" data-conv-page="${nextPage}" ${page >= totalPages || navDisabled ? 'disabled' : ''} title="${escapeAttr(nextLabel)}" aria-label="${escapeAttr(nextLabel)}">›</button>
             </div>
             <label class="pagination-page-size">
                 ${escapeHtml(perPageLabel)}

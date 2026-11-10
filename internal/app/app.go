@@ -93,6 +93,9 @@ func New(cfg *config.Config, log *logger.Logger, configPath string) (*App, error
 	// CORS中间件
 	router.Use(corsMiddleware(cfg.Server.CORSAllowedOrigins))
 
+	// 静态资源压缩与缓存协商（仅作用于 /static，不触碰 SSE 流式端点）
+	router.Use(staticAssetsMiddleware())
+
 	// 初始化数据库
 	dbPath := cfg.Database.Path
 	if dbPath == "" {

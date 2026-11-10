@@ -1,3 +1,7 @@
+/* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
+   必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
+
+
 // 对话附件（chat_uploads）文件管理
 
 let chatFilesCache = [];
@@ -1082,7 +1086,7 @@ function renderChatFilesTable() {
         return `<tr>
             <td>${escapeHtml(f.date || '—')}</td>
             <td class="chat-files-cell-conv"><code title="${convTitleEsc}">${convEsc}</code></td>
-            <td class="chat-files-cell-subpath" title="${escapeHtml(subRaw || '')}">${subCellInner}</td>
+            <td class="chat-files-cell-subpath" title="${escapeAttr(subRaw || '')}">${subCellInner}</td>
             <td class="chat-files-cell-name" title="${chatFilesEscapeAttr(pathForTitle)}">${nameEsc}${sourceBadge}</td>
             <td>${formatChatFileBytes(f.size || 0)}</td>
             <td>${escapeHtml(dt)}</td>

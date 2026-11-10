@@ -527,7 +527,7 @@ function renderSkillPackageTree() {
         const indent = 8 + skillPackagePathDepth(path) * 14;
         if (f.is_dir) {
             const dirLabel = path.endsWith('/') ? path : path + '/';
-            return `<div class="skill-tree-row skill-tree-dir" style="padding-left:${indent}px" title="${escapeHtml(_t('skillModal.folderHint'))}">` +
+            return `<div class="skill-tree-row skill-tree-dir" style="padding-left:${indent}px" title="${escapeAttr(_t('skillModal.folderHint'))}">` +
                 `<span class="skill-tree-icon" aria-hidden="true">📁</span>` +
                 `<span class="skill-tree-label">${escapeHtml(dirLabel)}</span>` +
                 `</div>`;
@@ -1091,16 +1091,9 @@ async function clearSkillsStats() {
 }
 
 // HTML转义函数
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
 
-function escapeAttr(text) {
-    return escapeHtml(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
+
+
 
 // 语言切换时重新渲染当前页（技能列表与分页使用 _t，需随语言更新）
 document.addEventListener('languagechange', function () {

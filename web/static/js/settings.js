@@ -1,3 +1,7 @@
+/* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
+   必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
+
+
 // 设置相关功能
 let currentConfig = null;
 let selectedAIChannelId = '';
@@ -1690,7 +1694,7 @@ function renderExternalMcpFilterChip() {
     chip.style.display = 'inline-flex';
     chip.innerHTML = `
         <span>${t('mcp.filterBySource', { name: escapeHtml(toolsExternalMcpFilter) })}</span>
-        <button type="button" class="tools-source-filter-clear" onclick="clearExternalMcpFilter()" title="${escapeHtml(t('mcp.clearSourceFilter'))}">×</button>
+        <button type="button" class="tools-source-filter-clear" onclick="clearExternalMcpFilter()" title="${escapeAttr(t('mcp.clearSourceFilter'))}">×</button>
     `;
 }
 
@@ -4411,7 +4415,7 @@ function renderExternalMCPList(servers) {
             <div class="${cardClass}${selectedClass}" data-mcp-name="${settingsEscapeAttr(name)}"${hasTools ? ` onclick="scrollToExternalMCPTools(${settingsEscapeJsStringAttr(name)}, event)" title="${settingsEscapeAttr(cardClickTitle)}"` : ''}>
                 <div class="external-mcp-item-header">
                     <div class="external-mcp-item-info">
-                        <h4>${transportIcon} ${escapeHtml(name)}${server.tool_count !== undefined && server.tool_count > 0 ? `<span class="tool-count-badge" title="${escapeHtml(statusT('mcp.toolCount'))}">🔧 ${server.tool_count}</span>` : ''}</h4>
+                        <h4>${transportIcon} ${escapeHtml(name)}${server.tool_count !== undefined && server.tool_count > 0 ? `<span class="tool-count-badge" title="${escapeAttr(statusT('mcp.toolCount'))}">🔧 ${server.tool_count}</span>` : ''}</h4>
                         <span class="external-mcp-status ${statusClass}">${statusText}</span>
                     </div>
                     <div class="external-mcp-item-actions">

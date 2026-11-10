@@ -454,7 +454,7 @@ function renderRoleSelectionSidebar() {
         roleItem.setAttribute('data-selection-detail', description);
         
         roleItem.innerHTML = `
-            <div class="role-selection-item-icon-main">${icon}</div>
+            <div class="role-selection-item-icon-main">${escapeHtml(icon)}</div>
             <div class="role-selection-item-content-main">
                 <div class="role-selection-item-name-main">${escapeHtml(role.name)}</div>
                 <div class="role-selection-item-description-main">${escapeHtml(description)}</div>
@@ -546,19 +546,13 @@ function closeRoleSelectionPanel() {
 }
 
 // 转义HTML
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
+
 
 function escapeJsString(text) {
     return JSON.stringify(String(text == null ? '' : text));
 }
 
-function escapeAttr(text) {
-    return escapeHtml(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
+
 
 function escapeJsStringAttr(text) {
     return escapeAttr(escapeJsString(text));
@@ -964,7 +958,7 @@ function renderRoleToolsList() {
         }
         let mcpDisabledBadge = '';
         if (tool.enabled === false) {
-            mcpDisabledBadge = `<span class="role-tool-mcp-disabled-badge" title="${escapeHtml(_t('roleModal.mcpDisabledBadgeTitle'))}">${escapeHtml(_t('roleModal.mcpDisabledBadge'))}</span>`;
+            mcpDisabledBadge = `<span class="role-tool-mcp-disabled-badge" title="${escapeAttr(_t('roleModal.mcpDisabledBadgeTitle'))}">${escapeHtml(_t('roleModal.mcpDisabledBadge'))}</span>`;
         }
         // 生成唯一的checkbox id
         const checkboxId = `role-tool-${escapeAttr(toolKey).replace(/::/g, '--')}`;
@@ -1196,10 +1190,10 @@ function updateRoleToolsStats() {
     if (roleUsesAllTools) {
         statsEl.innerHTML = `
             <div class="role-tools-stats-row">
-                <span title="${escapeHtml(_t('roleModal.statsPageLinkedTitle'))}">✅ ${_t('roleModal.statsPageLinked', { current: pageChecked, total: pageTotal })}</span>
+                <span title="${escapeAttr(_t('roleModal.statsPageLinkedTitle'))}">✅ ${_t('roleModal.statsPageLinked', { current: pageChecked, total: pageTotal })}</span>
             </div>
             <div class="role-tools-stats-row">
-                <span title="${escapeHtml(_t('roleModal.statsRoleUsesAllTitle'))}">📊 ${_t('roleModal.statsRoleUsesAll', { mcpOn: mcpOnMax, all: grandAll })}</span>
+                <span title="${escapeAttr(_t('roleModal.statsRoleUsesAllTitle'))}">📊 ${_t('roleModal.statsRoleUsesAll', { mcpOn: mcpOnMax, all: grandAll })}</span>
             </div>
             <div class="role-tools-stats-hint">📋 ${escapeHtml(scopeLine)}</div>
         `;
@@ -1229,12 +1223,12 @@ function updateRoleToolsStats() {
 
     const roleRow =
         mcpOnMax > 0
-            ? `<span title="${escapeHtml(_t('roleModal.statsRoleLinkedTitle'))}">📊 ${_t('roleModal.statsRoleLinked', { current: roleLinked, max: mcpOnMax })}</span>`
-            : `<span title="${escapeHtml(_t('roleModal.statsRoleLinkedNoMaxTitle'))}">📊 ${_t('roleModal.statsRoleLinkedNoMax', { current: roleLinked })}</span>`;
+            ? `<span title="${escapeAttr(_t('roleModal.statsRoleLinkedTitle'))}">📊 ${_t('roleModal.statsRoleLinked', { current: roleLinked, max: mcpOnMax })}</span>`
+            : `<span title="${escapeAttr(_t('roleModal.statsRoleLinkedNoMaxTitle'))}">📊 ${_t('roleModal.statsRoleLinkedNoMax', { current: roleLinked })}</span>`;
 
     statsEl.innerHTML = `
         <div class="role-tools-stats-row">
-            <span title="${escapeHtml(_t('roleModal.statsPageLinkedTitle'))}">✅ ${_t('roleModal.statsPageLinked', { current: pageChecked, total: pageTotal })}</span>
+            <span title="${escapeAttr(_t('roleModal.statsPageLinkedTitle'))}">✅ ${_t('roleModal.statsPageLinked', { current: pageChecked, total: pageTotal })}</span>
         </div>
         <div class="role-tools-stats-row">${roleRow}</div>
         <div class="role-tools-stats-hint">📋 ${escapeHtml(scopeLine)}</div>
