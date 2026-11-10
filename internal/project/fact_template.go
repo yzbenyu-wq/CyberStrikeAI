@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/projectprompt"
+	"jameslee-ai/internal/projectprompt"
 )
 
 // 事实 category 常量（写入 upsert_project_fact 的 category 字段）。

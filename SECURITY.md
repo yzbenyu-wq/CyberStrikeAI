@@ -4,7 +4,7 @@
 
 ## Security Policy
 
-CyberStrikeAI is a security testing and automation platform. It can execute tools, call MCP servers, manage WebShell connections, and optionally run C2 workflows. Please treat every deployment as a high-privilege security system.
+JamesLeeAI is a security testing and automation platform. It can execute tools, call MCP servers, manage WebShell connections, and optionally run C2 workflows. Please treat every deployment as a high-privilege security system.
 
 ### Supported Versions
 
@@ -48,11 +48,11 @@ Out of scope:
 - denial-of-service testing against public services without permission;
 - social engineering, phishing, or credential theft;
 - issues caused only by intentionally disabling documented security controls;
-- vulnerabilities in third-party tools invoked by CyberStrikeAI, unless CyberStrikeAI makes them materially worse.
+- vulnerabilities in third-party tools invoked by JamesLeeAI, unless JamesLeeAI makes them materially worse.
 
 ### Authorized Use Boundary
 
-CyberStrikeAI must only be used for education, research, and authorized security testing. Do not use it against systems without explicit permission.
+JamesLeeAI must only be used for education, research, and authorized security testing. Do not use it against systems without explicit permission.
 
 High-risk capabilities such as Shell execution, WebShell management, C2, payload generation, external MCP tools, and batch scanning should be enabled only in controlled, authorized environments.
 
@@ -79,7 +79,7 @@ See:
 
 # 安全政策
 
-CyberStrikeAI 是一个安全测试与自动化平台。它可以执行工具、调用 MCP 服务、管理 WebShell 连接，并可选运行 C2 工作流。请把每个部署实例都视为高权限安全系统。
+JamesLeeAI 是一个安全测试与自动化平台。它可以执行工具、调用 MCP 服务、管理 WebShell 连接，并可选运行 C2 工作流。请把每个部署实例都视为高权限安全系统。
 
 ## 支持版本
 
@@ -123,11 +123,11 @@ CyberStrikeAI 是一个安全测试与自动化平台。它可以执行工具、
 - 未经许可的拒绝服务测试；
 - 社工、钓鱼或凭证窃取；
 - 仅因主动关闭文档化安全控制导致的问题；
-- 第三方工具自身漏洞，除非 CyberStrikeAI 明显放大了风险。
+- 第三方工具自身漏洞，除非 JamesLeeAI 明显放大了风险。
 
 ## 授权使用边界
 
-CyberStrikeAI 仅可用于教育、研究和授权安全测试。不要在没有明确授权的系统上使用。
+JamesLeeAI 仅可用于教育、研究和授权安全测试。不要在没有明确授权的系统上使用。
 
 Shell 执行、WebShell 管理、C2、payload 生成、外部 MCP 工具、批量扫描等高风险能力，只应在受控且授权明确的环境中启用。
 

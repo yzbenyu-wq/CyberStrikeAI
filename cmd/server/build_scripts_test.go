@@ -197,7 +197,7 @@ func TestUpgradeScriptKeepsEveryOneClickUpdateArtifact(t *testing.T) {
 	}
 
 	// The script names the binary through a variable; compare against the literal name.
-	keeps := strings.ReplaceAll(string(script), "${BINARY_NAME}", "cyberstrike-ai")
+	keeps := strings.ReplaceAll(string(script), "${BINARY_NAME}", "jameslee-ai")
 	for _, artifact := range artifacts {
 		if !strings.Contains(keeps, "--exclude="+artifact) {
 			t.Errorf("upgrade.sh syncs with rsync --delete but does not keep %s", artifact)

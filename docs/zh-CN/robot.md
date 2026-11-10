@@ -1,14 +1,14 @@
-# CyberStrikeAI 机器人使用说明
+# JamesLeeAI 机器人使用说明
 
 [English](../en-US/robot.md)
 
-本文档说明如何通过**个人微信、企业微信、钉钉、飞书、Telegram、Slack、Discord 和 QQ 机器人**使用 CyberStrikeAI，包括平台接入、RBAC 身份绑定、服务账号白名单、命令、验证与故障排查。
+本文档说明如何通过**个人微信、企业微信、钉钉、飞书、Telegram、Slack、Discord 和 QQ 机器人**使用 JamesLeeAI，包括平台接入、RBAC 身份绑定、服务账号白名单、命令、验证与故障排查。
 
 ---
 
-## 一、在 CyberStrikeAI 里从哪里配置
+## 一、在 JamesLeeAI 里从哪里配置
 
-1. 登录 CyberStrikeAI Web 端  
+1. 登录 JamesLeeAI Web 端  
 2. 左侧导航进入 **系统设置**  
 3. 在左侧设置分类中点击 **机器人设置**（位于「基本设置」与「安全设置」之间）  
 4. 按平台配置：
@@ -17,7 +17,7 @@
    - **飞书**：勾选并填写 App ID / App Secret
 5. 点击 **应用配置** 保存；程序会自动重启对应机器人连接。微信扫码绑定成功后会自动保存并启用，一般无需再点。
 
-配置会写入 `config.yaml` 的 `robots` 段，也可在配置文件中直接编辑。通过 Web 点击“应用配置”会自动重启对应连接；直接手工修改 `config.yaml` 时，需要重启 CyberStrikeAI 进程。个人微信绑定成功后程序会自动写入 `robots.wechat` 并重启 iLink 长轮询。
+配置会写入 `config.yaml` 的 `robots` 段，也可在配置文件中直接编辑。通过 Web 点击“应用配置”会自动重启对应连接；直接手工修改 `config.yaml` 时，需要重启 JamesLeeAI 进程。个人微信绑定成功后程序会自动写入 `robots.wechat` 并重启 iLink 长轮询。
 
 ### 最短使用路径
 
@@ -43,7 +43,7 @@
 | Discord  | Gateway WebSocket，**无需公网回调** |
 | QQ 机器人 | QQ 开放平台 WebSocket（C2C / 群 @），**无需公网回调** |
 
-下面第三节会按平台写清：在开放平台要做什么、要复制哪些字段、填到 CyberStrikeAI 的哪一栏。
+下面第三节会按平台写清：在开放平台要做什么、要复制哪些字段、填到 JamesLeeAI 的哪一栏。
 
 ---
 
@@ -86,18 +86,18 @@
    - 左侧 **权限管理**：搜索「机器人」「消息」等，勾选**接收消息**、**发送消息**等机器人相关权限，并确认授权。  
    - 左侧 **版本管理与发布**：若有未发布配置，点击 **发布新版本** / **上线**，否则修改不生效。
 
-6. **填回 CyberStrikeAI**  
-   - 回到 CyberStrikeAI → 系统设置 → 机器人设置 → 钉钉。  
+6. **填回 JamesLeeAI**  
+   - 回到 JamesLeeAI → 系统设置 → 机器人设置 → 钉钉。  
    - 勾选「启用钉钉机器人」。  
    - **Client ID (AppKey)** 粘贴第 3 步复制的 Client ID。  
    - **Client Secret** 粘贴第 3 步复制的 Client Secret。  
-   - 点击 **应用配置**，然后**重启 CyberStrikeAI**。
+   - 点击 **应用配置**，然后**重启 JamesLeeAI**。
 
 ---
 
-**CyberStrikeAI 钉钉栏位对照**
+**JamesLeeAI 钉钉栏位对照**
 
-| CyberStrikeAI 中填写项 | 在钉钉开放平台的来源 |
+| JamesLeeAI 中填写项 | 在钉钉开放平台的来源 |
 |------------------------|------------------------|
 | 启用钉钉机器人 | 勾选即启用 |
 | Client ID (AppKey) | 凭证与基础信息 → **Client ID（原 AppKey）** |
@@ -114,7 +114,7 @@
 | App Secret | 飞书开放平台应用凭证中的 App Secret |
 | Verify Token | 事件订阅用（可选） |
 
-**飞书配置简要步骤**：登录 [飞书开放平台](https://open.feishu.cn) → 创建企业自建应用 → 在「凭证与基础信息」中获取 **App ID**、**App Secret** → 在「应用能力」中开通**机器人**并启用相应权限 → **在「事件订阅」中添加事件**（见下）→ 发布应用 → 将 App ID、App Secret 填到 CyberStrikeAI 机器人设置 → 保存。
+**飞书配置简要步骤**：登录 [飞书开放平台](https://open.feishu.cn) → 创建企业自建应用 → 在「凭证与基础信息」中获取 **App ID**、**App Secret** → 在「应用能力」中开通**机器人**并启用相应权限 → **在「事件订阅」中添加事件**（见下）→ 发布应用 → 将 App ID、App Secret 填到 JamesLeeAI 机器人设置 → 保存。
 
 **重要：事件订阅**  
 飞书长连接只有在开放平台订阅了「接收消息」事件后才会收到用户消息。请在该应用的 **事件订阅** 页面点击「添加事件」，在「消息与群组」下勾选 **接收消息（im.message.receive_v1）** 或同类事件；若未添加，连接会建立成功但收不到任何消息，表现为发消息后本地无日志、机器人无回复。
@@ -140,13 +140,13 @@
 
 > 企业微信目前采用「HTTP 回调 + 主动发送消息 API」的方式工作：  
 > - 用户发消息 → 企业微信以加密 XML **回调到你的服务器**（本程序的 `/api/robot/wecom`）；  
-> - CyberStrikeAI 解密并调用 AI → 使用企业微信的 `message/send` 接口**主动发消息给用户**。
+> - JamesLeeAI 解密并调用 AI → 使用企业微信的 `message/send` 接口**主动发消息给用户**。
 
 **配置概览：**
 
 - 在企业微信管理后台创建或选择一个**自建应用**。
 - 在该应用的「接收消息」处配置回调 URL、Token、EncodingAESKey。
-- 在 CyberStrikeAI 的 `config.yaml` 中填入：
+- 在 JamesLeeAI 的 `config.yaml` 中填入：
   - `robots.wecom.corp_id`：企业 ID（CorpID）
   - `robots.wecom.agent_id`：应用的 AgentId
   - `robots.wecom.token`：消息回调使用的 Token
@@ -154,11 +154,11 @@
   - `robots.wecom.secret`：该应用的 Secret（用于调用企业微信主动发送消息接口）
 
 > **重要：IP 白名单（errcode 60020）**  
-> CyberStrikeAI 使用 `https://qyapi.weixin.qq.com/cgi-bin/message/send` 主动发送 AI 回复。  
+> JamesLeeAI 使用 `https://qyapi.weixin.qq.com/cgi-bin/message/send` 主动发送 AI 回复。  
 > 若企业微信日志或本程序日志中出现 `errcode 60020 not allow to access from your ip`：
 >
 > - 说明你的服务器出口 IP **没有加入企业微信的 IP 白名单**；  
-> - 请在企业微信管理后台中找到该自建应用的**「安全设置 / IP 白名单」**（具体入口可能因版本略有不同），将运行 CyberStrikeAI 的服务器公网 IP（如 `110.xxx.xxx.xxx`）加入白名单；  
+> - 请在企业微信管理后台中找到该自建应用的**「安全设置 / IP 白名单」**（具体入口可能因版本略有不同），将运行 JamesLeeAI 的服务器公网 IP（如 `110.xxx.xxx.xxx`）加入白名单；  
 > - 保存后等待生效，再次发送消息测试。
 >
 > 如果 IP 未加入白名单，企业微信会拒绝主动发送消息，表现为：  
@@ -170,7 +170,7 @@
 ### 3.4 个人微信 (WeChat / iLink)
 
 > 个人微信采用「Web 扫码绑定 + iLink 长轮询」方式工作：  
-> - 在 CyberStrikeAI Web 端生成二维码 → 用**手机微信**扫码并确认绑定；  
+> - 在 JamesLeeAI Web 端生成二维码 → 用**手机微信**扫码并确认绑定；  
 > - 绑定成功后自动写入 `config.yaml` 的 `robots.wechat`，并启动 iLink 长轮询（程序主动连接 `ilinkai.weixin.qq.com` 收消息）；  
 > - **无需**在服务器上配置公网回调 URL，也**无需**去微信开放平台注册应用。
 
@@ -185,7 +185,7 @@
 
 **绑定步骤（按顺序做）**
 
-1. **登录 CyberStrikeAI Web 端**  
+1. **登录 JamesLeeAI Web 端**  
    左侧 **系统设置** → **机器人设置** → 点击 **微信 / iLink** 卡片。
 
 2. **（可选）勾选「启用微信机器人」**  
@@ -203,9 +203,9 @@
    页面显示「绑定成功，微信机器人已启用」即完成。`bot_token`、`ilink_bot_id` 等会自动写入 `config.yaml`，程序会自动重启 iLink 长轮询，**一般无需手动重启服务**。
 
 6. **在手机微信里测试**  
-   打开与 CyberStrikeAI 机器人的**私聊**（绑定后微信内会出现对应会话），发送「帮助」或任意文字测试。
+   打开与 JamesLeeAI 机器人的**私聊**（绑定后微信内会出现对应会话），发送「帮助」或任意文字测试。
 
-**CyberStrikeAI 微信栏位说明**
+**JamesLeeAI 微信栏位说明**
 
 | 栏位 | 说明 |
 |------|------|
@@ -214,7 +214,7 @@
 | **高级设置**（一般保持默认即可） | |
 | API Base URL | 默认 `https://ilinkai.weixin.qq.com` |
 | Bot Type | 默认 `3` |
-| Bot Agent | 默认 `CyberStrikeAI/1.0` |
+| Bot Agent | 默认 `JamesLeeAI/1.0` |
 | iLink Bot ID | 绑定成功后自动填充，只读 |
 
 **使用方式**
@@ -235,7 +235,7 @@
 | 二维码过期 | 重新点击「生成二维码并绑定」（有效期约 5 分钟） |
 | 扫码后要求输入数字 | 查看手机微信显示的配对数字，在 Web 页面输入并提交 |
 | 绑定成功但发消息无回复 | 看程序日志是否有 `微信 iLink 长轮询已启动`、`微信收到消息`；确认已勾选「启用微信机器人」 |
-| 断网或睡眠后无回复 | 程序会自动重连（约 5～60 秒）；仍无回复可重启 CyberStrikeAI |
+| 断网或睡眠后无回复 | 程序会自动重连（约 5～60 秒）；仍无回复可重启 JamesLeeAI |
 | 无法生成二维码 | 确认服务器能访问 `https://ilinkai.weixin.qq.com`（出站 HTTPS） |
 
 ---
@@ -247,7 +247,7 @@
 **配置步骤：**
 
 1. 在 Telegram 中找 **@BotFather**，发送 `/newbot` 创建机器人，获得 **Bot Token**。  
-2. CyberStrikeAI → **系统设置** → **机器人设置** → **Telegram**。  
+2. JamesLeeAI → **系统设置** → **机器人设置** → **Telegram**。  
 3. 勾选「启用 Telegram 机器人」，粘贴 **Bot Token**。  
 4. （可选）填写 Bot Username（不含 `@`），或留空由程序自动 `getMe`。  
 5. （可选）勾选「允许群聊」— 群聊中仅响应 **@机器人** 的消息。  
@@ -267,7 +267,7 @@
 2. **Basic Information** → **App-Level Tokens** → 创建 token（scope: `connections:write`），即 **xapp-** 开头。  
 3. **OAuth & Permissions** → 添加 Bot Token Scopes：`app_mentions:read`、`chat:write`、`im:history`、`im:read` 等 → 安装到工作区，获得 **xoxb-** Bot Token。  
 4. **Event Subscriptions** → 订阅 `message.im`、`app_mention` 等（Socket Mode 下在应用内配置）。  
-5. 在 CyberStrikeAI 填入 Bot Token 与 App-Level Token → **应用配置**。
+5. 在 JamesLeeAI 填入 Bot Token 与 App-Level Token → **应用配置**。
 
 **使用：** 与 Bot 私聊直接发；频道中需 @ 机器人。
 
@@ -282,7 +282,7 @@
 1. 在 [Discord Developer Portal](https://discord.com/developers/applications) 创建应用 → **Bot** → 复制 **Token**。  
 2. 开启 **Privileged Gateway Intents** 中的 **Message Content Intent**（否则读不到消息正文）。  
 3. OAuth2 → URL Generator → scopes: `bot` → 权限勾选 **Send Messages**、**Read Message History** 等 → 邀请 Bot 到服务器。  
-4. CyberStrikeAI → **机器人设置** → **Discord** → 填入 Token → **应用配置**。  
+4. JamesLeeAI → **机器人设置** → **Discord** → 填入 Token → **应用配置**。  
 5. （可选）勾选「允许服务器频道」— 频道中仅响应 **@机器人**。
 
 **使用：** 与 Bot 私聊直接发；服务器频道需 @ 机器人（且已勾选允许服务器频道）。
@@ -298,19 +298,19 @@
 1. 在 [QQ 机器人开放平台](https://q.qq.com) 创建机器人，获取 **App ID** 与 **Client Secret**。  
 2. 在沙箱中添加测试成员（上线前仅沙箱可对话）。  
 3. 订阅 **C2C 消息**、**群 @ 消息** 等事件（WebSocket 模式）。  
-4. CyberStrikeAI → **机器人设置** → **QQ 机器人** → 填入 App ID、Client Secret。  
+4. JamesLeeAI → **机器人设置** → **QQ 机器人** → 填入 App ID、Client Secret。  
 5. 测试阶段勾选 **沙箱环境**；正式上线后取消沙箱并发布。  
 6. 点击 **应用配置**。
 
 **使用：** 与机器人 C2C 私聊直接发；QQ 群中需 @ 机器人。
 
-> 注意：QQ 官方正逐步推广 Webhook 回调；当前实现使用 WebSocket（与钉钉/飞书类似的长连接模式）。若配置变更后连接未刷新，可重启 CyberStrikeAI 进程。
+> 注意：QQ 官方正逐步推广 Webhook 回调；当前实现使用 WebSocket（与钉钉/飞书类似的长连接模式）。若配置变更后连接未刷新，可重启 JamesLeeAI 进程。
 
 ---
 
 ## 四、RBAC 鉴权与机器人命令
 
-平台 Token、签名或长连接凭证只负责证明“消息来自该平台”；真正能执行哪些操作，由 CyberStrikeAI 的 RBAC 决定。每个机器人实例都必须选择一种业务鉴权模式。
+平台 Token、签名或长连接凭证只负责证明“消息来自该平台”；真正能执行哪些操作，由 JamesLeeAI 的 RBAC 决定。每个机器人实例都必须选择一种业务鉴权模式。
 
 ### 4.1 应该选择哪种模式
 
@@ -341,7 +341,7 @@ chat:write
 
 每位使用者操作：
 
-1. 登录 CyberStrikeAI Web，点击右上角头像 → **绑定机器人账号**。
+1. 登录 JamesLeeAI Web，点击右上角头像 → **绑定机器人账号**。
 2. 点击 **生成绑定码**，页面开始 5 分钟倒计时。
 3. 在目标机器人中发送页面给出的完整命令，例如 `绑定 7C6E-BD4C`。
 4. 发送 `身份` 或 `whoami`，确认“鉴权状态：已授权”且“实际身份”是自己的 Web 用户。
@@ -400,7 +400,7 @@ robots:
 | **角色** 或 **角色列表** | 列出所有可用角色（渗透测试、CTF、Web 应用扫描等） |
 | **角色 \<角色名\>** 或 **切换角色 \<角色名\>** | 切换当前使用的角色 |
 | **删除 \<对话ID\>** | 删除指定对话 |
-| **版本** | 显示当前 CyberStrikeAI 版本号 |
+| **版本** | 显示当前 JamesLeeAI 版本号 |
 
 除以上命令外，**直接输入任意文字**会作为用户消息发给 AI，与 Web 端对话逻辑一致（渗透测试/安全分析等）。
 
@@ -410,7 +410,7 @@ robots:
 
 ## 五、如何使用（要 @ 机器人吗？）
 
-- **个人微信**：在与 CyberStrikeAI 机器人的**私聊**中直接发送即可，**不需要 @**（不支持群聊）。  
+- **个人微信**：在与 JamesLeeAI 机器人的**私聊**中直接发送即可，**不需要 @**（不支持群聊）。  
 - **钉钉 / 飞书单聊（推荐）**：**搜索并打开该机器人**，进入**私聊**，直接输入「帮助」或任意文字即可，**不需要 @**。  
 - **钉钉 / 飞书群聊**：若机器人被添加到群里，在群内只有 **@机器人** 后发送的消息才会被机器人收到并回复；不 @ 的群消息不会触发机器人。
 
@@ -422,7 +422,7 @@ robots:
 
 **个人微信（最简单，无需开放平台）**
 
-1. CyberStrikeAI Web 端 → 系统设置 → 机器人设置 → **微信 / iLink** → **生成二维码并绑定**。  
+1. JamesLeeAI Web 端 → 系统设置 → 机器人设置 → **微信 / iLink** → **生成二维码并绑定**。  
 2. 手机微信扫码确认（如需配对数字则在 Web 页填写）。  
 3. 在手机微信私聊中发送 `身份`，复制发送者 ID。  
 4. 回到机器人设置选择 `user_binding`，或选择 `service_account` 并填写服务账号与发送者白名单。  
@@ -431,7 +431,7 @@ robots:
 **钉钉 / 飞书**
 
 1. **在开放平台**：按第三节完成应用创建、凭证复制、机器人开通（钉钉务必选 **Stream 模式**）、权限与发布。  
-2. **在 CyberStrikeAI**：系统设置 → 机器人设置 → 勾选对应平台，粘贴 Client ID/App ID、Client Secret/App Secret → 点击 **应用配置**。  
+2. **在 JamesLeeAI**：系统设置 → 机器人设置 → 勾选对应平台，粘贴 Client ID/App ID、Client Secret/App Secret → 点击 **应用配置**。  
 3. **选择鉴权模式**：多人使用建议 `user_binding`；专用机器人配置服务账号与发送者白名单。  
 4. **应用配置**：Web 会自动重启对应连接。  
 5. **在手机钉钉/飞书**：找到机器人（单聊直接发，群聊需 @），先发 `身份` 检查鉴权，再发普通内容测试。
@@ -458,7 +458,7 @@ robots:
     ilink_user_id: "your_user_id@im.wechat"
     base_url: "https://ilinkai.weixin.qq.com"
     bot_type: "3"
-    bot_agent: "CyberStrikeAI/1.0"
+    bot_agent: "JamesLeeAI/1.0"
   dingtalk:
     enabled: true
     auth:
@@ -521,7 +521,7 @@ curl -X POST "http://localhost:8080/api/robot/test" \
   -d '{"platform":"dingtalk","user_id":"test_user","text":"帮助"}'
 ```
 
-若返回 JSON 中含有 `"reply":"【CyberStrikeAI 机器人命令】..."`，说明命令处理正常。`帮助`、`版本` 和 `身份` 可在未绑定时执行；`列表`、`当前` 和普通 AI 消息会走真实 RBAC，测试用 `platform + user_id` 必须已经绑定，或与服务账号模式的发送者白名单精确匹配。
+若返回 JSON 中含有 `"reply":"【JamesLeeAI 机器人命令】..."`，说明命令处理正常。`帮助`、`版本` 和 `身份` 可在未绑定时执行；`列表`、`当前` 和普通 AI 消息会走真实 RBAC，测试用 `platform + user_id` 必须已经绑定，或与服务账号模式的发送者白名单精确匹配。
 
 接口说明：`POST /api/robot/test`（需全局 `robot:write`），请求体 `{"platform":"可选","user_id":"可选","text":"必填"}`，响应 `{"reply":"回复内容"}`。该接口仅模拟机器人业务逻辑，不验证第三方平台签名或长连接。
 
@@ -537,7 +537,7 @@ curl -X POST "http://localhost:8080/api/robot/test" \
    机器人设置页应显示「已连接」或已绑定 Bot ID；`config.yaml` 中 `robots.wechat.bot_token` 不应为空。
 
 2. **是否已启用**  
-   确认「启用微信机器人」已勾选；若刚修改过，可重启 CyberStrikeAI 进程。
+   确认「启用微信机器人」已勾选；若刚修改过，可重启 JamesLeeAI 进程。
 
 3. **看程序日志**  
    - 启动后应看到：`微信 iLink 长轮询已启动`；  
@@ -548,20 +548,20 @@ curl -X POST "http://localhost:8080/api/robot/test" \
    服务器需能访问 `https://ilinkai.weixin.qq.com`（出站 HTTPS）。绑定阶段若无法生成二维码，优先检查此项。
 
 5. **断网或睡眠后**  
-   与钉钉/飞书类似，程序会**自动重连**（约 5～60 秒）；仍无回复可重启 CyberStrikeAI。
+   与钉钉/飞书类似，程序会**自动重连**（约 5～60 秒）；仍无回复可重启 JamesLeeAI。
 
 ### 9.2 钉钉
 
 按顺序检查：
 
 0. **笔记本合盖睡眠 / 断网后**  
-   钉钉、飞书均使用长连接收消息，睡眠或断网后连接会断开。程序会**自动重连**（约 5 秒～60 秒内重试）。唤醒或恢复网络后稍等一会儿再发消息；若仍无反应，可重启 CyberStrikeAI 进程。
+   钉钉、飞书均使用长连接收消息，睡眠或断网后连接会断开。程序会**自动重连**（约 5 秒～60 秒内重试）。唤醒或恢复网络后稍等一会儿再发消息；若仍无反应，可重启 JamesLeeAI 进程。
 
 1. **Client ID / Client Secret 是否与开放平台完全一致**  
    从「凭证与基础信息」里**复制粘贴**，不要手打。注意数字 **0** 与字母 **o**、数字 **1** 与字母 **l**（例如 `ding9gf9tiozuc504aer` 中间是 **504** 不是 5o4）。
 
 2. **配置是否已应用**  
-   在 Web 端修改后必须点击“应用配置”，程序会自动重启对应连接。若直接手工编辑 `config.yaml`，则需重启 CyberStrikeAI 进程。
+   在 Web 端修改后必须点击“应用配置”，程序会自动重启对应连接。若直接手工编辑 `config.yaml`，则需重启 JamesLeeAI 进程。
 
 3. **看程序日志**  
    - 启动后应看到：`钉钉 Stream 正在连接…`、`钉钉 Stream 已启动（无需公网），等待收消息`。  

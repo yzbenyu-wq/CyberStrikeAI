@@ -1,19 +1,19 @@
 ## Plugins
 
-Optional integrations that connect CyberStrikeAI with other tools.
+Optional integrations that connect JamesLeeAI with other tools.
 
 ### Burp Suite
 
-- **Path**: `plugins/burp-suite/cyberstrikeai-burp-extension/`
-- **Build**: `bash build-mvn.sh` → `dist/cyberstrikeai-burp-extension.jar`
+- **Path**: `plugins/burp-suite/jamesleeai-burp-extension/`
+- **Build**: `bash build-mvn.sh` → `dist/jamesleeai-burp-extension.jar`
 - **Docs**: `README.md` / `README.zh-CN.md`
 
 ### Browser (Chrome / Edge)
 
-- **Path**: `plugins/browser-extension/cyberstrikeai-browser-extension/`
+- **Path**: `plugins/browser-extension/jamesleeai-browser-extension/`
 - **Version**: **0.3.11**
-- **Install**: `chrome://extensions/` → Load unpacked → F12 → **CyberStrikeAI** tab
-- **Package**: `bash package.sh` → `dist/cyberstrikeai-browser-extension.zip`
+- **Install**: `chrome://extensions/` → Load unpacked → F12 → **JamesLeeAI** tab
+- **Package**: `bash package.sh` → `dist/jamesleeai-browser-extension.zip`
 - **Docs**: `README.zh-CN.md` (full) / `README.md` (summary)
 
 #### Highlights (v0.3.x)

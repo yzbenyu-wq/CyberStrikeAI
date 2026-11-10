@@ -207,7 +207,7 @@ async function probeTokenOnServer(force) {
         return;
       }
       if (isNetworkFetchError(err)) {
-        setStatus('Cannot reach server — confirm CyberStrikeAI is running', 'warn');
+        setStatus('Cannot reach server — confirm JamesLeeAI is running', 'warn');
         updateConnSummary();
         return;
       }
@@ -1108,7 +1108,7 @@ function connectBackground() {
       return;
     }
     inspectedTabId = chrome.devtools.inspectedWindow.tabId;
-    bgPort = chrome.runtime.connect({ name: 'cyberstrike-panel' });
+    bgPort = chrome.runtime.connect({ name: 'jameslee-panel' });
   } catch (_) {
     if (!extensionAlive()) {
       showContextBanner(true);

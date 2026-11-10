@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 
 	"github.com/bwmarrin/discordgo"
 	"go.uber.org/zap"

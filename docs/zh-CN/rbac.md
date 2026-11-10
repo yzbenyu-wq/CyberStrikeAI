@@ -1,8 +1,8 @@
-# CyberStrikeAI RBAC 使用与管理指南
+# JamesLeeAI RBAC 使用与管理指南
 
 [English](../en-US/rbac.md)
 
-CyberStrikeAI 是可执行 Agent、MCP、WebShell、C2 和批量任务的安全自动化平台。RBAC 不仅控制页面是否可见，还会贯穿 HTTP API、资源查询、Agent 上下文、内置/外部 MCP 工具、后台任务和机器人执行链路。
+JamesLeeAI 是可执行 Agent、MCP、WebShell、C2 和批量任务的安全自动化平台。RBAC 不仅控制页面是否可见，还会贯穿 HTTP API、资源查询、Agent 上下文、内置/外部 MCP 工具、后台任务和机器人执行链路。
 
 ---
 

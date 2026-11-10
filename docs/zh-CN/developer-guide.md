@@ -56,17 +56,17 @@ go run ./cmd/server --config config.yaml
 |---|---|
 | 控制台 | 「系统设置 → 一键更新」（`#system-update` 老深链仍可用）。打开这一区只读本机状态、不联网；点「检查更新」才去 fetch；「一键更新」发起任务并轮询进度；"更新完成后退出进程"在检测到守护进程（launchd/systemd 的启动标记）时默认勾选，重启期间页面守着重连、新进程一应答就自动刷新（会话在内存里，刷新后需重新登录）；另有回滚按钮 |
 | REST | `GET /api/system/update`（磁盘现状，不联网）、`POST /api/system/update/check`（fetch 后报告差集）、`POST /api/system/update/apply`（`202` 返回 `job_id`，用 `GET /api/system/update/job` 轮询）、`POST /api/system/update/rollback` |
-| CLI | `./cyberstrike-ai -check-update`、`./cyberstrike-ai -update`、`./cyberstrike-ai -update-rollback`。安装目录 = `--config` 所在目录，未给 `--config` 时是当前目录 |
+| CLI | `./jameslee-ai -check-update`、`./jameslee-ai -update`、`./jameslee-ai -update-rollback`。安装目录 = `--config` 所在目录，未给 `--config` 时是当前目录 |
 
 权限是 `update:read`（GET）与 `update:apply`（四个写接口）。`update:apply` 还要求会话是 global（`all` scope）：
 一台机器只有一份源码，`assigned`/`own` scope 的账号不该能移动别人正在跑的代码。
 
 ### 它从哪里取代码
 
-从**更新源仓库**：一个仓库地址，默认就是官方仓库 `https://github.com/AIPentest/CyberStrikeAI.git`；
+从**更新源仓库**：一个仓库地址，默认就是官方仓库 `https://github.com/AIPentest/JamesLeeAI.git`；
 更新跟随该仓库**自己的默认分支**（不用配置分支，也不写死 main），所以对一套没做过任何配置的安装，
 「从哪更新」永远有一个明确答案。`upgrade.sh` 现在只是这条实现的薄壳：本目录是 git 工作树时它直接调
-`./cyberstrike-ai -update`。
+`./jameslee-ai -update`。
 
 ### 更换更新源（config.yaml 的 update 段）
 
@@ -75,7 +75,7 @@ go run ./cmd/server --config config.yaml
 
 ```yaml
 update:
-  repo: https://github.com/AIPentest/CyberStrikeAI.git  # 一个仓库地址；留空/不写 = 官方仓库
+  repo: https://github.com/AIPentest/JamesLeeAI.git  # 一个仓库地址；留空/不写 = 官方仓库
 ```
 
 控制台的「一键更新 → 更新源」区块可以直接编辑并保存这个地址（留空保存 = 回到官方仓库）。
@@ -129,10 +129,10 @@ update:
 
 ### 回滚
 
-`./cyberstrike-ai -update-rollback` 或页面按钮：`git reset --hard` 回到那次更新前的提交，
-换过二进制的那次会把 `cyberstrike-ai.prev` 放回原位，随后删除 `.update-state.json`。
+`./jameslee-ai -update-rollback` 或页面按钮：`git reset --hard` 回到那次更新前的提交，
+换过二进制的那次会把 `jameslee-ai.prev` 放回原位，随后删除 `.update-state.json`。
 编译失败的那次更新从没换过二进制，所以它的回滚只搬源码——磁盘上的二进制本来就属于要回去的那个提交。
-它会拒绝的情形：没有更新记录（`no_state`）、需要换回却没有留下 `cyberstrike-ai.prev`（`no_binary`）、
+它会拒绝的情形：没有更新记录（`no_state`）、需要换回却没有留下 `jameslee-ai.prev`（`no_binary`）、
 记录里的提交在本仓库不存在（`bad_state`）、磁盘上的二进制不是记录里与该提交配对的那一个（`binary_changed`）、
 **HEAD 自那次更新之后又动过**（`moved_since_update`：回滚只该撤到更新前，不该顺手抹掉之后的工作）、
 以及存在本地源码改动（`local_source_edits`）。

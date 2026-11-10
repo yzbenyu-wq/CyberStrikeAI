@@ -28,13 +28,13 @@ After it is verified, decide whether to move to systemd plus reverse proxy for l
 1. Prepare directory:
 
 ```bash
-mkdir -p /opt/CyberStrikeAI
+mkdir -p /opt/JamesLeeAI
 ```
 
 2. Place binary and resources:
 
 ```text
-cyberstrike-ai
+jameslee-ai
 web/
 tools/
 roles/

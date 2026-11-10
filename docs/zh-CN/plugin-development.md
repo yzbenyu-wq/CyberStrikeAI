@@ -1,6 +1,6 @@
 # 插件开发
 
-CyberStrikeAI 当前仓库中的插件主要位于 `plugins/`，已有 **Burp Suite 扩展**与 **Chromium 浏览器扩展** 两个参考实现。插件通常通过 HTTP API、MCP 或本地文件与主应用集成。
+JamesLeeAI 当前仓库中的插件主要位于 `plugins/`，已有 **Burp Suite 扩展**与 **Chromium 浏览器扩展** 两个参考实现。插件通常通过 HTTP API、MCP 或本地文件与主应用集成。
 
 ## 目录
 
@@ -8,14 +8,14 @@ CyberStrikeAI 当前仓库中的插件主要位于 `plugins/`，已有 **Burp Su
 plugins/
   README.md
   burp-suite/
-    cyberstrikeai-burp-extension/
+    jamesleeai-burp-extension/
       src/main/java/burp/
       README.md
       README.zh-CN.md
       build.gradle
       pom.xml
   browser-extension/
-    cyberstrikeai-browser-extension/
+    jamesleeai-browser-extension/
       manifest.json
       devtools.js
       background/service-worker.js
@@ -31,10 +31,10 @@ plugins/
 
 常见集成方式：
 
-- 浏览器或安全工具扩展：调用 CyberStrikeAI API。
-- MCP Server：向 CyberStrikeAI 暴露新工具。
+- 浏览器或安全工具扩展：调用 JamesLeeAI API。
+- MCP Server：向 JamesLeeAI 暴露新工具。
 - 文件型扩展：提供 tools、roles、skills、agents。
-- Webhook/机器人：通过平台回调与 CyberStrikeAI 对话。
+- Webhook/机器人：通过平台回调与 JamesLeeAI 对话。
 
 ## Burp Suite 扩展
 
@@ -42,30 +42,30 @@ Burp 插件目录包含 Java 源码和构建脚本。典型能力：
 
 - 读取 Burp 中的 HTTP 请求/响应。
 - 格式化消息。
-- 调用 CyberStrikeAI API。
+- 调用 JamesLeeAI API。
 - 在 Burp 标签页展示 AI 分析结果。
 
 构建前确认：
 
 - JDK 可用。
 - Gradle 或 Maven 可用。
-- CyberStrikeAI 服务地址和认证配置正确。
+- JamesLeeAI 服务地址和认证配置正确。
 
 ## 浏览器扩展（Chromium DevTools）
 
-浏览器扩展目录为 MV3 DevTools 扩展，与 Burp 插件能力对齐：捕获 HTTP 流量 → 格式化 Prompt → SSE 流式输出 AI 结果。完整安装与 UI 说明见 `plugins/browser-extension/cyberstrikeai-browser-extension/README.zh-CN.md`。
+浏览器扩展目录为 MV3 DevTools 扩展，与 Burp 插件能力对齐：捕获 HTTP 流量 → 格式化 Prompt → SSE 流式输出 AI 结果。完整安装与 UI 说明见 `plugins/browser-extension/jamesleeai-browser-extension/README.zh-CN.md`。
 
 典型能力：
 
 - 在 DevTools **Network** 中捕获 XHR/Fetch（可暂停）。
 - 原始 HAR 存内存；展示与 AI Prompt 归一化为 **HTTP/1.1**（与 Burp 一致）。
-- 调用 CyberStrikeAI 登录、Validate、Agent Stream API。
+- 调用 JamesLeeAI 登录、Validate、Agent Stream API。
 - DevTools 面板展示 Progress / Final；Popup 只读连接状态。
 
 构建与加载：
 
-- 无需编译：`chrome://extensions/` → 加载已解压 → 选择 `cyberstrikeai-browser-extension/`。
-- 打包：`bash package.sh` → `dist/cyberstrikeai-browser-extension.zip`。
+- 无需编译：`chrome://extensions/` → 加载已解压 → 选择 `jamesleeai-browser-extension/`。
+- 打包：`bash package.sh` → `dist/jamesleeai-browser-extension.zip`。
 
 ### 浏览器插件认证最佳实践
 
@@ -138,7 +138,7 @@ MCP 工具设计建议：
 - 不包含 API Key、Cookie、目标信息。
 - README 有安装、配置、卸载说明。
 - 错误提示清晰。
-- 与当前 CyberStrikeAI API 版本兼容。
+- 与当前 JamesLeeAI API 版本兼容。
 - 高风险能力有明显说明。
 
 ## 版本兼容
@@ -206,8 +206,8 @@ schema 越具体，HITL 越容易判断风险，Agent 也越不容易发散。
 
 ## 源码锚点
 
-- Burp 插件 Java 代码：`plugins/burp-suite/cyberstrikeai-burp-extension/src/main/java/burp/`
-- 浏览器扩展：`plugins/browser-extension/cyberstrikeai-browser-extension/`
+- Burp 插件 Java 代码：`plugins/burp-suite/jamesleeai-burp-extension/src/main/java/burp/`
+- 浏览器扩展：`plugins/browser-extension/jamesleeai-browser-extension/`
   - 认证：`lib/auth-session.js`、`lib/api.js`、`lib/storage.js`
   - 主 UI：`panel/panel.js`
   - 捕获：`devtools.js`、`background/service-worker.js`

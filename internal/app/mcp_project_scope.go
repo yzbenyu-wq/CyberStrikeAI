@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
 )
 
 func mcpEffectiveProjectFilter(ctx context.Context, db *database.DB) string {

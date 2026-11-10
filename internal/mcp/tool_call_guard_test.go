@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/toolguard"
+	"jameslee-ai/internal/toolguard"
 
 	"go.uber.org/zap"
 )

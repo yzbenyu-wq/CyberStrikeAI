@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 // reasoningToolChoiceCompatRoundTripper strips thinking/reasoning fields from

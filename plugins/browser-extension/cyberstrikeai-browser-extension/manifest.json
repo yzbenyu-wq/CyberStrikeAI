@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "CyberStrikeAI",
+  "name": "JamesLeeAI",
   "version": "0.3.11",
-  "description": "Capture browser HTTP traffic and send to CyberStrikeAI for AI-assisted security testing.",
+  "description": "Capture browser HTTP traffic and send to JamesLeeAI for AI-assisted security testing.",
   "devtools_page": "devtools.html",
   "permissions": ["storage"],
   "optional_host_permissions": ["http://*/*", "https://*/*"],
@@ -11,7 +11,7 @@
   },
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "CyberStrikeAI"
+    "default_title": "JamesLeeAI"
   },
   "icons": {
     "16": "icons/icon16.png",

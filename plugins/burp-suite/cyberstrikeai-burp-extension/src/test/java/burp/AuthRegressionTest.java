@@ -38,11 +38,11 @@ public final class AuthRegressionTest {
         });
         server.start();
         try {
-            CyberStrikeAIClient client = new CyberStrikeAIClient();
+            JamesLeeAIClient client = new JamesLeeAIClient();
             String base = "http://127.0.0.1:" + server.getAddress().getPort();
             for (String username : new String[]{"admin", "analyst", "研究员\"\\"}) {
                 String password = "  p\"\\\n密码  ";
-                String token = client.loginAndValidate(new CyberStrikeAIClient.Config(base, " " + username + " ", password));
+                String token = client.loginAndValidate(new JamesLeeAIClient.Config(base, " " + username + " ", password));
                 check("test-token".equals(token), "login token");
                 check(username.equals(SimpleJson.extractStringField(request.get(), "username")), "username roundtrip");
                 check(password.equals(SimpleJson.extractStringField(request.get(), "password")), "exact password roundtrip");
@@ -51,7 +51,7 @@ public final class AuthRegressionTest {
             int before = logins.get();
             for (String username : new String[]{"", "  ", "𠮷".repeat(65)}) {
                 try {
-                    client.loginAndValidate(new CyberStrikeAIClient.Config(base, username, "x"));
+                    client.loginAndValidate(new JamesLeeAIClient.Config(base, username, "x"));
                     throw new AssertionError("invalid username accepted");
                 } catch (java.io.IOException expected) {
                     check(expected.getMessage().contains("Username is required"), "username error");
@@ -60,7 +60,7 @@ public final class AuthRegressionTest {
             check(logins.get() == before, "invalid username sent to server");
             authorization.set(null);
             try {
-                client.loginAndValidate(new CyberStrikeAIClient.Config(base, "admin", "wrong"));
+                client.loginAndValidate(new JamesLeeAIClient.Config(base, "admin", "wrong"));
                 throw new AssertionError("wrong password accepted");
             } catch (java.io.IOException expected) {
                 check(expected.getMessage().contains("invalid credentials"), "server error preserved");
@@ -68,13 +68,13 @@ public final class AuthRegressionTest {
             check(authorization.get() == null, "failed login validated token");
             SwingUtilities.invokeAndWait(() -> {
                 try {
-                    CyberStrikeAITab tab = new CyberStrikeAITab();
+                    JamesLeeAITab tab = new JamesLeeAITab();
                     check("admin".equals(tab.currentConfig().username), "default admin");
-                    java.lang.reflect.Field tokenField = CyberStrikeAITab.class.getDeclaredField("tokenRef");
+                    java.lang.reflect.Field tokenField = JamesLeeAITab.class.getDeclaredField("tokenRef");
                     tokenField.setAccessible(true);
                     @SuppressWarnings("unchecked") AtomicReference<String> token = (AtomicReference<String>) tokenField.get(tab);
                     token.set("old-session");
-                    java.lang.reflect.Field userField = CyberStrikeAITab.class.getDeclaredField("usernameField");
+                    java.lang.reflect.Field userField = JamesLeeAITab.class.getDeclaredField("usernameField");
                     userField.setAccessible(true);
                     ((JTextField) userField.get(tab)).setText("analyst");
                     check(tab.getToken().isEmpty(), "account switch must clear old token");

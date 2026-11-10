@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/robot/ilink"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/robot/ilink"
 
 	"go.uber.org/zap"
 )

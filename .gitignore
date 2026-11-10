@@ -30,7 +30,8 @@ skills/.eino/
 
 # Build outputs
 cyberstrike-ai
-cyberstrike-ai.exe
+jameslee-ai
+jameslee-ai.exe
 *.test
 bin/
 dist/
@@ -51,7 +52,7 @@ coverage.html
 .update-state.json.tmp
 .update-build-pending
 .update-build-pending.tmp
-cyberstrike-ai.prev
+jameslee-ai.prev
 
 # Logs and temporary files
 /log/
@@ -80,3 +81,4 @@ Thumbs.db
 desktop.ini
 .idea/
 .vscode/
+certs/

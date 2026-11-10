@@ -1,4 +1,4 @@
-# CyberStrikeAI Robot / Chatbot Guide
+# JamesLeeAI Robot / Chatbot Guide
 
 [中文](../zh-CN/robot.md)
 
@@ -6,9 +6,9 @@ This guide covers **Personal WeChat, WeCom, DingTalk, Lark, Telegram, Slack, Dis
 
 ---
 
-## 1. Where to configure in CyberStrikeAI
+## 1. Where to configure in JamesLeeAI
 
-1. Log in to the CyberStrikeAI web UI.
+1. Log in to the JamesLeeAI web UI.
 2. Open **System Settings** in the left sidebar.
 3. Click **Robot settings** (between “Basic” and “Security”).
 4. Configure per platform:
@@ -17,7 +17,7 @@ This guide covers **Personal WeChat, WeCom, DingTalk, Lark, Telegram, Slack, Dis
    - **Lark**: Enable and fill in App ID / App Secret
 5. Click **Apply configuration** to save and automatically restart the corresponding bot connection. WeChat binding saves and enables automatically on success.
 
-Settings are written to the `robots` section of `config.yaml`; you can also edit the file directly. Web-based **Apply configuration** restarts the corresponding connection automatically. Restart the CyberStrikeAI process only when editing YAML directly. Personal WeChat binding automatically writes `robots.wechat` and restarts the iLink long poll.
+Settings are written to the `robots` section of `config.yaml`; you can also edit the file directly. Web-based **Apply configuration** restarts the corresponding connection automatically. Restart the JamesLeeAI process only when editing YAML directly. Personal WeChat binding automatically writes `robots.wechat` and restarts the iLink long poll.
 
 ### Shortest path to first use
 
@@ -37,13 +37,13 @@ Start normal AI chat only after the response shows an authorized status and the 
 | Personal WeChat| WeChat iLink protocol; scan QR in the web UI to bind, then long-poll for messages—**no public callback URL needed** |
 | DingTalk       | Stream long-lived connection; the app connects to DingTalk to receive messages |
 | Lark (Feishu)  | Long-lived connection; the app connects to Lark to receive messages |
-| WeCom (Qiye WX)| HTTP callback to receive messages; CyberStrikeAI replies via WeCom’s message sending API |
+| WeCom (Qiye WX)| HTTP callback to receive messages; JamesLeeAI replies via WeCom’s message sending API |
 | Telegram       | Bot API long polling (`getUpdates`); **no public callback URL needed** |
 | Slack          | Socket Mode (outbound WebSocket); **no public callback URL needed** |
 | Discord        | Gateway WebSocket; **no public callback URL needed** |
 | QQ Bot         | QQ Open Platform WebSocket (C2C / group @); **no public callback URL needed** |
 
-Section 3 below describes, per platform, what to do in the developer console and which fields to copy into CyberStrikeAI.
+Section 3 below describes, per platform, what to do in the developer console and which fields to copy into JamesLeeAI.
 
 ---
 
@@ -58,7 +58,7 @@ Section 3 below describes, per platform, what to do in the developer console and
 | **Custom bot (Webhook)** | In a DingTalk group: Group settings → Add robot → Custom (Webhook) | No; you can only post to the group | No |
 | **Enterprise internal app bot** | [DingTalk Open Platform](https://open.dingtalk.com): create an app and enable the bot | Yes | Yes |
 
-If you only have a **custom bot** Webhook URL (`oapi.dingtalk.com/robot/send?access_token=...`) and sign secret (`SEC...`), **do not** put them into CyberStrikeAI. You must create an **enterprise internal app** in the open platform and obtain **Client ID** and **Client Secret** as below.
+If you only have a **custom bot** Webhook URL (`oapi.dingtalk.com/robot/send?access_token=...`) and sign secret (`SEC...`), **do not** put them into JamesLeeAI. You must create an **enterprise internal app** in the open platform and obtain **Client ID** and **Client Secret** as below.
 
 ---
 
@@ -79,24 +79,24 @@ If you only have a **custom bot** Webhook URL (`oapi.dingtalk.com/robot/send?acc
    - Left menu: **Application capabilities** → **Robot**.  
    - Turn on “Robot configuration”.  
    - Fill in robot name, description, etc. as required.  
-   - **Critical**: set message reception to **“Stream mode”** (流式接入). If you only enable “HTTP callback” or do not select Stream, CyberStrikeAI will not receive messages.  
+   - **Critical**: set message reception to **“Stream mode”** (流式接入). If you only enable “HTTP callback” or do not select Stream, JamesLeeAI will not receive messages.  
    - Save.
 
 5. **Permissions and release**  
    - Left menu: **Permission management** — search for “robot”, “message”, etc., and enable **receive message**, **send message**, and other bot-related permissions; confirm.  
    - Left menu: **Version management and release** — if there are unpublished changes, click **Release new version** / **Publish**; otherwise changes do not take effect.
 
-6. **Fill in CyberStrikeAI**  
-   - In CyberStrikeAI: System settings → Robot settings → DingTalk.  
+6. **Fill in JamesLeeAI**  
+   - In JamesLeeAI: System settings → Robot settings → DingTalk.  
    - Enable “Enable DingTalk robot”.  
    - Paste the Client ID and Client Secret from step 3.  
-   - Click **Apply configuration**; CyberStrikeAI restarts the DingTalk connection automatically.
+   - Click **Apply configuration**; JamesLeeAI restarts the DingTalk connection automatically.
 
 ---
 
 **Field mapping (DingTalk)**
 
-| Field in CyberStrikeAI | Source in DingTalk Open Platform |
+| Field in JamesLeeAI | Source in DingTalk Open Platform |
 |------------------------|----------------------------------|
 | Enable DingTalk robot | Check to enable |
 | Client ID (AppKey) | Credentials and basic info → **Client ID (formerly AppKey)** |
@@ -113,7 +113,7 @@ If you only have a **custom bot** Webhook URL (`oapi.dingtalk.com/robot/send?acc
 | App Secret | From Lark open platform app credentials |
 | Verify Token | Optional; for event subscription |
 
-**Lark setup in short**: Log in to [Lark Open Platform](https://open.feishu.cn) → Create an enterprise app → In “Credentials and basic info” get **App ID** and **App Secret** → In “Application capabilities” enable **Robot** and the right permissions → Add **event subscription** and **permissions** below → Publish the app → Enter App ID and App Secret in CyberStrikeAI robot settings → **Apply configuration**.
+**Lark setup in short**: Log in to [Lark Open Platform](https://open.feishu.cn) → Create an enterprise app → In “Credentials and basic info” get **App ID** and **App Secret** → In “Application capabilities” enable **Robot** and the right permissions → Add **event subscription** and **permissions** below → Publish the app → Enter App ID and App Secret in JamesLeeAI robot settings → **Apply configuration**.
 
 **Event subscription**  
 The long-lived connection only receives message events if you subscribe to them. In the app’s **Events and callbacks** (事件与回调) → **Event subscription** (事件订阅), add the event **Receive message** (**im.message.receive_v1**). Without it, the connection succeeds but no message events are delivered (no logs when users send messages).
@@ -138,14 +138,14 @@ In **Permission management** (权限管理), enable the following (names and ide
 ### 3.3 WeCom (Enterprise WeChat)
 
 > WeCom uses a **“HTTP callback + active message send API”** model:  
-> - User sends a message → WeCom sends an **encrypted XML callback** to your server (CyberStrikeAI’s `/api/robot/wecom`).  
-> - CyberStrikeAI decrypts it, calls the AI, then uses WeCom’s `message/send` API to **actively push the reply** to the user.
+> - User sends a message → WeCom sends an **encrypted XML callback** to your server (JamesLeeAI’s `/api/robot/wecom`).  
+> - JamesLeeAI decrypts it, calls the AI, then uses WeCom’s `message/send` API to **actively push the reply** to the user.
 
 **Configuration overview:**
 
 - In the WeCom admin console, create or select a **custom app** (自建应用).
 - In that app’s settings, configure the message **callback URL**, **Token**, and **EncodingAESKey**.
-- In CyberStrikeAI’s `config.yaml`, fill in:
+- In JamesLeeAI’s `config.yaml`, fill in:
   - `robots.wecom.corp_id`: your CorpID (企业 ID)
   - `robots.wecom.agent_id`: the app’s AgentId
   - `robots.wecom.token`: the Token used for message callbacks
@@ -153,11 +153,11 @@ In **Permission management** (权限管理), enable the following (names and ide
   - `robots.wecom.secret`: the app’s Secret (used when calling WeCom APIs to send messages)
 
 > **Important: IP allowlist (errcode 60020)**  
-> CyberStrikeAI calls `https://qyapi.weixin.qq.com/cgi-bin/message/send` to actively send AI replies.  
+> JamesLeeAI calls `https://qyapi.weixin.qq.com/cgi-bin/message/send` to actively send AI replies.  
 > If logs show `errcode 60020 not allow to access from your ip`:
 >
 > - Your server’s outbound IP is **not in WeCom’s IP allowlist**.  
-> - In the WeCom admin console, open the custom app’s **Security / IP allowlist** settings (name may vary slightly), and add the public IP of the machine running CyberStrikeAI (e.g. `110.xxx.xxx.xxx`).  
+> - In the WeCom admin console, open the custom app’s **Security / IP allowlist** settings (name may vary slightly), and add the public IP of the machine running JamesLeeAI (e.g. `110.xxx.xxx.xxx`).  
 > - Save and wait for it to take effect, then test again.
 >
 > If the IP is not whitelisted, WeCom will reject active message sending. You will see that `/api/robot/wecom` receives and processes callbacks, but users **never see AI replies**, and logs contain `not allow to access from your ip`.
@@ -167,7 +167,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 ### 3.4 Personal WeChat (WeChat / iLink)
 
 > Personal WeChat uses **“web QR binding + iLink long polling”**:  
-> - Generate a QR code in the CyberStrikeAI web UI → scan and confirm with **WeChat on your phone**;  
+> - Generate a QR code in the JamesLeeAI web UI → scan and confirm with **WeChat on your phone**;  
 > - On success, `robots.wechat` in `config.yaml` is updated automatically and iLink long polling starts (the app connects outbound to `ilinkai.weixin.qq.com`);  
 > - **No** public callback URL on your server and **no** WeChat Open Platform app registration required.
 
@@ -182,7 +182,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 
 **Binding steps (in order)**
 
-1. **Log in to CyberStrikeAI web UI**  
+1. **Log in to JamesLeeAI web UI**  
    **System settings** → **Robot settings** → click the **WeChat / iLink** card.
 
 2. **(Optional) Enable “Enable WeChat robot”**  
@@ -200,7 +200,7 @@ In **Permission management** (权限管理), enable the following (names and ide
    When the page shows “Binding successful, WeChat robot enabled”, you’re done. `bot_token`, `ilink_bot_id`, etc. are saved to `config.yaml` and the iLink poll restarts automatically—**usually no manual service restart**.
 
 6. **Test in WeChat**  
-   Open the **private chat** with the CyberStrikeAI bot in WeChat and send “帮助” (help) or any text.
+   Open the **private chat** with the JamesLeeAI bot in WeChat and send “帮助” (help) or any text.
 
 **Field reference (WeChat)**
 
@@ -211,7 +211,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 | **Advanced** (defaults are fine) | |
 | API Base URL | Default `https://ilinkai.weixin.qq.com` |
 | Bot Type | Default `3` |
-| Bot Agent | Default `CyberStrikeAI/1.0` |
+| Bot Agent | Default `JamesLeeAI/1.0` |
 | iLink Bot ID | Filled automatically after bind (read-only) |
 
 **How to use**
@@ -232,7 +232,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 | QR code expired | Click “Generate QR code and bind” again (~5 min TTL) |
 | Phone asks for a pairing code | Enter the digits shown in WeChat on the web page |
 | Bound but no replies | Check logs for `微信 iLink 长轮询已启动` and `微信收到消息`; ensure “Enable WeChat robot” is on |
-| No reply after sleep / network drop | Auto-reconnect in ~5–60 s; restart CyberStrikeAI if still stuck |
+| No reply after sleep / network drop | Auto-reconnect in ~5–60 s; restart JamesLeeAI if still stuck |
 | Cannot generate QR code | Ensure outbound HTTPS to `https://ilinkai.weixin.qq.com` |
 
 ---
@@ -242,7 +242,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 > Telegram uses **Bot API long polling** (`getUpdates`): the app connects outbound to `api.telegram.org`—**no public callback URL needed**.
 
 1. Create a bot via **@BotFather** (`/newbot`) and copy the **Bot Token**.  
-2. CyberStrikeAI → **System settings** → **Robot settings** → **Telegram**.  
+2. JamesLeeAI → **System settings** → **Robot settings** → **Telegram**.  
 3. Enable, paste the token, optionally allow group @ mentions → **Apply configuration**.
 
 ---
@@ -254,7 +254,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 1. Create an app at [api.slack.com](https://api.slack.com/apps) → enable **Socket Mode**.  
 2. Create an App-Level Token; install the app to get a Bot Token.  
 3. Subscribe to `message.im` and `app_mention` events.  
-4. Paste both tokens in CyberStrikeAI → **Apply configuration**.
+4. Paste both tokens in JamesLeeAI → **Apply configuration**.
 
 ---
 
@@ -265,7 +265,7 @@ In **Permission management** (权限管理), enable the following (names and ide
 1. [Discord Developer Portal](https://discord.com/developers/applications) → create app → **Bot** → copy **Token**.  
 2. Enable **Message Content Intent** under Privileged Gateway Intents.  
 3. Invite the bot with `Send Messages` permission.  
-4. Paste token in CyberStrikeAI; optionally allow guild @ mentions → **Apply configuration**.
+4. Paste token in JamesLeeAI; optionally allow guild @ mentions → **Apply configuration**.
 
 ---
 
@@ -276,13 +276,13 @@ In **Permission management** (权限管理), enable the following (names and ide
 1. Create a bot at [q.qq.com](https://q.qq.com) → get **App ID** and **Client Secret**.  
 2. Add sandbox testers before going live.  
 3. Subscribe to C2C and group @ events (WebSocket).  
-4. Fill in CyberStrikeAI; use **Sandbox** for testing → **Apply configuration**.
+4. Fill in JamesLeeAI; use **Sandbox** for testing → **Apply configuration**.
 
 ---
 
 ## 4. RBAC authorization and bot commands
 
-Platform credentials and callback signatures authenticate the messaging platform. CyberStrikeAI RBAC determines what the sender can actually do. Each bot instance uses one authorization mode.
+Platform credentials and callback signatures authenticate the messaging platform. JamesLeeAI RBAC determines what the sender can actually do. Each bot instance uses one authorization mode.
 
 ### 4.1 Choose an authorization mode
 
@@ -363,7 +363,7 @@ Send these **text commands** to the bot on any connected platform (text only):
 | **角色** or **角色列表** (roles) | List all available roles (penetration testing, CTF, Web scan, etc.) |
 | **角色 \<roleName\>** or **切换角色 \<roleName\>** | Switch to the specified role |
 | **删除 \<conversationID\>** | Delete the specified conversation |
-| **版本** (version) | Show current CyberStrikeAI version |
+| **版本** (version) | Show current JamesLeeAI version |
 
 Any other text is sent to the AI as a user message, same as in the web UI (e.g. penetration testing, security analysis).
 
@@ -385,7 +385,7 @@ Summary: **Personal WeChat and direct chat**—just send; **DingTalk/Lark in a g
 
 **Personal WeChat (simplest—no open platform)**
 
-1. CyberStrikeAI web UI → System settings → Robot settings → **WeChat / iLink** → **Generate QR code and bind**.  
+1. JamesLeeAI web UI → System settings → Robot settings → **WeChat / iLink** → **Generate QR code and bind**.  
 2. Scan with WeChat and confirm (enter pairing code on the web page if prompted).  
 3. Send `whoami` in the WeChat private chat and copy the sender ID.
 4. Choose `user_binding`, or configure `service_account` with the RBAC user and exact sender allowlist.
@@ -394,7 +394,7 @@ Summary: **Personal WeChat and direct chat**—just send; **DingTalk/Lark in a g
 **DingTalk / Lark**
 
 1. **In the open platform**: Complete app creation, copy credentials, enable the bot (DingTalk: **Stream mode**), set permissions, and publish (Section 3).  
-2. **In CyberStrikeAI**: System settings → Robot settings → Enable the platform, paste Client ID/App ID and Client Secret/App Secret → **Apply configuration**.  
+2. **In JamesLeeAI**: System settings → Robot settings → Enable the platform, paste Client ID/App ID and Client Secret/App Secret → **Apply configuration**.  
 3. **Choose authorization**: use `user_binding` for multiple users, or configure a service account and exact allowlist for a dedicated bot.
 4. **Apply configuration**; the Web UI restarts the corresponding connection automatically.
 5. **On your phone**: Open the bot, run `whoami` first, then send a normal message.
@@ -421,7 +421,7 @@ robots:
     ilink_user_id: "your_user_id@im.wechat"
     base_url: "https://ilinkai.weixin.qq.com"
     bot_type: "3"
-    bot_agent: "CyberStrikeAI/1.0"
+    bot_agent: "JamesLeeAI/1.0"
   dingtalk:
     enabled: true
     auth:
@@ -484,7 +484,7 @@ curl -X POST "http://localhost:8080/api/robot/test" \
   -d '{"platform":"dingtalk","user_id":"test_user","text":"帮助"}'
 ```
 
-If the JSON response contains `"reply":"【CyberStrikeAI 机器人命令】..."`, command handling works. `help`, `version`, and `whoami` work before binding. `list`, `current`, and normal AI messages enforce RBAC: the test `platform + user_id` must already be bound or exactly match the service-account allowlist.
+If the JSON response contains `"reply":"【JamesLeeAI 机器人命令】..."`, command handling works. `help`, `version`, and `whoami` work before binding. `list`, `current`, and normal AI messages enforce RBAC: the test `platform + user_id` must already be bound or exactly match the service-account allowlist.
 
 API: `POST /api/robot/test` (requires global `robot:write`). Body: `{"platform":"optional","user_id":"optional","text":"required"}`. Response: `{"reply":"..."}`. This endpoint simulates bot business logic only; it does not validate a third-party callback signature or long-lived connection.
 
@@ -518,7 +518,7 @@ Check in this order:
 Check in this order:
 
 0. **After laptop sleep or network drop**  
-   DingTalk and Lark both use long-lived connections; they break when the machine sleeps or the network drops. The app **auto-reconnects** (retries within about 5–60 seconds). After wake or network recovery, wait a moment before sending; if there is still no response, restart the CyberStrikeAI process.
+   DingTalk and Lark both use long-lived connections; they break when the machine sleeps or the network drops. The app **auto-reconnects** (retries within about 5–60 seconds). After wake or network recovery, wait a moment before sending; if there is still no response, restart the JamesLeeAI process.
 
 1. **Client ID / Client Secret match the open platform exactly**  
    Copy from “Credentials and basic info”; avoid typing. Watch **0** vs **o** and **1** vs **l** (e.g. `ding9gf9tiozuc504aer` has **504**, not 5o4).

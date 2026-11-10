@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 )
 
 func TestWordReportEscapesEvidenceAndHonorsSections(t *testing.T) {

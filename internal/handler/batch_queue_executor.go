@@ -9,13 +9,13 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/multiagent"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/authctx"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/multiagent"
 
 	"go.uber.org/zap"
 )

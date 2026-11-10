@@ -10,11 +10,11 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/einoobserve"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/einoobserve"
+	"jameslee-ai/internal/security"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/schema"

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/einomcp"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/einomcp"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/schema"

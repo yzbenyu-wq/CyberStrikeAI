@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"cyberstrike-ai/internal/agent"
+	"jameslee-ai/internal/agent"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/adk/prebuilt/planexecute"

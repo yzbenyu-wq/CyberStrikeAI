@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 
 	"github.com/gin-gonic/gin"
 )

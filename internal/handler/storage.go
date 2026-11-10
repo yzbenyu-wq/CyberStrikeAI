@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/storage"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/storage"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

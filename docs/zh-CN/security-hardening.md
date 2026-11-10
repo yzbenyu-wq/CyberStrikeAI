@@ -2,7 +2,7 @@
 
 [English](../en-US/security-hardening.md)
 
-本文给出 CyberStrikeAI 上线前和持续运行中的安全加固清单。
+本文给出 JamesLeeAI 上线前和持续运行中的安全加固清单。
 
 ## 上线前必做
 
@@ -71,7 +71,7 @@ chmod 700 data
 生产环境使用独立系统用户运行：
 
 ```text
-cyberstrike-ai:cyberstrike-ai
+jameslee-ai:jameslee-ai
 ```
 
 避免 root 运行，除非明确需要绑定低端口或访问特殊资源。

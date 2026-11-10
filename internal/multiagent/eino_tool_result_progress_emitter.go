@@ -6,9 +6,9 @@ import (
 	"strings"
 	"sync"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/mcp"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/mcp"
 
 	"github.com/cloudwego/eino/adk"
 )

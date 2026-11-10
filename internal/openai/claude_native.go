@@ -8,7 +8,7 @@ import (
 	"io"
 	"strings"
 
-	"cyberstrike-ai/internal/llm"
+	"jameslee-ai/internal/llm"
 
 	"github.com/cloudwego/eino/components/model"
 	"github.com/cloudwego/eino/schema"

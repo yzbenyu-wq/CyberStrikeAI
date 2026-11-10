@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/toolguard"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/toolguard"
 
 	"go.uber.org/zap"
 )

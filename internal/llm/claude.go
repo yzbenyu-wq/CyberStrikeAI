@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 
 	agenticclaude "github.com/cloudwego/eino-ext/components/model/agenticclaude"
 	"github.com/cloudwego/eino/components/model"

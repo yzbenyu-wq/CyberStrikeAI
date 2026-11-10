@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
 
 	"go.uber.org/zap"
 )

@@ -33,12 +33,12 @@ import (
 )
 
 // Binary is the default executable name an update replaces.
-const Binary = "cyberstrike-ai"
+const Binary = "jameslee-ai"
 
 // DefaultRepoURL is where an installation updates from unless config.yaml says
 // otherwise. Keeping the official repository as the default is what makes the feature
 // work with no configuration at all; forks and mirrors change this one value.
-const DefaultRepoURL = "https://github.com/AIPentest/CyberStrikeAI.git"
+const DefaultRepoURL = "https://github.com/AIPentest/JamesLeeAI.git"
 
 // urlRefNamespace is where a fetch parks its remote-tracking ref. A fixed name no
 // remote can shadow keeps every installation reading the same shape.
@@ -122,7 +122,7 @@ type Options struct {
 	Root string
 	Repo string
 	// BinaryName overrides the executable swapped after a successful update. Empty
-	// means "cyberstrike-ai" in Root; "none" means leave the binary alone.
+	// means "jameslee-ai" in Root; "none" means leave the binary alone.
 	BinaryName string
 }
 

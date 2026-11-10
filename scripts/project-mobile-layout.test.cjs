@@ -29,7 +29,7 @@ test('project headers contain their content and all tabs receive mobile taps', a
             try {
                 const page = await context.newPage();
                 // Keep the real markup and both complete stylesheets, including theme overrides.
-                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header><div class="header-content">CyberStrikeAI</div></header><div id="page-projects" class="page active"><div class="page-content projects-page-layout">${markup}</div></div></div></body></html>`);
+                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header><div class="header-content">JamesLeeAI</div></header><div id="page-projects" class="page active"><div class="page-content projects-page-layout">${markup}</div></div></div></body></html>`);
                 for (const file of ['style.css', 'mobile.css']) await page.addStyleTag({ content: read(`web/static/css/${file}`) });
                 // Use the real tab handler; replace only data loaders to keep the test offline.
                 await page.addScriptTag({ content: `let currentProjectTab = 'facts'; window.loads = [];
@@ -119,7 +119,7 @@ test('mobile project page scrolls its final row above the bottom navigation', as
             try {
                 const page = await context.newPage();
                 const projectPage = await page.evaluate(template => new DOMParser().parseFromString(template, 'text/html').querySelector('#page-projects').outerHTML, template);
-                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header><div class="header-content">CyberStrikeAI</div></header><div class="main-layout"><div class="content-area">${projectPage}</div></div></div><nav id="m-tabbar">底部导航</nav></body></html>`);
+                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header><div class="header-content">JamesLeeAI</div></header><div class="main-layout"><div class="content-area">${projectPage}</div></div></div><nav id="m-tabbar">底部导航</nav></body></html>`);
                 for (const file of ['style.css', 'mobile.css']) await page.addStyleTag({ content: read(`web/static/css/${file}`) });
                 await page.evaluate(visibleHeight => {
                     document.documentElement.style.setProperty('--m-app-height', `${visibleHeight}px`);
@@ -202,7 +202,7 @@ test('mobile facts keep badges and actions inside their columns while scrolling 
             const context = await browser.newContext({viewport: {width, height: 900}, isMobile: true, hasTouch: true});
             try {
                 const page = await context.newPage();
-                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header>CyberStrikeAI</header><div id="page-projects" class="page active"><div class="page-content projects-page-layout">${markup}</div></div></div></body></html>`);
+                await page.setContent(`<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div class="container"><header>JamesLeeAI</header><div id="page-projects" class="page active"><div class="page-content projects-page-layout">${markup}</div></div></div></body></html>`);
                 for (const file of ['style.css', 'mobile.css']) await page.addStyleTag({content: read(`web/static/css/${file}`)});
                 await page.addScriptTag({content: source});
                 const mobileSource = read('web/static/js/mobile-ui.js');

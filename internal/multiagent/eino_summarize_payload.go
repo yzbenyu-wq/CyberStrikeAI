@@ -3,8 +3,8 @@ package multiagent
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/config"
-	copenai "cyberstrike-ai/internal/openai"
+	"jameslee-ai/internal/config"
+	copenai "jameslee-ai/internal/openai"
 )
 
 // stripReasoningFromSummarizationPayload removes thinking / reasoning fields from a

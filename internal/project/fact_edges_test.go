@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 
 	"go.uber.org/zap"
 )

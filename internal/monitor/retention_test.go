@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
 
 	"go.uber.org/zap"
 )

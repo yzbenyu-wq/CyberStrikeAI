@@ -140,7 +140,7 @@ Do not produce a final answer until verification is complete.
 
 Backend fields and state machines must still decide finalization. Otherwise, any conclusive-sounding model text could mislead the UI.
 
-## 4. Current CyberStrikeAI implementation
+## 4. Current JamesLeeAI implementation
 
 The project has an explicit final gate:
 
@@ -317,7 +317,7 @@ Include at least these regressions:
 
 ## 8. Recommended defaults
 
-Recommended policies for CyberStrikeAI:
+Recommended policies for JamesLeeAI:
 
 ```text
 eino_single: suitable for lightweight tasks, with the final gate enabled

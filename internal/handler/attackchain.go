@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/attackchain"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/attackchain"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

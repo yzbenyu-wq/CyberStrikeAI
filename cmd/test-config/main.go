@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 func main() {

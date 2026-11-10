@@ -36,7 +36,7 @@ Valid Chromium `chrome-extension://<32-character-extension-id>` origins are reco
 
 ## AI Channels
 
-`ai` is the recommended model configuration entry. In the Web UI, use **System Settings → Basic Settings → AI Channel Configuration**. Saving that form writes `ai.default_channel` and `ai.channels`. The legacy `openai` field remains as a backward-compatible runtime field; on load, CyberStrikeAI ensures a default channel exists and synchronizes the resolved `ai.default_channel` into runtime `openai`.
+`ai` is the recommended model configuration entry. In the Web UI, use **System Settings → Basic Settings → AI Channel Configuration**. Saving that form writes `ai.default_channel` and `ai.channels`. The legacy `openai` field remains as a backward-compatible runtime field; on load, JamesLeeAI ensures a default channel exists and synchronizes the resolved `ai.default_channel` into runtime `openai`.
 
 ```yaml
 ai:

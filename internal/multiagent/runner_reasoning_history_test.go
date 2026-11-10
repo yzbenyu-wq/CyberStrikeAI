@@ -5,8 +5,8 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
 )
 
 func TestHistoryToMessagesPreservesReasoningContent(t *testing.T) {

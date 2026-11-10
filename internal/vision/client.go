@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/llm"
-	"cyberstrike-ai/internal/openai"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/llm"
+	"jameslee-ai/internal/openai"
 
 	einoopenai "github.com/cloudwego/eino-ext/components/model/openai"
 	"github.com/cloudwego/eino/schema"

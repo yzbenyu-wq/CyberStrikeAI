@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/mcp-federation.md)
 
-CyberStrikeAI uses MCP as the primary tool protocol. Tools can be built-in, YAML-backed, Skill-local, or provided by external MCP servers.
+JamesLeeAI uses MCP as the primary tool protocol. Tools can be built-in, YAML-backed, Skill-local, or provided by external MCP servers.
 
 ## Built-In MCP
 

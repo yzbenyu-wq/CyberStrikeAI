@@ -812,5 +812,5 @@
         resolveGraphNodeType,
     };
 
-    document.addEventListener('cyberstrike-themechange', refreshTheme);
+    document.addEventListener('jameslee-themechange', refreshTheme);
 })(typeof window !== 'undefined' ? window : globalThis);

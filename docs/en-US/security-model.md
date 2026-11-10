@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/security-model.md)
 
-CyberStrikeAI is not a generic chatbot. It is a high-privilege security automation system with command execution, MCP tools, WebShell management, optional C2, batch tasks, and multi-agent orchestration.
+JamesLeeAI is not a generic chatbot. It is a high-privilege security automation system with command execution, MCP tools, WebShell management, optional C2, batch tasks, and multi-agent orchestration.
 
 ## Trust Boundaries
 

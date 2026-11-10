@@ -1,4 +1,4 @@
-// Run: node --test plugins/browser-extension/cyberstrikeai-browser-extension/tests/auth.test.cjs
+// Run: node --test plugins/browser-extension/jamesleeai-browser-extension/tests/auth.test.cjs
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');

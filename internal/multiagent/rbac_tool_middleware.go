@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"cyberstrike-ai/internal/authctx"
+	"jameslee-ai/internal/authctx"
 
 	"github.com/cloudwego/eino/compose"
 	"github.com/cloudwego/eino/schema"

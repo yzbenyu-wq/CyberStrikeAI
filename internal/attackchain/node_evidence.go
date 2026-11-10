@@ -3,7 +3,7 @@ package attackchain
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
+	"jameslee-ai/internal/agent"
 )
 
 // toolEvidence is the host-side ground truth behind a generated chain: the tool

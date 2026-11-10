@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	"cyberstrike-ai/internal/toolguard"
+	"jameslee-ai/internal/toolguard"
 
 	"gopkg.in/yaml.v3"
 )

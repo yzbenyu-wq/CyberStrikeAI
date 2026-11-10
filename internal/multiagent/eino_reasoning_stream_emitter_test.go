@@ -3,7 +3,7 @@ package multiagent
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/openai"
+	"jameslee-ai/internal/openai"
 )
 
 func TestEinoReasoningStreamEmitterStreamingLifecycle(t *testing.T) {

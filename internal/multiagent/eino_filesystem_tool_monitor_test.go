@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/mcp"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/mcp"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/components/tool"

@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/authctx"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/mcp/builtin"
 
 	"go.uber.org/zap"
 )

@@ -3,8 +3,8 @@ package monitor
 import (
 	"time"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
 
 	"go.uber.org/zap"
 )

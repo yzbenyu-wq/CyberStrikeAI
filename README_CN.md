@@ -1,19 +1,19 @@
 <div align="center">
-  <img src="images/logo.png" alt="CyberStrikeAI Logo" width="200">
+  <img src="images/logo.png" alt="JamesLeeAI Logo" width="200">
 </div>
 
-# CyberStrikeAI
+# JamesLeeAI
 
 [中文](README_CN.md) | [English](README.md)
 
-**CyberStrikeAI 是 AI 原生网络安全的智能执行中枢——让意图转化为受治理的行动，让证据沉淀为运营记忆，并让每次行动优化下一次行动。**
+**JamesLeeAI 是 AI 原生网络安全的智能执行中枢——让意图转化为受治理的行动，让证据沉淀为运营记忆，并让每次行动优化下一次行动。**
 
-CyberStrikeAI 将规划、执行、人工监督、证据与复盘连接在同一个可审计工作空间中。项目基于 Go 构建，融合 Eino 智能体、MCP 原生工具、RAG 知识、可视化工作流以及攻击链建模与分析能力，面向已获得明确授权的安全任务。
+JamesLeeAI 将规划、执行、人工监督、证据与复盘连接在同一个可审计工作空间中。项目基于 Go 构建，融合 Eino 智能体、MCP 原生工具、RAG 知识、可视化工作流以及攻击链建模与分析能力，面向已获得明确授权的安全任务。
 
 **从这里开始：** [快速上手](#快速上手一条命令部署) · [中文文档](docs/zh-CN/README.md) · [安全加固](docs/zh-CN/security-hardening.md)
 
 > [!IMPORTANT]
-> 仅可对自有系统或已获得明确授权的目标使用 CyberStrikeAI。在共享或生产环境启用高风险工具、WebShell 或 C2 前，请先阅读[安全模型](docs/zh-CN/security-model.md)和[安全加固指南](docs/zh-CN/security-hardening.md)。
+> 仅可对自有系统或已获得明确授权的目标使用 JamesLeeAI。在共享或生产环境启用高风险工具、WebShell 或 C2 前，请先阅读[安全模型](docs/zh-CN/security-model.md)和[安全加固指南](docs/zh-CN/security-hardening.md)。
 
 ## 界面与集成预览
 
@@ -150,14 +150,14 @@ CyberStrikeAI 将规划、执行、人工监督、证据与复盘连接在同一
 
 可选集成在 `plugins/` 目录下。
 
-- **Burp Suite 插件**：`plugins/burp-suite/cyberstrikeai-burp-extension/`  
-  构建产物：`plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar`  
-  说明文档：`plugins/burp-suite/cyberstrikeai-burp-extension/README.zh-CN.md`
-- **浏览器扩展（Chrome / Edge）**：`plugins/browser-extension/cyberstrikeai-browser-extension/`  
-  在 DevTools 中捕获 Network 流量并发送到 CyberStrikeAI 进行 AI 辅助安全测试，能力与 Burp 插件对齐。  
-  安装：`chrome://extensions/` → 加载已解压 → F12 → **CyberStrikeAI** 标签页  
-  打包产物：`plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip`  
-  说明文档：`plugins/browser-extension/cyberstrikeai-browser-extension/README.zh-CN.md`
+- **Burp Suite 插件**：`plugins/burp-suite/jamesleeai-burp-extension/`  
+  构建产物：`plugins/burp-suite/jamesleeai-burp-extension/dist/jamesleeai-burp-extension.jar`  
+  说明文档：`plugins/burp-suite/jamesleeai-burp-extension/README.zh-CN.md`
+- **浏览器扩展（Chrome / Edge）**：`plugins/browser-extension/jamesleeai-browser-extension/`  
+  在 DevTools 中捕获 Network 流量并发送到 JamesLeeAI 进行 AI 辅助安全测试，能力与 Burp 插件对齐。  
+  安装：`chrome://extensions/` → 加载已解压 → F12 → **JamesLeeAI** 标签页  
+  打包产物：`plugins/browser-extension/jamesleeai-browser-extension/dist/jamesleeai-browser-extension.zip`  
+  说明文档：`plugins/browser-extension/jamesleeai-browser-extension/README.zh-CN.md`
 
 ## 工具概览
 
@@ -197,7 +197,7 @@ CyberStrikeAI 将规划、执行、人工监督、证据与复盘连接在同一
 **一条命令部署：**
 ```bash
 git clone https://github.com/Ed1s0nZ/CyberStrikeAI.git
-cd CyberStrikeAI
+cd JamesLeeAI
 chmod +x run.sh && ./run.sh
 ```
 
@@ -215,7 +215,7 @@ chmod +x run.sh && ./run.sh
 2. 打开该地址；默认 HTTPS 使用本地自签证书，首次访问需接受一次浏览器证书提示。
 3. 全新安装时，妥善保存 `ADMIN SETUP REQUIRED` 下仅展示一次的 `admin` 密码，登录后立即修改。
 
-**网络默认：** `run.sh` 会以 **`--https`** 并传入项目根 **`config.yaml`** 启动（本机自签证书，多路流式场景更稳）。只要明文 HTTP 用 **`./run.sh --http`**。生产环境在 **`config.yaml`** 的 **`server.tls_cert_path` / `server.tls_key_path`** 配正式证书（见文件内注释）。手动启动可加 **`--https`** 或环境变量 **`CYBERSTRIKE_HTTPS=1`**；`-config` 写错时程序会在终端提示正确写法。
+**网络默认：** `run.sh` 会以 **`--https`** 并传入项目根 **`config.yaml`** 启动（本机自签证书，多路流式场景更稳）。只要明文 HTTP 用 **`./run.sh --http`**。生产环境在 **`config.yaml`** 的 **`server.tls_cert_path` / `server.tls_key_path`** 配正式证书（见文件内注释）。手动启动可加 **`--https`** 或环境变量 **`JAMESLEE_HTTPS=1`**；`-config` 写错时程序会在终端提示正确写法。
 
 **首次配置：**
 1. **配置 AI 通道**（首次使用前必填）
@@ -258,8 +258,8 @@ chmod +x run.sh && ./run.sh
 go run ./cmd/server --https
 
 # 手动编译
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai --https
+go build -o jameslee-ai ./cmd/server
+./jameslee-ai --https
 ```
 
 若日志出现 `client sent an HTTP request to an HTTPS server`，说明仍有客户端用 **`http://`** 访问只提供 HTTPS 的端口，请改为 **`https://`**。
@@ -268,7 +268,7 @@ go build -o cyberstrike-ai ./cmd/server
 
 ### 版本升级与兼容性
 
-**优先用平台自带的「一键更新」**（控制台「系统设置 → 一键更新」，或 `./cyberstrike-ai -update` /
+**优先用平台自带的「一键更新」**（控制台「系统设置 → 一键更新」，或 `./jameslee-ai -update` /
 `-check-update` / `-update-rollback`）：它从**更新源仓库**（默认官方仓库，可一处配置改成自己的二开或镜像）
 拉取默认分支的最新代码，快进后重编译并原子换二进制，你的 `roles/skills/tools/agents/data/config.yaml`
 会被原样保留（结果里逐个点名保留了什么，只有 `config.yaml` 的 `version` 字段会随新代码同步，让页头版本号与代码对上），
@@ -290,7 +290,7 @@ go build -o cyberstrike-ai ./cmd/server
 推荐的一键指令：
 `chmod +x upgrade.sh && ./upgrade.sh --yes`
 
-如果升级失败：git 工作树里直接 `./cyberstrike-ai -update-rollback`（回到那次更新前的提交与二进制）；
+如果升级失败：git 工作树里直接 `./jameslee-ai -update-rollback`（回到那次更新前的提交与二进制）；
 tarball 安装则从 `.upgrade-backup/` 恢复，或手动拷回 `data/` 和 `config.yaml` 后再运行 `./run.sh`。
 
 依赖/提示（只有 tarball 路径用得到）：
@@ -332,13 +332,13 @@ ai:
 ## 项目结构
 
 ```
-CyberStrikeAI/
+JamesLeeAI/
 ├── cmd/                 # Web 服务、MCP stdio 入口及辅助工具
 ├── internal/            # Agent、MCP 核心、路由、C2（`internal/c2`）与执行器
 ├── web/                 # 前端静态资源与模板
 ├── tools/               # YAML 工具目录（含 100+ 示例）
 ├── roles/               # 角色配置文件目录（含 12+ 预设安全测试角色）
-├── skills/              # Agent Skills 目录（SKILL.md + 可选文件；示例 cyberstrike-eino-demo）
+├── skills/              # Agent Skills 目录（SKILL.md + 可选文件；示例 jameslee-eino-demo）
 ├── agents/              # 多代理 Markdown（orchestrator.md + 子代理 *.md）
 ├── docs/                # 专题文档（部署、配置、安全、API、知识库、C2、WebShell 等）
 ├── images/              # 文档配图
@@ -369,7 +369,7 @@ CyberStrikeAI/
 ## 404星链计划 
 <img src="./images/404StarLinkLogo.png" width="30%">
 
-CyberStrikeAI 现已加入 [404星链计划](https://github.com/knownsec/404StarLink)
+JamesLeeAI 现已加入 [404星链计划](https://github.com/knownsec/404StarLink)
 
 ## TCH Top-Ranked Intelligent Pentest Project  
 <div align="left">
@@ -388,13 +388,13 @@ CyberStrikeAI 现已加入 [404星链计划](https://github.com/knownsec/404Star
 <details>
 <summary><strong>企业微信群</strong></summary>
 
-<img src="./images/wecom-group-cyberstrikeai-qr.png" alt="CyberStrikeAI 企业微信群二维码" width="280">
+<img src="./images/wecom-group-jamesleeai-qr.png" alt="JamesLeeAI 企业微信群二维码" width="280">
 
 </details>
 
 ## 许可证
 
-CyberStrikeAI 采用 **Apache License 2.0** 开源许可。  
+JamesLeeAI 采用 **Apache License 2.0** 开源许可。  
 完整条款见仓库根目录 [LICENSE](LICENSE) 文件。
 
 ---
@@ -403,7 +403,7 @@ CyberStrikeAI 采用 **Apache License 2.0** 开源许可。
 
 **本工具仅供教育和授权测试使用！**
 
-CyberStrikeAI 是一个专业的安全测试平台，旨在帮助安全研究人员、渗透测试人员和IT专业人员在**获得明确授权**的情况下进行安全评估和漏洞研究。
+JamesLeeAI 是一个专业的安全测试平台，旨在帮助安全研究人员、渗透测试人员和IT专业人员在**获得明确授权**的情况下进行安全评估和漏洞研究。
 
 **使用本工具即表示您同意：**
 - 仅在您拥有明确书面授权的系统上使用此工具

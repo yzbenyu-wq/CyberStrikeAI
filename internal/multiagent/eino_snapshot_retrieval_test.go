@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/schema"
@@ -267,7 +267,7 @@ func TestFallbackSnapshotDirectoryIsSeparatedByConversation(t *testing.T) {
 				}
 				after = state.Messages
 			}
-			want := filepath.Join(os.TempDir(), "cyberstrike-summarization", conv, "summarization", "snapshots")
+			want := filepath.Join(os.TempDir(), "jameslee-summarization", conv, "summarization", "snapshots")
 			if !strings.Contains(joinClassicMessageContent(after), want) {
 				t.Fatalf("missing conversation in fallback path: %s", joinClassicMessageContent(after))
 			}

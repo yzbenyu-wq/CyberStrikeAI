@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/project"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/project"
 
 	"github.com/google/uuid"
 )

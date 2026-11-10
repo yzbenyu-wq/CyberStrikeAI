@@ -8,11 +8,11 @@ import (
 	"strings"
 	"unicode"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	workflowrunner "cyberstrike-ai/internal/workflow"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	workflowrunner "jameslee-ai/internal/workflow"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ai.cyberstrike</groupId>
-    <artifactId>cyberstrikeai-burp-extension</artifactId>
+    <groupId>ai.jameslee</groupId>
+    <artifactId>jamesleeai-burp-extension</artifactId>
     <version>1.0.0</version>
-    <name>CyberStrikeAI Burp Suite Extension</name>
+    <name>JamesLeeAI Burp Suite Extension</name>
 
     <properties>
         <maven.compiler.release>11</maven.compiler.release>

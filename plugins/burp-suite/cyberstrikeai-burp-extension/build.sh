@@ -10,7 +10,7 @@ API_JAR="$LIB_DIR/burp-extender-api.jar"
 
 if [[ ! -f "$API_JAR" ]]; then
   echo "Missing: $API_JAR"
-  echo "Please copy Burp's burp-extender-api.jar into plugins/burp-suite/cyberstrikeai-burp-extension/lib/"
+  echo "Please copy Burp's burp-extender-api.jar into plugins/burp-suite/jamesleeai-burp-extension/lib/"
   exit 1
 fi
 
@@ -28,7 +28,7 @@ javac \
   $SRC_FILES
 
 echo "[*] Packaging..."
-JAR_OUT="$DIST_DIR/cyberstrikeai-burp-extension.jar"
+JAR_OUT="$DIST_DIR/jamesleeai-burp-extension.jar"
 jar --create --file "$JAR_OUT" --main-class burp.BurpExtender -C "$BUILD_DIR" .
 
 echo "[+] Done: $JAR_OUT"

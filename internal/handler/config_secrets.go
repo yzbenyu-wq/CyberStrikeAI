@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 const maskedSecret = "********"

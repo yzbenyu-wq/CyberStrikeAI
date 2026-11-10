@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"sync"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/project"
-	"cyberstrike-ai/internal/reasoning"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/project"
+	"jameslee-ai/internal/reasoning"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/compose"
@@ -19,7 +19,7 @@ import (
 )
 
 // einoSingleAgentName 与 ChatModelAgent.Name 一致，供流式事件映射主对话区。
-const einoSingleAgentName = "cyberstrike-eino-single"
+const einoSingleAgentName = "jameslee-eino-single"
 
 // RunEinoSingleChatModelAgent 使用 Eino TypedChatModelAgent[*schema.AgenticMessage] + adk.NewRunner.Run（官方 Quick Start 的 Query 同属 Runner API；此处用历史 + 用户消息切片等价于多轮 Query）。
 // 与 RunDeepAgent 共享 runEinoADKAgentLoop 的 SSE 映射与 MCP 桥。

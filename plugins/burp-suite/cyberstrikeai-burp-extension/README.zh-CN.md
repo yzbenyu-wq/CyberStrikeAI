@@ -1,13 +1,13 @@
-## CyberStrikeAI Burp Suite 插件（中文说明）
+## JamesLeeAI Burp Suite 插件（中文说明）
 
 ### 功能概述
 
-- 在 Burp 的 `CyberStrikeAI` 标签页中配置 **Host、端口、用户名、密码**
+- 在 Burp 的 `JamesLeeAI` 标签页中配置 **Host、端口、用户名、密码**
 - 点击 **Validate（验证）**：
   - 调用 `POST /api/auth/login` 用用户名和密码换取 Token
   - 调用 `GET /api/auth/validate` 校验 Token
   - 验证通过后 Token 会保存在插件内存中（本次 Burp 会话有效）
-- 右键任意 HTTP 请求包 → **Send to CyberStrikeAI (stream test)**：
+- 右键任意 HTTP 请求包 → **Send to JamesLeeAI (stream test)**：
   - 弹出发送对话框，可针对**当前流量**选择：
     - **项目**（`GET /api/projects`，新建对话时绑定 `projectId`）
     - **角色**（`GET /api/roles`）
@@ -36,13 +36,13 @@
 编译打包：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/jamesleeai-burp-extension
 ./build-mvn.sh
 ```
 
 产物：
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/jamesleeai-burp-extension.jar`
 
 #### 方式 B（离线）：纯 JDK 编译（需要 Burp 的 API jar）
 
@@ -54,7 +54,7 @@ cd plugins/burp-suite/cyberstrikeai-burp-extension
 1) 在插件目录创建 `lib/`，并把 `burp-extender-api.jar` 复制进去：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/jamesleeai-burp-extension
 mkdir -p lib
 # 复制 Burp 自带的 API jar 到这里，例如：
 # cp "/path/to/burp-extender-api.jar" lib/
@@ -63,23 +63,23 @@ mkdir -p lib
 2) 一键编译打包：
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/jamesleeai-burp-extension
 ./build.sh
 ```
 
 产物：
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/jamesleeai-burp-extension.jar`
 
 ### 在 Burp Suite 中加载
 
 - Burp Suite → **Extensions** → **Installed** → **Add**
 - Extension type：**Java**
-- 选择 `dist/cyberstrikeai-burp-extension.jar`
+- 选择 `dist/jamesleeai-burp-extension.jar`
 
 ### 使用方法
 
-1) 打开 Burp 顶部标签页 `CyberStrikeAI`
+1) 打开 Burp 顶部标签页 `JamesLeeAI`
 2) 填写：
    - **Host**：例如 `127.0.0.1`
    - **Port**：例如 `8080`
@@ -90,9 +90,9 @@ cd plugins/burp-suite/cyberstrikeai-burp-extension
    - 成功：状态显示 `OK (token saved)`
    - 失败：状态会显示错误原因（例如密码错误、服务不可达、401/403 等）
 4) 在 Burp 的 Proxy/HTTP history/Repeater 等列表中选中一条 HTTP 包
-5) 右键 → **Send to CyberStrikeAI (stream test)**
+5) 右键 → **Send to JamesLeeAI (stream test)**
 6) 在弹出框中按需选择**项目、角色、对话模式**，并编辑测试指令后点确定
-7) 每次发送后会在 `CyberStrikeAI` 标签页左侧显示一个“测试记录”（请求标题 + 模式/角色 + 状态）；点击对应记录即可在右侧查看该次的流式输出结果
+7) 每次发送后会在 `JamesLeeAI` 标签页左侧显示一个“测试记录”（请求标题 + 模式/角色 + 状态）；点击对应记录即可在右侧查看该次的流式输出结果
 
 修改连接信息或账号密码后，需要重新点击 **Validate**。密码仅保留在当前界面，不持久化保存。
 
@@ -114,6 +114,6 @@ cd plugins/burp-suite/cyberstrikeai-burp-extension
 
 - **右键发送后无流式输出**
   - 先确认已 Validate（拿到 Token）
-  - 确认 Burp 能访问到 CyberStrikeAI（网络/代理/防火墙）
+  - 确认 Burp 能访问到 JamesLeeAI（网络/代理/防火墙）
   - 服务端的流式端点为 SSE，插件会解析 `data: {json}` 行；如果中间件缓冲可能影响实时性
 

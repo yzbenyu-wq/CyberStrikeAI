@@ -3,7 +3,7 @@ package handler
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 	"gopkg.in/yaml.v3"
 )
 

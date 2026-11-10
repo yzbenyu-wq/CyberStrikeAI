@@ -1,6 +1,6 @@
 # 发布流程
 
-本文用于维护者或部署者发布、升级和回滚 CyberStrikeAI。
+本文用于维护者或部署者发布、升级和回滚 JamesLeeAI。
 
 ## 版本准备
 
@@ -25,7 +25,7 @@ go test ./internal/...
 
 ```bash
 go test ./cmd/...
-go build -o cyberstrike-ai ./cmd/server
+go build -o jameslee-ai ./cmd/server
 ```
 
 如果修改前端，手动验证：
@@ -39,12 +39,12 @@ go build -o cyberstrike-ai ./cmd/server
 ## 构建
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
+go build -o jameslee-ai ./cmd/server
 ```
 
 发布包应包含：
 
-- `cyberstrike-ai`
+- `jameslee-ai`
 - `web/templates/`
 - `web/static/`
 - `config.yaml` 示例。
@@ -157,7 +157,7 @@ SQLite 迁移要考虑：
 ```bash
 go test ./internal/...
 go test ./cmd/...
-go build -o cyberstrike-ai ./cmd/server
+go build -o jameslee-ai ./cmd/server
 ```
 
 手动冒烟：

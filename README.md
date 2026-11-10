@@ -1,20 +1,20 @@
 <div align="center">
-  <img src="images/logo.png" alt="CyberStrikeAI Logo" width="200" >
+  <img src="images/logo.png" alt="JamesLeeAI Logo" width="200" >
 </div>
 
-# CyberStrikeAI
+# JamesLeeAI
 
 
 [中文](README_CN.md) | [English](README.md)
 
 **The system of action for AI-native cybersecurity—where intent becomes governed execution, evidence becomes operational memory, and every operation improves the next.**
 
-CyberStrikeAI connects planning, execution, human oversight, evidence, and replay in one auditable workspace. Built in Go, it combines Eino-powered agents, MCP-native tools, RAG knowledge, visual workflows, and attack-chain modeling and analysis for authorized security operations.
+JamesLeeAI connects planning, execution, human oversight, evidence, and replay in one auditable workspace. Built in Go, it combines Eino-powered agents, MCP-native tools, RAG knowledge, visual workflows, and attack-chain modeling and analysis for authorized security operations.
 
 **Start here:** [Quick start](#quick-start-one-command-deployment) · [Documentation](docs/en-US/README.md) · [Security hardening](docs/en-US/security-hardening.md)
 
 > [!IMPORTANT]
-> Use CyberStrikeAI only on systems you own or are explicitly authorized to test. For shared or production environments, review the [security model](docs/en-US/security-model.md) and [hardening guide](docs/en-US/security-hardening.md) before enabling high-risk tools, WebShell, or C2 capabilities.
+> Use JamesLeeAI only on systems you own or are explicitly authorized to test. For shared or production environments, review the [security model](docs/en-US/security-model.md) and [hardening guide](docs/en-US/security-hardening.md) before enabling high-risk tools, WebShell, or C2 capabilities.
 
 ## Interface & Integration Preview
 
@@ -149,20 +149,20 @@ CyberStrikeAI connects planning, execution, human oversight, evidence, and repla
 
 ## Plugins
 
-CyberStrikeAI includes optional integrations under `plugins/`.
+JamesLeeAI includes optional integrations under `plugins/`.
 
-- **Burp Suite extension**: `plugins/burp-suite/cyberstrikeai-burp-extension/`  
-  Build output: `plugins/burp-suite/cyberstrikeai-burp-extension/dist/cyberstrikeai-burp-extension.jar`  
-  Docs: `plugins/burp-suite/cyberstrikeai-burp-extension/README.md`
-- **Browser extension (Chrome / Edge)**: `plugins/browser-extension/cyberstrikeai-browser-extension/`  
-  Capture Network traffic in DevTools and send it to CyberStrikeAI for AI-assisted security testing—aligned with the Burp plugin.  
-  Install: `chrome://extensions/` → Load unpacked → F12 → **CyberStrikeAI** tab  
-  Package output: `plugins/browser-extension/cyberstrikeai-browser-extension/dist/cyberstrikeai-browser-extension.zip`  
-  Docs: `plugins/browser-extension/cyberstrikeai-browser-extension/README.md` / `README.zh-CN.md`
+- **Burp Suite extension**: `plugins/burp-suite/jamesleeai-burp-extension/`  
+  Build output: `plugins/burp-suite/jamesleeai-burp-extension/dist/jamesleeai-burp-extension.jar`  
+  Docs: `plugins/burp-suite/jamesleeai-burp-extension/README.md`
+- **Browser extension (Chrome / Edge)**: `plugins/browser-extension/jamesleeai-browser-extension/`  
+  Capture Network traffic in DevTools and send it to JamesLeeAI for AI-assisted security testing—aligned with the Burp plugin.  
+  Install: `chrome://extensions/` → Load unpacked → F12 → **JamesLeeAI** tab  
+  Package output: `plugins/browser-extension/jamesleeai-browser-extension/dist/jamesleeai-browser-extension.zip`  
+  Docs: `plugins/browser-extension/jamesleeai-browser-extension/README.md` / `README.zh-CN.md`
 
 ## Tool Overview
 
-CyberStrikeAI ships with 100+ curated tools covering the whole kill chain:
+JamesLeeAI ships with 100+ curated tools covering the whole kill chain:
 
 <details>
 <summary><strong>View the complete tool categories</strong></summary>
@@ -198,7 +198,7 @@ See [tools/README_EN.md](tools/README_EN.md) for tool definitions, customization
 **One-Command Deployment:**
 ```bash
 git clone https://github.com/Ed1s0nZ/CyberStrikeAI.git
-cd CyberStrikeAI
+cd JamesLeeAI
 chmod +x run.sh && ./run.sh
 ```
 
@@ -216,7 +216,7 @@ The `run.sh` script will automatically:
 2. Open that URL; the default HTTPS mode uses a local self-signed certificate, so accept the browser warning once.
 3. On a new installation, store the one-time `admin` password shown under `ADMIN SETUP REQUIRED`, sign in, and change it immediately.
 
-**Networking defaults:** `run.sh` starts the server with **`--https`** and the repo **`config.yaml`** (local self-signed TLS; better for many concurrent streams). Use **`./run.sh --http`** for plain HTTP. In production, set **`server.tls_cert_path`** / **`server.tls_key_path`** in **`config.yaml`** (see comments there). For manual runs, add **`--https`** or **`CYBERSTRIKE_HTTPS=1`**; if **`-config`** is wrong, the binary prints a short usage hint on stderr.
+**Networking defaults:** `run.sh` starts the server with **`--https`** and the repo **`config.yaml`** (local self-signed TLS; better for many concurrent streams). Use **`./run.sh --http`** for plain HTTP. In production, set **`server.tls_cert_path`** / **`server.tls_key_path`** in **`config.yaml`** (see comments there). For manual runs, add **`--https`** or **`JAMESLEE_HTTPS=1`**; if **`-config`** is wrong, the binary prints a short usage hint on stderr.
 
 **First-Time Configuration:**
 1. **Configure AI channels** (required before first use)
@@ -259,8 +259,8 @@ The `run.sh` script will automatically:
 go run ./cmd/server --https
 
 # Manual build
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai --https
+go build -o jameslee-ai ./cmd/server
+./jameslee-ai --https
 ```
 
 If server logs show `client sent an HTTP request to an HTTPS server`, a client is still using **`http://`** on a TLS-only port—switch the URL to **`https://`**.
@@ -270,7 +270,7 @@ If server logs show `client sent an HTTP request to an HTTPS server`, a client i
 ### Upgrade and Compatibility
 
 **Prefer the platform's own one-click update** (console System settings -> One-click update, or
-`./cyberstrike-ai -update` / `-check-update` / `-update-rollback`): it pulls the newest commit of the
+`./jameslee-ai -update` / `-check-update` / `-update-rollback`): it pulls the newest commit of the
 **update source repository**'s default branch (the official repository by default; one setting points
 it at your own fork or a mirror), fast-forwards, rebuilds and swaps the binary atomically, keeps your
 `roles/skills/tools/agents/data/config.yaml` untouched (the result names every file it kept; only
@@ -288,7 +288,7 @@ right on the console page - the official repository, your own fork, or somebody 
 installation unpacked from a Release archive (no git) can be previewed and connected from the same
 page and updates in one click from then on.
 
-**CyberStrikeAI upgrade script:**
+**JamesLeeAI upgrade script:**
 1. (First time) enable the script: `chmod +x upgrade.sh`
 2. Upgrade with: `./upgrade.sh` (optional flags: `--check`, `--tag vX.Y.Z`, `--repo owner/name`, `--no-venv`, `--yes`). Local `tools/`, `roles/`, `skills/` and `agents/` are always preserved.
 3. The script will back up your `config.yaml` and `data/`, upgrade the code, update `config.yaml`'s `version`, then restart the server.
@@ -296,7 +296,7 @@ page and updates in one click from then on.
 Recommended one-liner:
 `chmod +x upgrade.sh && ./upgrade.sh --yes`
 
-If something goes wrong: inside a git work tree just run `./cyberstrike-ai -update-rollback` (back to
+If something goes wrong: inside a git work tree just run `./jameslee-ai -update-rollback` (back to
 the commit and binary kept before that update); for a tarball installation restore from
 `.upgrade-backup/` (or manually copy `data/` and `config.yaml` back) and run `./run.sh` again.
 
@@ -339,13 +339,13 @@ ai:
 ## Project Layout
 
 ```
-CyberStrikeAI/
+JamesLeeAI/
 ├── cmd/                 # Server, MCP stdio entrypoints, tooling
 ├── internal/            # Agent, MCP core, handlers, C2 (`internal/c2`), security executor
 ├── web/                 # Static SPA + templates
 ├── tools/               # YAML tool recipes (100+ examples provided)
 ├── roles/               # Role configurations (12+ predefined security testing roles)
-├── skills/              # Agent Skills dirs (SKILL.md + optional files; demo: cyberstrike-eino-demo)
+├── skills/              # Agent Skills dirs (SKILL.md + optional files; demo: jameslee-eino-demo)
 ├── agents/              # Multi-agent Markdown (orchestrator.md + sub-agent *.md)
 ├── docs/                # Topic docs (deployment, config, security, API, knowledge base, C2, WebShell, etc.)
 ├── images/              # Docs screenshots & diagrams
@@ -377,7 +377,7 @@ Build an attack chain for the latest engagement and export the node list with se
 
 <img src="./images/404StarLinkLogo.png" width="30%">
 
-CyberStrikeAI has joined [404Starlink](https://github.com/knownsec/404StarLink)
+JamesLeeAI has joined [404Starlink](https://github.com/knownsec/404StarLink)
 
 ## TCH Top-Ranked Intelligent Pentest Project  
 <div align="left">
@@ -397,13 +397,13 @@ CyberStrikeAI has joined [404Starlink](https://github.com/knownsec/404StarLink)
 <details>
 <summary><strong>WeCom group</strong></summary>
 
-<img src="./images/wecom-group-cyberstrikeai-qr.png" alt="CyberStrikeAI WeCom group QR code" width="280">
+<img src="./images/wecom-group-jamesleeai-qr.png" alt="JamesLeeAI WeCom group QR code" width="280">
 
 </details>
 
 ## License
 
-CyberStrikeAI is licensed under the Apache License 2.0.  
+JamesLeeAI is licensed under the Apache License 2.0.  
 See the [LICENSE](LICENSE) file for details.
 
 ---
@@ -412,7 +412,7 @@ See the [LICENSE](LICENSE) file for details.
 
 **This tool is for educational and authorized testing purposes only!**
 
-CyberStrikeAI is a professional security testing platform designed to assist security researchers, penetration testers, and IT professionals in conducting security assessments and vulnerability research **with explicit authorization**.
+JamesLeeAI is a professional security testing platform designed to assist security researchers, penetration testers, and IT professionals in conducting security assessments and vulnerability research **with explicit authorization**.
 
 **By using this tool, you agree to:**
 - Use this tool only on systems where you have clear written authorization

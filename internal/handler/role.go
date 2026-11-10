@@ -8,9 +8,9 @@ import (
 	"regexp"
 	"strings"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
 
 	"gopkg.in/yaml.v3"
 

@@ -1,6 +1,6 @@
 package handler
 
-import "cyberstrike-ai/internal/database"
+import "jameslee-ai/internal/database"
 
 func publicWebshellConnection(conn *database.WebShellConnection) *database.WebShellConnection {
 	if conn == nil {

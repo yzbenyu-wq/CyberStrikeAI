@@ -14,9 +14,9 @@ let contextMenuConversationId = null;
 let contextMenuConversationTitle = '';
 let conversationsListLoadSeq = 0; // 对话列表加载序号，避免并发请求导致重复渲染
 let conversationsListNavigateGen = 0; // 用户主动翻页代数，防止后台刷新覆盖翻页结果
-const CONVERSATIONS_PAGE_SIZE_KEY = 'cyberstrike.conversations_page_size';
-const CONVERSATIONS_SORT_KEY = 'cyberstrike.conversations_sort_by';
-const CONVERSATIONS_PROJECT_FILTER_KEY = 'cyberstrike.conversations_project_filter';
+const CONVERSATIONS_PAGE_SIZE_KEY = 'jameslee.conversations_page_size';
+const CONVERSATIONS_SORT_KEY = 'jameslee.conversations_sort_by';
+const CONVERSATIONS_PROJECT_FILTER_KEY = 'jameslee.conversations_project_filter';
 const CONVERSATION_PROJECT_FILTER_NONE = '__none__';
 const CONVERSATION_PROJECT_FILTER_SELECT_ID = 'conversation-project-filter';
 const CONVERSATION_PROJECT_FILTER_CARET = '<svg class="conversation-project-filter-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -2087,8 +2087,8 @@ function refreshChatPanelI18n() {
                 window.syncMcpToolsToggleButton(msgEl);
             }
         });
-        if (window.CyberStrikeChatScroll && typeof window.CyberStrikeChatScroll.refreshTurnRail === 'function') {
-            window.CyberStrikeChatScroll.refreshTurnRail();
+        if (window.JamesLeeChatScroll && typeof window.JamesLeeChatScroll.refreshTurnRail === 'function') {
+            window.JamesLeeChatScroll.refreshTurnRail();
         }
     }
 

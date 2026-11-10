@@ -9,8 +9,8 @@ Plugins live under `plugins/`. The repo ships two reference implementations: **B
 ```text
 plugins/
   README.md
-  burp-suite/cyberstrikeai-burp-extension/
-  browser-extension/cyberstrikeai-browser-extension/
+  burp-suite/jamesleeai-burp-extension/
+  browser-extension/jamesleeai-browser-extension/
 ```
 
 ## Plugin Layers
@@ -25,15 +25,15 @@ Do not start with MCP unless the Agent must actively call your capability. For �
 
 ## Burp Suite Extension
 
-Java extension under `plugins/burp-suite/cyberstrikeai-burp-extension/`. Typical flow: read HTTP from Burp → format prompt → call CyberStrikeAI SSE → show Progress/Final in a Burp tab.
+Java extension under `plugins/burp-suite/jamesleeai-burp-extension/`. Typical flow: read HTTP from Burp → format prompt → call JamesLeeAI SSE → show Progress/Final in a Burp tab.
 
-Build: JDK + Gradle/Maven → `bash build-mvn.sh` → `dist/cyberstrikeai-burp-extension.jar`.
+Build: JDK + Gradle/Maven → `bash build-mvn.sh` → `dist/jamesleeai-burp-extension.jar`.
 
 ## Browser Extension (Chromium DevTools)
 
-MV3 DevTools extension under `plugins/browser-extension/cyberstrikeai-browser-extension/`. Aligned with the Burp plugin: capture Network traffic → HTTP/1.1 prompt → SSE output. Full docs: `README.md` / `README.zh-CN.md` in that directory.
+MV3 DevTools extension under `plugins/browser-extension/jamesleeai-browser-extension/`. Aligned with the Burp plugin: capture Network traffic → HTTP/1.1 prompt → SSE output. Full docs: `README.md` / `README.zh-CN.md` in that directory.
 
-Load unpacked at `chrome://extensions/`, or `bash package.sh` → `dist/cyberstrikeai-browser-extension.zip`.
+Load unpacked at `chrome://extensions/`, or `bash package.sh` → `dist/jamesleeai-browser-extension.zip`.
 
 ### Auth best practices (browser)
 
@@ -110,8 +110,8 @@ Plugins should not bypass platform controls:
 
 ## Source Anchors
 
-- Burp plugin: `plugins/burp-suite/cyberstrikeai-burp-extension/src/main/java/burp/`
-- Browser extension: `plugins/browser-extension/cyberstrikeai-browser-extension/`
+- Burp plugin: `plugins/burp-suite/jamesleeai-burp-extension/src/main/java/burp/`
+- Browser extension: `plugins/browser-extension/jamesleeai-browser-extension/`
   - Auth: `lib/auth-session.js`, `lib/api.js`, `lib/storage.js`
   - UI: `panel/panel.js`
   - Capture: `devtools.js`, `background/service-worker.js`

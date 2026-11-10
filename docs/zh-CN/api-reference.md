@@ -1,6 +1,6 @@
 # API 参考
 
-CyberStrikeAI 内置 OpenAPI 规格和 API 文档页面。启动服务后访问：
+JamesLeeAI 内置 OpenAPI 规格和 API 文档页面。启动服务后访问：
 
 ```text
 /api-docs

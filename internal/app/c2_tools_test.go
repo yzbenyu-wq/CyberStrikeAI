@@ -5,11 +5,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/authctx"
+	"jameslee-ai/internal/c2"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/mcp/builtin"
 
 	"go.uber.org/zap"
 )

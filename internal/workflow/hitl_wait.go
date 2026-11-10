@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 )
 
 // HITLDecision is a human decision on a workflow approval node.

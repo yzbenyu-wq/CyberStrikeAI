@@ -1,7 +1,7 @@
 package c2
 
 import (
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 	"strings"
 	"testing"
 	"time"

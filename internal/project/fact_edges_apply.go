@@ -1,7 +1,7 @@
 package project
 
 import (
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 )
 
 // ApplyFactOutgoingLinks 替换某事实的出边（links 为 nil 时不修改）。

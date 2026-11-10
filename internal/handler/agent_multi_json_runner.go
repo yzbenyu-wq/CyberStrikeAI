@@ -2,9 +2,9 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/multiagent"
+	"jameslee-ai/internal/agentfinalizer"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/multiagent"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"net/http"

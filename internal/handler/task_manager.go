@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/multiagent"
-	"cyberstrike-ai/internal/openai"
-	"cyberstrike-ai/internal/runlease"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/multiagent"
+	"jameslee-ai/internal/openai"
+	"jameslee-ai/internal/runlease"
+	"jameslee-ai/internal/security"
 )
 
 // ErrTaskCancelled 用户取消任务的错误

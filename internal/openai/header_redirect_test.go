@@ -2,7 +2,7 @@ package openai
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 	"fmt"
 	"net/http"
 	"net/http/httptest"

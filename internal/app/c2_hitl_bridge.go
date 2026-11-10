@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/c2"
+	"jameslee-ai/internal/database"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"

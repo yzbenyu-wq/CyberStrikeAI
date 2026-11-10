@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/typesafe"
+	"jameslee-ai/internal/typesafe"
 )
 
 func TestDecideJevRejectsDestructive(t *testing.T) {

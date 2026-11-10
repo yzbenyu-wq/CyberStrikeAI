@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# CyberStrikeAI upgrade entry point.
+# JamesLeeAI upgrade entry point.
 #
 # Two installation kinds, decided at runtime from this directory itself:
 #
 #  1. git work tree (the normal case):
-#     the update is delegated to the platform binary, `./cyberstrike-ai -update`, which
+#     the update is delegated to the platform binary, `./jameslee-ai -update`, which
 #     fetches the configured update source (config.yaml update.repo; empty = the official
 #     repository, and one field points it at a fork or a mirror) and follows that
 #     repository's own default branch, fast-forwards, rebuilds with `go build` and swaps
@@ -28,12 +28,12 @@ set -euo pipefail
 # - tools/ (user extensions; never overwritten by upgrade)
 # - roles/, skills/, agents/
 # - the rollback points of an earlier one-click update:
-#   .update-backup/, .update-state.json, .update-build-pending, cyberstrike-ai.prev
+#   .update-backup/, .update-state.json, .update-build-pending, jameslee-ai.prev
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
-BINARY_NAME="cyberstrike-ai"
+BINARY_NAME="jameslee-ai"
 CONFIG_FILE="$ROOT_DIR/config.yaml"
 DATA_DIR="$ROOT_DIR/data"
 VENV_DIR="$ROOT_DIR/venv"
@@ -44,7 +44,7 @@ UPGRADE_TMP_DIR=""
 
 # Built-in fallback, used ONLY when this directory is not a git work tree and neither
 # --repo nor GITHUB_REPO was given. See resolve_repo().
-DEFAULT_GITHUB_REPO="AIPentest/CyberStrikeAI"
+DEFAULT_GITHUB_REPO="AIPentest/JamesLeeAI"
 GITHUB_REPO="${GITHUB_REPO:-}"
 REPO_ARG=""
 
@@ -68,7 +68,7 @@ What it does depends on the installation kind (detected automatically):
 
   git work tree     Updates from the configured source repository (config.yaml
                     update.repo; empty = the official repository) by calling
-                    ./cyberstrike-ai -update (fetch, fast-forward, go build, swap binary).
+                    ./jameslee-ai -update (fetch, fast-forward, go build, swap binary).
                     --tag/--repo are ignored on this path. Your own roles/skills/tools/
                     agents/data/config are put aside and restored by the platform;
                     local source edits or diverged history stop the update instead of
@@ -78,7 +78,7 @@ What it does depends on the installation kind (detected automatically):
 
 Options:
   --check             Report only, change nothing: never stops the service, never writes.
-                      git tree: ./cyberstrike-ai -check-update, or
+                      git tree: ./jameslee-ai -check-update, or
                       go run ./cmd/server -check-update while there is no binary yet.
                       plain directory: prints the newest Release tag and the version
                       recorded in config.yaml.
@@ -91,11 +91,11 @@ Options:
   --no-stop           Do not stop the running service, and do not start it afterwards
                       (use this under systemd or any supervisor; restart the unit yourself).
   --force-stop        If no process matching current directory is found, also stop
-                      any cyberstrike-ai processes (use with caution).
+                      any jameslee-ai processes (use with caution).
   --yes               Do not ask for confirmation.
 
 Rollback:
-  ./cyberstrike-ai -update-rollback
+  ./jameslee-ai -update-rollback
   Undoes the last one-click update (back to the commit and the binary kept before it).
 EOF
 }
@@ -190,7 +190,7 @@ explain_no_go() {
 
 stop_service() {
   # Try to stop the service that is running from the current project directory.
-  # If nothing is found and --force-stop is enabled, stop all cyberstrike-ai processes.
+  # If nothing is found and --force-stop is enabled, stop all jameslee-ai processes.
   if [[ "$STOP_SERVICE" -ne 1 ]]; then
     return 0
   fi
@@ -241,7 +241,7 @@ stop_service() {
 
 start_service() {
   if [[ "$STOP_SERVICE" -ne 1 ]]; then
-    info "--no-stop: the service was left untouched. Restart it yourself (for example: systemctl restart cyberstrikeai)."
+    info "--no-stop: the service was left untouched. Restart it yourself (for example: systemctl restart jamesleeai)."
     return 0
   fi
   if [[ ! -f "$ROOT_DIR/run.sh" ]]; then

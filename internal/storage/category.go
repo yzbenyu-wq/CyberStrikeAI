@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 // deletionMarkerSuffix 标记「已判定删除、正在移除」的目录。

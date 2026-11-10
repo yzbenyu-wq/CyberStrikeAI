@@ -80,7 +80,7 @@ function harness(options = {}) {
         assert.ok(start >= 0 && end > 0, `actual ${name} function is present`);
         vm.runInContext(tail.slice(0, end), runtime);
     }
-    return { runtime, window, ids, button, sinks, copied, timers, body, api: window.CyberStrikeAttackChainContext,
+    return { runtime, window, ids, button, sinks, copied, timers, body, api: window.JamesLeeAttackChainContext,
         changeLanguage(next) { language = next; (listeners.get('languagechange') || []).forEach(listener => listener()); },
         entries() { return ids.get('attack-chain-context-content').children; } };
 }

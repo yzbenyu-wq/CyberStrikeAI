@@ -6,10 +6,10 @@ import (
 	"strconv"
 	"strings"
 
-	"cyberstrike-ai/internal/attackchain"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/project"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/attackchain"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/project"
+	"jameslee-ai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

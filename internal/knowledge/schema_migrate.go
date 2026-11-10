@@ -1,7 +1,7 @@
 package knowledge
 
 import (
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 	"database/sql"
 )
 

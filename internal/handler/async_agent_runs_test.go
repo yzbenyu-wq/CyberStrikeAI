@@ -2,9 +2,9 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/security"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

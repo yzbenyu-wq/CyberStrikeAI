@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/authctx"
+	"jameslee-ai/internal/database"
 
 	"github.com/gin-gonic/gin"
 )

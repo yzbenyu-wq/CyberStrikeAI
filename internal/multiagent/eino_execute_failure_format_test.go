@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/security"
 
 	"github.com/cloudwego/eino/adk/filesystem"
 	"github.com/cloudwego/eino/schema"

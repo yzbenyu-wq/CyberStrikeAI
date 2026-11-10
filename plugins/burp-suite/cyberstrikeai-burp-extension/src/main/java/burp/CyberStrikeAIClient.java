@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
-final class CyberStrikeAIClient {
+final class JamesLeeAIClient {
 
     private static final int AUTH_CONNECT_TIMEOUT_MS = 4_000;
     private static final int AUTH_READ_TIMEOUT_MS = 5_000;
@@ -112,7 +112,7 @@ final class CyberStrikeAIClient {
 
     String loginAndValidate(Config cfg) throws IOException {
         Thread worker = Thread.currentThread();
-        java.util.Timer deadline = new java.util.Timer("CyberStrikeAI-AuthDeadline", true);
+        java.util.Timer deadline = new java.util.Timer("JamesLeeAI-AuthDeadline", true);
         deadline.schedule(new java.util.TimerTask() {
             @Override
             public void run() {
@@ -201,7 +201,7 @@ final class CyberStrikeAIClient {
 
         // Friendly diagnosis: HTML usually means wrong host/port (e.g., hit Burp UI/proxy page).
         if (looksLikeHtml(resp) || (contentType != null && contentType.toLowerCase().contains("text/html"))) {
-            throw new IOException("Login failed: server returned HTML, not API JSON. Check IP/Port and ensure you point to CyberStrikeAI backend.");
+            throw new IOException("Login failed: server returned HTML, not API JSON. Check IP/Port and ensure you point to JamesLeeAI backend.");
         }
 
         String serverError = SimpleJson.extractStringField(resp, "error");
@@ -374,7 +374,7 @@ final class CyberStrikeAIClient {
                     conn.disconnect();
                 }
             }
-        }, "CyberStrikeAI-Stream");
+        }, "JamesLeeAI-Stream");
         worker.start();
     }
 

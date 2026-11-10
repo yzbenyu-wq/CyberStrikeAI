@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/projectprompt"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/projectprompt"
 )
 
 // The continuation supplement has a fixed ceiling within the configurable

@@ -11,14 +11,14 @@ import (
 	"sync/atomic"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agents"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/einomcp"
-	"cyberstrike-ai/internal/project"
-	"cyberstrike-ai/internal/reasoning"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/agents"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/einomcp"
+	"jameslee-ai/internal/project"
+	"jameslee-ai/internal/reasoning"
+	"jameslee-ai/internal/security"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/adk/filesystem"
@@ -191,7 +191,7 @@ func RunDeepAgent(
 			}
 			instr := strings.TrimSpace(sub.Instruction)
 			if instr == "" {
-				instr = "你是 CyberStrikeAI 中的专业子代理，在授权渗透测试场景下协助完成用户委托的子任务。优先使用可用工具获取证据，回答简洁专业。"
+				instr = "你是 JamesLeeAI 中的专业子代理，在授权渗透测试场景下协助完成用户委托的子任务。优先使用可用工具获取证据，回答简洁专业。"
 			}
 
 			roleTools := sub.RoleTools
@@ -302,7 +302,7 @@ func RunDeepAgent(
 	modelFacingTrace := newModelFacingTraceHolder()
 
 	// 与 deep.Config.Name / supervisor 主代理 Name 一致。
-	orchestratorName := "cyberstrike-deep"
+	orchestratorName := "jameslee-deep"
 	orchDescription := "Coordinates specialist agents and MCP tools for authorized security testing."
 	orchInstruction, orchMeta := resolveMainOrchestratorInstruction(orchMode, ma, markdownLoad)
 	if orchMeta != nil {

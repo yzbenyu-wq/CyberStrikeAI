@@ -17,12 +17,12 @@ import (
 
 func TestValidRemoteURL(t *testing.T) {
 	yes := []string{
-		"https://github.com/Sycun/CyberStrikeAI.git",
+		"https://github.com/Sycun/JamesLeeAI.git",
 		"http://example.com/x.git",
 		"ssh://git@example.com/x.git",
 		"git://example.com/x.git",
 		"file:///srv/repos/x.git",
-		"/Volumes/code/CyberStrikeAI/开发版-CyberStrikeAI",
+		"/Volumes/code/JamesLeeAI/开发版-JamesLeeAI",
 	}
 	no := []string{
 		"",
@@ -59,7 +59,7 @@ func TestDefaultRepoIsTheOfficialRepository(t *testing.T) {
 		t.Fatalf("repo = %q configured=%v, want the official default %q without configuration",
 			snap.Repo, snap.RepoConfigured, DefaultRepoURL)
 	}
-	if DefaultRepoURL != "https://github.com/AIPentest/CyberStrikeAI.git" {
+	if DefaultRepoURL != "https://github.com/AIPentest/JamesLeeAI.git" {
 		t.Errorf("DefaultRepoURL = %q, want the official repository", DefaultRepoURL)
 	}
 }

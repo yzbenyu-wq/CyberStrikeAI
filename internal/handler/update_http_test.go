@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/update"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/update"
 
 	"github.com/gin-gonic/gin"
 )
@@ -205,11 +205,11 @@ func TestUpdateSourceSaveValidatesBeforeWriting(t *testing.T) {
 	}
 
 	// A valid save is trimmed and lands in the config layer as one address.
-	w = doUpdate(router, http.MethodPost, "/api/system/update/source", `{"repo":" https://github.com/Sycun/CyberStrikeAI.git "}`)
+	w = doUpdate(router, http.MethodPost, "/api/system/update/source", `{"repo":" https://github.com/Sycun/JamesLeeAI.git "}`)
 	if w.Code != http.StatusOK {
 		t.Fatalf("status = %d body = %s, want 200", w.Code, w.Body)
 	}
-	if len(saved) != 1 || saved[0] != "https://github.com/Sycun/CyberStrikeAI.git" {
+	if len(saved) != 1 || saved[0] != "https://github.com/Sycun/JamesLeeAI.git" {
 		t.Fatalf("saved = %v, want the trimmed address", saved)
 	}
 
@@ -225,7 +225,7 @@ func TestUpdateSourceSaveValidatesBeforeWriting(t *testing.T) {
 
 func TestUpdateStatusCarriesTheConfiguredSource(t *testing.T) {
 	router, _ := newUpdateRouterWithSource(t.TempDir(), nil,
-		func() string { return "https://github.com/Sycun/CyberStrikeAI.git" }, nil)
+		func() string { return "https://github.com/Sycun/JamesLeeAI.git" }, nil)
 
 	w := doUpdate(router, http.MethodGet, "/api/system/update", "")
 	if w.Code != http.StatusOK {
@@ -241,7 +241,7 @@ func TestUpdateStatusCarriesTheConfiguredSource(t *testing.T) {
 	if err := json.Unmarshal(w.Body.Bytes(), &body); err != nil {
 		t.Fatal(err)
 	}
-	if !body.Source.Configured || body.Source.Repo != "https://github.com/Sycun/CyberStrikeAI.git" {
+	if !body.Source.Configured || body.Source.Repo != "https://github.com/Sycun/JamesLeeAI.git" {
 		t.Fatalf("source = %+v, want the configured address", body.Source)
 	}
 	if body.Source.DefaultRepo != update.DefaultRepoURL {
@@ -425,7 +425,7 @@ func TestUpdateRestartRefusesMissingExecutable(t *testing.T) {
 }
 
 func TestFailedUpdateSourceWriteKeepsActiveSource(t *testing.T) {
-	const original = "https://github.com/AIPentest/CyberStrikeAI.git"
+	const original = "https://github.com/AIPentest/JamesLeeAI.git"
 	h := &ConfigHandler{configPath: filepath.Join(t.TempDir(), "missing.yaml"), config: &config.Config{Update: config.UpdateConfig{Repo: original}}}
 	if err := h.SetUpdateSource("https://example.com/another.git"); err == nil {
 		t.Fatal("missing config must refuse the write")

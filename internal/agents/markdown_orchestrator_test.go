@@ -10,7 +10,7 @@ func TestLoadMarkdownAgentsDir_OrchestratorExcludedFromSubs(t *testing.T) {
 	dir := t.TempDir()
 	orch := filepath.Join(dir, OrchestratorMarkdownFilename)
 	if err := os.WriteFile(orch, []byte(`---
-id: cyberstrike-deep
+id: jameslee-deep
 name: Main
 description: Test desc
 ---
@@ -34,7 +34,7 @@ Do work
 	if err != nil {
 		t.Fatal(err)
 	}
-	if load.Orchestrator == nil || load.Orchestrator.EinoName != "cyberstrike-deep" {
+	if load.Orchestrator == nil || load.Orchestrator.EinoName != "jameslee-deep" {
 		t.Fatalf("orchestrator: %+v", load.Orchestrator)
 	}
 	if len(load.SubAgents) != 1 || load.SubAgents[0].ID != "worker" {

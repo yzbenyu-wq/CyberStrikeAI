@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/deployment.md)
 
-CyberStrikeAI can run as a local testing tool, an internal team service, or a production red-team platform. Treat it as a high-privilege security system: it can execute commands, call MCP tools, manage WebShell connections, and optionally run C2 listeners.
+JamesLeeAI can run as a local testing tool, an internal team service, or a production red-team platform. Treat it as a high-privilege security system: it can execute commands, call MCP tools, manage WebShell connections, and optionally run C2 listeners.
 
 ## Prerequisites
 
@@ -48,8 +48,8 @@ go run ./cmd/server --config config.yaml
 Binary build:
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
-./cyberstrike-ai --config config.yaml
+go build -o jameslee-ai ./cmd/server
+./jameslee-ai --config config.yaml
 ```
 
 The binary still needs `web/templates`, `web/static`, and the runtime resource directories.
@@ -78,11 +78,11 @@ proxy_set_header Connection "upgrade";
 ## Upgrading
 
 **Prefer the platform's own one-click update** (console System settings -> One-click update,
-`POST /api/system/update/apply`, or `./cyberstrike-ai -update` at a keyboard). It pulls the newest
+`POST /api/system/update/apply`, or `./jameslee-ai -update` at a keyboard). It pulls the newest
 commit of the **update source repository**'s default branch (the official repository
-`https://github.com/AIPentest/CyberStrikeAI.git` by default; one setting points it at your own fork
+`https://github.com/AIPentest/JamesLeeAI.git` by default; one setting points it at your own fork
 or a mirror): fetch, fast-forward, `go build`, atomic binary swap (the old binary is kept as
-`cyberstrike-ai.prev`), while operator content - `roles/ skills/ tools/ agents/ knowledge_base/
+`jameslee-ai.prev`), while operator content - `roles/ skills/ tools/ agents/ knowledge_base/
 data/ config.yaml` - is put aside and restored, and the result names every file it kept. When source
 is modified locally or the local history has diverged from the source it refuses and says why
 instead of forcing. See [the developer guide](developer-guide.md) for the full semantics.
@@ -105,8 +105,8 @@ installation with one-click updates.
 `upgrade.sh` still works and is now a thin shell over that implementation, with two paths decided by
 the installation kind:
 
-- **git work tree**: calls `./cyberstrike-ai -update` directly (building
-  `go build -o cyberstrike-ai ./cmd/server` first when there is no binary yet, and failing with
+- **git work tree**: calls `./jameslee-ai -update` directly (building
+  `go build -o jameslee-ai ./cmd/server` first when there is no binary yet, and failing with
   instructions on installing Go when there is neither). `--check` inspects only, through
   `-check-update`.
 - **not a git work tree** (Release tarball install): only here does it fall back to downloading a
@@ -114,7 +114,7 @@ the installation kind:
   `--repo owner/name` or the `GITHUB_REPO` environment variable, and the built-in default is used only
   when neither is given - with a warning naming which repository the code is coming from.
   `config.yaml`, `data/`, `tools/`, `roles/`, `skills/`, `agents/`, `venv/` (skippable with
-  `--no-venv`) and the rollback points `.update-backup/`, `.update-state.json`, `cyberstrike-ai.prev`
+  `--no-venv`) and the rollback points `.update-backup/`, `.update-state.json`, `jameslee-ai.prev`
   are on the rsync keep list, so `--delete` cannot remove them.
 
 Recommended flow either way:
@@ -133,8 +133,8 @@ quick upgrades without compatibility risk; in production still back up first. Py
 
 ## Rollback
 
-The one-click update leaves its own rollback point: `./cyberstrike-ai -update-rollback`, or the button
-on the page, goes back to the commit before that update and puts `cyberstrike-ai.prev` back. It runs
+The one-click update leaves its own rollback point: `./jameslee-ai -update-rollback`, or the button
+on the page, goes back to the commit before that update and puts `jameslee-ai.prev` back. It runs
 only while HEAD is still the commit that update wrote, so work done afterwards is not discarded.
 Content that was put aside also survives under `.update-backup/<unique-backup>/`.
 

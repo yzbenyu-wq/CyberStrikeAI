@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 
 	"github.com/cloudwego/eino/schema"
 	"go.uber.org/zap"

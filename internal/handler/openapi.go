@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -49,11 +49,11 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 	spec := map[string]interface{}{
 		"openapi": "3.0.0",
 		"info": map[string]interface{}{
-			"title":       "CyberStrikeAI API",
+			"title":       "JamesLeeAI API",
 			"description": "AI驱动的自动化安全测试平台API文档",
 			"version":     "1.0.0",
 			"contact": map[string]interface{}{
-				"name": "CyberStrikeAI",
+				"name": "JamesLeeAI",
 			},
 		},
 		"servers": []map[string]interface{}{
@@ -3423,7 +3423,7 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 				"post": map[string]interface{}{
 					"tags":        []string{"系统更新"},
 					"summary":     "配置更新源（本安装从哪个仓库更新）",
-					"description": "把更新源写进 config.yaml 的 update 段：单个 repo 字段（仓库地址），更新跟随该仓库的默认分支。留空（或写空串）= 回到官方仓库 https://github.com/AIPentest/CyberStrikeAI.git。地址白名单为 https/http/ssh/git/file:// 与本机绝对路径（git 的 ext:: 传输会执行命令，一律拒绝）。",
+					"description": "把更新源写进 config.yaml 的 update 段：单个 repo 字段（仓库地址），更新跟随该仓库的默认分支。留空（或写空串）= 回到官方仓库 https://github.com/AIPentest/JamesLeeAI.git。地址白名单为 https/http/ssh/git/file:// 与本机绝对路径（git 的 ext:: 传输会执行命令，一律拒绝）。",
 					"operationId": "saveUpdateSource",
 					"requestBody": map[string]interface{}{
 						"content": map[string]interface{}{
@@ -6523,7 +6523,7 @@ func (h *OpenAPIHandler) GetOpenAPISpec(c *gin.Context) {
 				"post": map[string]interface{}{
 					"tags":        []string{"系统更新"},
 					"summary":     "检查本安装的更新源有无新提交",
-					"description": "对配置的更新源仓库（未配置 = 官方仓库 https://github.com/AIPentest/CyberStrikeAI.git）的默认分支执行 fetch，报告落后/领先提交数与新提交列表。检查失败返回 200 且带 checkError，不把「查不了」说成「已是最新」",
+					"description": "对配置的更新源仓库（未配置 = 官方仓库 https://github.com/AIPentest/JamesLeeAI.git）的默认分支执行 fetch，报告落后/领先提交数与新提交列表。检查失败返回 200 且带 checkError，不把「查不了」说成「已是最新」",
 					"operationId": "checkUpdate",
 					"responses": map[string]interface{}{
 						"200": map[string]interface{}{

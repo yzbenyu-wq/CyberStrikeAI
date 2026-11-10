@@ -1,4 +1,4 @@
-## CyberStrikeAI Burp Suite Extension
+## JamesLeeAI Burp Suite Extension
 
 中文说明见：`README.zh-CN.md`
 
@@ -6,7 +6,7 @@
 
 - Configure **Host / Port / HTTPS / Username / Password** and choose an agent mode
 - Click **Validate** to login (`POST /api/auth/login`) and verify token (`GET /api/auth/validate`)
-- Right-click any HTTP message in Burp and send it to CyberStrikeAI for **streaming web pentest** (agent modes: **Eino Single**, Deep, Plan-Execute, Supervisor — maps to `/api/eino-agent/stream` or `/api/multi-agent/stream`)
+- Right-click any HTTP message in Burp and send it to JamesLeeAI for **streaming web pentest** (agent modes: **Eino Single**, Deep, Plan-Execute, Supervisor — maps to `/api/eino-agent/stream` or `/api/multi-agent/stream`)
 - Keep a **test history sidebar** (searchable) so you can revisit previous runs
 - Output is split into **collapsible Progress** + **Final Response** (Markdown rendering supported)
 - View captured **Request / Response** for each run
@@ -22,13 +22,13 @@ Requirements:
 #### Option A (recommended): Maven build (no need to locate Burp)
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/jamesleeai-burp-extension
 ./build-mvn.sh
 ```
 
 Output:
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/jamesleeai-burp-extension.jar`
 
 #### Option B: Offline build with `build.sh` (needs Burp API jar)
 
@@ -43,13 +43,13 @@ mkdir -p lib
 2) Build:
 
 ```bash
-cd plugins/burp-suite/cyberstrikeai-burp-extension
+cd plugins/burp-suite/jamesleeai-burp-extension
 ./build.sh
 ```
 
 Output:
 
-- `dist/cyberstrikeai-burp-extension.jar`
+- `dist/jamesleeai-burp-extension.jar`
 
 #### Option C: Gradle (optional)
 

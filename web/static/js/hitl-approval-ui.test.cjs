@@ -34,8 +34,8 @@ test('超长人工审批内容在限高区域内滚动且操作按钮始终可�
     assert.match(monitor, /while \(dock\.firstChild && dock\.firstChild !== actions\)/);
     assert.match(monitor, /wrapChatHitlApprovalScrollRegion\(dock\);/);
     assert.match(monitor, /url\.length > 160[\s\S]*?requestVisitLongUrl/);
-    assert.equal(zh.hitl.requestVisitLongUrl, '允许 CyberStrikeAI 访问此地址？');
-    assert.equal(en.hitl.requestVisitLongUrl, 'Allow CyberStrikeAI to visit this address?');
+    assert.equal(zh.hitl.requestVisitLongUrl, '允许 JamesLeeAI 访问此地址？');
+    assert.equal(en.hitl.requestVisitLongUrl, 'Allow JamesLeeAI to visit this address?');
 });
 
 test('刷新恢复会话时先完成权威审批配置同步再允许发送', () => {

@@ -64,7 +64,7 @@ Pair with reverse-proxy HTTPS, IP allowlist, and backups.
 
 ## Knowledge-Only Assistant
 
-Goal: use CyberStrikeAI as a knowledge-augmented assistant with minimal attack surface.
+Goal: use JamesLeeAI as a knowledge-augmented assistant with minimal attack surface.
 
 ```yaml
 c2:

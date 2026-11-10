@@ -3,7 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group = 'ai.cyberstrike'
+group = 'ai.jameslee'
 version = '1.0.0'
 
 java {
@@ -38,7 +38,7 @@ jar {
 }
 
 shadowJar {
-    archiveBaseName.set('cyberstrikeai-burp-extension')
+    archiveBaseName.set('jamesleeai-burp-extension')
     archiveClassifier.set('all')
     archiveVersion.set('')
 }

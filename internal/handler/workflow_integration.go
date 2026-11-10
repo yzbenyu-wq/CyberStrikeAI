@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/config"
-	workflowrunner "cyberstrike-ai/internal/workflow"
+	"jameslee-ai/internal/agentfinalizer"
+	"jameslee-ai/internal/config"
+	workflowrunner "jameslee-ai/internal/workflow"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

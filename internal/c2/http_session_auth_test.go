@@ -2,7 +2,7 @@ package c2
 
 import (
 	"crypto/sha256"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 	"encoding/hex"
 	"encoding/json"
 	"go.uber.org/zap"

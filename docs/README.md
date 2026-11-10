@@ -1,8 +1,8 @@
-# CyberStrikeAI Documentation
+# JamesLeeAI Documentation
 
 [中文](#中文文档) | [English](#english-documentation)
 
-CyberStrikeAI documentation is organized by user journey. Start with deployment, then move to the topic that matches your task.
+JamesLeeAI documentation is organized by user journey. Start with deployment, then move to the topic that matches your task.
 
 ## 中文文档
 

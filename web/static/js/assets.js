@@ -2,8 +2,8 @@
    必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
 
 
-const ASSET_PAGE_SIZE_KEY = 'cyberstrike.asset_page_size';
-const ASSET_SAVED_VIEWS_KEY = 'cyberstrike.asset_saved_views';
+const ASSET_PAGE_SIZE_KEY = 'jameslee.asset_page_size';
+const ASSET_SAVED_VIEWS_KEY = 'jameslee.asset_saved_views';
 function getAssetPageSize() {
     try {
         const value = Number(localStorage.getItem(ASSET_PAGE_SIZE_KEY));

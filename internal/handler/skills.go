@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"strings"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/skillpackage"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/skillpackage"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

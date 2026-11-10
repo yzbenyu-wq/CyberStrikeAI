@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/update"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/update"
 	"fmt"
 	"net/http"
 	"os"

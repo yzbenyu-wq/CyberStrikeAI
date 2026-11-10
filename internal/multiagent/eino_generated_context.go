@@ -1,8 +1,8 @@
 package multiagent
 
 import (
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/schema"
 )

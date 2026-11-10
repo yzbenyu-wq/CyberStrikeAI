@@ -1,6 +1,6 @@
 # 测试指南
 
-CyberStrikeAI 的测试包括 Go 单测、配置验证、API 手测、MCP 工具验证和前端冒烟测试。
+JamesLeeAI 的测试包括 Go 单测、配置验证、API 手测、MCP 工具验证和前端冒烟测试。
 
 ## Go 单测
 
@@ -32,7 +32,7 @@ go test ./internal/handler
 ## 构建测试
 
 ```bash
-go build -o cyberstrike-ai ./cmd/server
+go build -o jameslee-ai ./cmd/server
 ```
 
 构建通过不代表功能正确，但能发现入口、依赖和静态类型问题。

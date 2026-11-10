@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 
 	einoembedopenai "github.com/cloudwego/eino-ext/components/embedding/openai"
 	"github.com/cloudwego/eino/components/embedding"
@@ -237,7 +237,7 @@ func (w *einoFloatEmbedder) EmbedStrings(ctx context.Context, texts []string, op
 }
 
 func (w *einoFloatEmbedder) GetType() string {
-	return "CyberStrikeKnowledgeEmbedder"
+	return "JamesLeeKnowledgeEmbedder"
 }
 
 func (w *einoFloatEmbedder) IsCallbacksEnabled() bool {

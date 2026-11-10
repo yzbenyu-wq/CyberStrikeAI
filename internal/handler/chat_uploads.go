@@ -16,9 +16,9 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

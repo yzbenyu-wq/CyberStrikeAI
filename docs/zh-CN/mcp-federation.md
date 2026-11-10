@@ -1,6 +1,6 @@
 # MCP 联邦
 
-CyberStrikeAI 同时支持内置 MCP 工具、独立 HTTP MCP 服务和外部 MCP 联邦。MCP 是 Agent 调用工具的主要协议层。
+JamesLeeAI 同时支持内置 MCP 工具、独立 HTTP MCP 服务和外部 MCP 联邦。MCP 是 Agent 调用工具的主要协议层。
 
 ## 内置 MCP
 

@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/update"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/update"
 	"fmt"
 	"os"
 	"path/filepath"

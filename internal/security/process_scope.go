@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/processguard"
+	"jameslee-ai/internal/processguard"
 	"github.com/google/uuid"
 )
 

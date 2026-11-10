@@ -1,14 +1,14 @@
-## CyberStrikeAI Browser Extension
+## JamesLeeAI Browser Extension
 
 **Version 0.3.11** — Full docs: **README.zh-CN.md**
 
-Chromium DevTools extension: capture Network traffic and send it to CyberStrikeAI for AI-assisted security testing. Aligned with the Burp Suite plugin.
+Chromium DevTools extension: capture Network traffic and send it to JamesLeeAI for AI-assisted security testing. Aligned with the Burp Suite plugin.
 
 ### Quick install
 
 1. `chrome://extensions/` → Developer mode → **Load unpacked**
-2. Select `plugins/browser-extension/cyberstrikeai-browser-extension/`
-3. Open target page → **F12** → **CyberStrikeAI** tab → **Validate**
+2. Select `plugins/browser-extension/jamesleeai-browser-extension/`
+3. Open target page → **F12** → **JamesLeeAI** tab → **Validate**
 4. Select a captured request → **Send** → view **Output**
 
 ### RBAC login
@@ -57,13 +57,13 @@ Closing DevTools clears panel data. Closing the browser invalidates the session 
 
 After reloading the extension, close DevTools completely and reopen (F12) if you see `chrome.runtime.connect` errors — the old panel context is invalidated.
 
-If Validate reports `cross-origin request denied`, upgrade and restart the CyberStrikeAI server. Current versions recognize valid Chrome/Edge extension origins automatically, so no extension ID or CORS configuration is required. The browser requests access only to the configured server origin on the first Validate, directly from the Validate click so Chromium can reliably show the optional-permission prompt.
+If Validate reports `cross-origin request denied`, upgrade and restart the JamesLeeAI server. Current versions recognize valid Chrome/Edge extension origins automatically, so no extension ID or CORS configuration is required. The browser requests access only to the configured server origin on the first Validate, directly from the Validate click so Chromium can reliably show the optional-permission prompt.
 
 ### Package
 
 ```bash
 bash package.sh
-# → dist/cyberstrikeai-browser-extension.zip
+# → dist/jamesleeai-browser-extension.zip
 ```
 
 ### Layout

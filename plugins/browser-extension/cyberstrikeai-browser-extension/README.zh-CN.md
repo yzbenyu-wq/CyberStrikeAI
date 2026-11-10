@@ -1,16 +1,16 @@
-## CyberStrikeAI 浏览器扩展
+## JamesLeeAI 浏览器扩展
 
 **当前版本：0.3.11**（UI 为英文；中文说明见下文）
 
-Chrome / Edge（Chromium）DevTools 扩展：在开发者工具中捕获 **Network** 流量，发送到 CyberStrikeAI 进行 AI 辅助安全测试。能力与 Burp Suite 插件对齐，并按生产场景做了性能与体验优化。
+Chrome / Edge（Chromium）DevTools 扩展：在开发者工具中捕获 **Network** 流量，发送到 JamesLeeAI 进行 AI 辅助安全测试。能力与 Burp Suite 插件对齐，并按生产场景做了性能与体验优化。
 
 ---
 
 ### 快速开始
 
 1. `chrome://extensions/` → 开发者模式 → **加载已解压的扩展程序**
-2. 选择目录：`plugins/browser-extension/cyberstrikeai-browser-extension/`
-3. 打开目标页面 → **F12** → 顶部 Tab **CyberStrikeAI**
+2. 选择目录：`plugins/browser-extension/jamesleeai-browser-extension/`
+3. 打开目标页面 → **F12** → 顶部 Tab **JamesLeeAI**
 4. 填写 Host / Port / Username / Password → **Validate**（首次会请求访问服务器地址权限）
 5. 左侧选中捕获请求 → **Send** → 在 **Output** 查看 AI 结果
 
@@ -63,7 +63,7 @@ Host: example.com
 Cookie: ...
 ```
 
-#### 发送到 CyberStrikeAI
+#### 发送到 JamesLeeAI
 
 - 弹窗选择：**项目 / 角色 / 对话模式**（动态 API）+ 测试指令
 - 支持 **Eino Single**、**Deep**、**Plan-Execute**、**Supervisor**
@@ -88,7 +88,7 @@ Cookie: ...
 - **401/403** 时自动清空 Token 并展开连接栏
 - Send 前主动校验 Token 有效性
 - **optional_host_permissions**：Validate 时按需授权
-- 权限申请直接绑定 Validate 点击事件，仅申请当前 CyberStrikeAI 服务 origin；已授权地址不会重复弹窗
+- 权限申请直接绑定 Validate 点击事件，仅申请当前 JamesLeeAI 服务 origin；已授权地址不会重复弹窗
 
 ---
 
@@ -98,7 +98,7 @@ Cookie: ...
 |------|------|
 | **Validate** | 登录并校验 Token；进行中再次点击为 Cancel |
 | **连接设置 / 收起** | 展开或折叠 Host/Port/Username/Password 表单 |
-| **Send** | 对选中捕获发起到 CyberStrikeAI |
+| **Send** | 对选中捕获发起到 JamesLeeAI |
 | **Latest XHR** | 选中最近 XHR/Fetch 并 Send |
 | **Stop** | 停止当前 AI 流（本地 + 服务端） |
 | **Clear Output** | 清空当前 run 的 Progress / Final |
@@ -160,9 +160,9 @@ HTTP/2 伪首部。展示与 AI Prompt 已归一化为 HTTP/1.1；原始 HAR 仍
 不是。那是页面自身请求本机服务被浏览器拦截，与扩展无关。
 
 **Validate 显示 `cross-origin request denied`？**  
-升级并重启 CyberStrikeAI 服务。新版服务会自动识别格式合法的 Chrome/Edge 扩展 Origin，无需复制插件 ID 或配置 CORS 白名单；插件首次 Validate 时仍会请求访问目标服务地址的浏览器权限。
+升级并重启 JamesLeeAI 服务。新版服务会自动识别格式合法的 Chrome/Edge 扩展 Origin，无需复制插件 ID 或配置 CORS 白名单；插件首次 Validate 时仍会请求访问目标服务地址的浏览器权限。
 
-**Validate 要求允许访问 CyberStrikeAI 服务？**  
+**Validate 要求允许访问 JamesLeeAI 服务？**  
 在浏览器弹出的权限框中允许访问当前服务地址。插件只按需申请所填写的服务 origin，不需要开启全站访问。如果未出现权限框，请在 `chrome://extensions/` 重新加载扩展，完全关闭 DevTools 后再打开并点击 Validate。
 
 **HTTPS 显示无法连接，但 Burp 正常？**  
@@ -190,15 +190,15 @@ Burp 插件会信任自签名证书，浏览器扩展不能绕过 Chromium 的 T
 ### 打包发布
 
 ```bash
-bash plugins/browser-extension/cyberstrikeai-browser-extension/package.sh
-# → dist/cyberstrikeai-browser-extension.zip
+bash plugins/browser-extension/jamesleeai-browser-extension/package.sh
+# → dist/jamesleeai-browser-extension.zip
 ```
 
 图标从项目根 `images/logo.png` 生成：
 
 ```bash
 LOGO="images/logo.png"
-ICONS="plugins/browser-extension/cyberstrikeai-browser-extension/icons"
+ICONS="plugins/browser-extension/jamesleeai-browser-extension/icons"
 for size in 16 48 128; do
   sips -z $size $size "$LOGO" --out "$ICONS/icon${size}.png"
 done

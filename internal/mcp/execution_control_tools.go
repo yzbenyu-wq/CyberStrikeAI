@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/mcp/builtin"
 )
 
 const (

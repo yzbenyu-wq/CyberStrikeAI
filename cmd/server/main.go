@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"cyberstrike-ai/internal/app"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/processguard"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/termout"
+	"jameslee-ai/internal/app"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/logger"
+	"jameslee-ai/internal/processguard"
+	"jameslee-ai/internal/security"
+	"jameslee-ai/internal/termout"
 	"flag"
 	"fmt"
 	"os"
@@ -42,7 +42,7 @@ func main() {
 		os.Exit(2)
 	}
 	if !*httpsBootstrap && !*httpBootstrap {
-		v := strings.TrimSpace(os.Getenv("CYBERSTRIKE_HTTPS"))
+		v := strings.TrimSpace(os.Getenv("JAMESLEE_HTTPS"))
 		if v == "1" || strings.EqualFold(v, "true") || strings.EqualFold(v, "yes") {
 			*httpsBootstrap = true
 		}
@@ -54,7 +54,7 @@ func main() {
 		cp = "config.yaml"
 	}
 	if strings.HasPrefix(cp, "-") {
-		fmt.Fprintf(os.Stderr, "Invalid -config path %q.\nIf HTTPS is also needed, use: ./cyberstrike-ai --https -config config.yaml (-config must be followed by a yaml file path).\n", cp)
+		fmt.Fprintf(os.Stderr, "Invalid -config path %q.\nIf HTTPS is also needed, use: ./jameslee-ai --https -config config.yaml (-config must be followed by a yaml file path).\n", cp)
 		os.Exit(2)
 	}
 	localConfig, err := config.EnsureLocalConfig(cp)

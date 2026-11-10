@@ -3,7 +3,7 @@ package handler
 import (
 	"strings"
 
-	"cyberstrike-ai/internal/project"
+	"jameslee-ai/internal/project"
 	"go.uber.org/zap"
 )
 

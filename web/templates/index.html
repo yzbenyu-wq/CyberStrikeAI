@@ -10,14 +10,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="CyberStrikeAI">
-    <title>CyberStrikeAI</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=20260728">
-    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico?v=20260728">
+    <meta name="apple-mobile-web-app-title" content="JamesLeeAI">
+    <title>JamesLeeAI</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=20261111">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico?v=20261111">
     <script>
         (function () {
             try {
-                var stored = localStorage.getItem('cyberstrike-theme') || 'system';
+                var stored = localStorage.getItem('jameslee-theme') || 'system';
                 if (stored !== 'system' && stored !== 'light' && stored !== 'dark') {
                     stored = 'system';
                 }
@@ -39,7 +39,7 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="/static/css/style.css?v=20261027-pagination-custom-select">
+    <link rel="stylesheet" href="/static/css/style.css?v=20261111-login-logo">
     <link rel="stylesheet" href="/static/css/vulnerability-download.css?v=20261030-2">
     <link rel="stylesheet" href="/static/css/tool-guard.css?v=20260907-7">
     <link rel="stylesheet" href="/static/css/chat-plan-progress.css?v=20260813-4">
@@ -54,10 +54,11 @@
     <div id="login-overlay" class="login-overlay" style="display: none;">
         <div class="login-card">
             <div class="login-brand">
+                <img src="/static/logo.png" alt="JamesLeeAI Logo" class="login-logo" width="72" height="72">
                 <h2 class="login-title">
                     <span data-i18n="login.titlePrefix">登录</span>
-                    <span class="brand-wordmark brand-wordmark--sm" aria-label="CyberStrikeAI">
-                        <span class="brand-wordmark__core">CyberStrike</span><span class="brand-wordmark__ai">AI</span>
+                    <span class="brand-wordmark brand-wordmark--sm" aria-label="JamesLeeAI">
+                        <span class="brand-wordmark__core">JamesLee</span><span class="brand-wordmark__ai">AI</span>
                     </span>
                 </h2>
                 <p class="login-subtitle" data-i18n="login.subtitle">使用平台账号登录，默认管理员为 admin。</p>
@@ -94,9 +95,9 @@
         <header>
             <div class="header-content">
                 <div class="logo header-logo-link" onclick="switchPage('dashboard')" role="button" data-i18n="header.backToDashboard" data-i18n-attr="title" data-i18n-skip-text="true" title="返回仪表盘">
-                    <img src="/static/logo.png" alt="CyberStrikeAI Logo" class="brand-logo" width="36" height="36">
+                    <img src="/static/logo.png" alt="JamesLeeAI Logo" class="brand-logo" width="36" height="36">
                     <h1 class="brand-wordmark brand-wordmark--lg">
-                        <span class="brand-wordmark__core">CyberStrike</span><span class="brand-wordmark__ai">AI</span>
+                        <span class="brand-wordmark__core">JamesLee</span><span class="brand-wordmark__ai">AI</span>
                     </h1>
                     <span class="version-badge" data-i18n="header.version" data-i18n-attr="title" data-i18n-skip-text="true" title="当前版本">{{.Version}}</span>
                 </div>
@@ -4438,7 +4439,7 @@
                             <div id="settings-section-robots" class="settings-section-content">
                                 <div class="settings-section-header">
                                     <h3 data-i18n="settings.robots.title">机器人设置</h3>
-                                    <p class="settings-description" data-i18n="settings.robots.description">配置企业微信、钉钉、飞书等机器人，在手机端直接与 CyberStrikeAI 对话，无需在服务器上打开网页。</p>
+                                    <p class="settings-description" data-i18n="settings.robots.description">配置企业微信、钉钉、飞书等机器人，在手机端直接与 JamesLeeAI 对话，无需在服务器上打开网页。</p>
                                 </div>
 
                                 <div class="robot-manager">
@@ -4454,7 +4455,7 @@
                                         <button type="button" class="robot-card" data-robot-card="wechat" data-require-permission="robot:write" onclick="openRobotEditor('wechat')">
                                             <span class="robot-card-main">
                                                 <span class="robot-card-title" data-i18n="settings.robots.wechat.title">微信 / iLink</span>
-                                                <span class="robot-card-desc" data-i18n="settings.robots.wechat.subtitle">扫码绑定个人微信，在手机端直接与 CyberStrikeAI 对话</span>
+                                                <span class="robot-card-desc" data-i18n="settings.robots.wechat.subtitle">扫码绑定个人微信，在手机端直接与 JamesLeeAI 对话</span>
                                             </span>
                                             <span class="robot-card-meta">
                                                 <span id="robot-card-wechat-status" class="robot-status-pill robot-status-pill--idle" data-i18n="settings.robots.statusNotConfigured">未配置</span>
@@ -4603,7 +4604,7 @@
                                     <div class="robot-wechat-header">
                                         <div class="robot-wechat-header-text">
                                             <h4 data-i18n="settings.robots.wechat.title">微信 / iLink</h4>
-                                            <p class="robot-wechat-subtitle" data-i18n="settings.robots.wechat.subtitle">扫码绑定个人微信，在手机端直接与 CyberStrikeAI 对话</p>
+                                            <p class="robot-wechat-subtitle" data-i18n="settings.robots.wechat.subtitle">扫码绑定个人微信，在手机端直接与 JamesLeeAI 对话</p>
                                         </div>
                                         <span id="robot-wechat-status-badge" class="robot-wechat-badge robot-wechat-badge--idle" data-i18n="settings.robots.wechat.statusIdle">未绑定</span>
                                     </div>
@@ -4662,7 +4663,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="robot-wechat-bot-agent" data-i18n="settings.robots.wechat.botAgent">Bot Agent</label>
-                                                <input type="text" id="robot-wechat-bot-agent" placeholder="CyberStrikeAI/1.0" autocomplete="off" />
+                                                <input type="text" id="robot-wechat-bot-agent" placeholder="JamesLeeAI/1.0" autocomplete="off" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="robot-wechat-ilink-bot-id" data-i18n="settings.robots.wechat.ilinkBotId">iLink Bot ID（绑定后自动填充）</label>
@@ -5654,14 +5655,14 @@
 }</code>
                         <strong data-i18n="externalMcpModal.httpMode">HTTP模式：</strong><br>
                         <code data-i18n="externalMcpModal.exampleHttp" style="display: block; margin: 8px 0; padding: 8px; background: var(--bg-secondary); border-radius: 4px; white-space: pre-wrap;">{
-  "cyberstrike-ai-http": {
+  "jameslee-ai-http": {
     "transport": "http",
     "url": "http://127.0.0.1:8081/mcp"
   }
 }</code>
                         <strong data-i18n="externalMcpModal.sseMode">SSE模式：</strong><br>
                         <code data-i18n="externalMcpModal.exampleSse" style="display: block; margin: 8px 0; padding: 8px; background: var(--bg-secondary); border-radius: 4px; white-space: pre-wrap;">{
-  "cyberstrike-ai-sse": {
+  "jameslee-ai-sse": {
     "transport": "sse",
     "url": "http://127.0.0.1:8081/mcp/sse"
   }

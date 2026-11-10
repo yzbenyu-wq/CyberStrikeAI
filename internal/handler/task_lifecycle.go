@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"cyberstrike-ai/internal/runlease"
+	"jameslee-ai/internal/runlease"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

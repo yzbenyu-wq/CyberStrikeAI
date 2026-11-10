@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 func (h *AgentHandler) hitlAuditEngineInfo() (backend, model string) {

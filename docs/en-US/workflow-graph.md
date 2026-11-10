@@ -1,4 +1,4 @@
-# CyberStrikeAI Workflows Guide
+# JamesLeeAI Workflows Guide
 
 [中文](../zh-CN/workflow-graph.md)
 
@@ -8,7 +8,7 @@ This document explains how to use **Workflows**: building workflows on the canva
 
 ## 1. Where to find Workflows
 
-1. Log in to the CyberStrikeAI web UI.  
+1. Log in to the JamesLeeAI web UI.  
 2. Open **Workflows** in the left sidebar.  
 3. Select an existing workflow from the list, or create a new one.  
 4. Drag nodes, draw edges, and configure properties on the canvas.  
@@ -36,7 +36,7 @@ Saved workflows can be bound to a role under **Role Management**. When `workflow
 
 ## 3. Natural-language Draft Generation
 
-The Workflows page provides a **Create from natural language** entry point. After a user describes a security operations goal, CyberStrikeAI generates an editable draft and returns a structured audit result:
+The Workflows page provides a **Create from natural language** entry point. After a user describes a security operations goal, JamesLeeAI generates an editable draft and returns a structured audit result:
 
 - Draft generation does not save, dry-run, or execute tools automatically.
 - The server endpoint is `POST /api/workflows/generate-draft`, protected by `workflow:write`.

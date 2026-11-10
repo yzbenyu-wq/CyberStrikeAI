@@ -32,7 +32,7 @@
         }
         // i18n 未就绪时的后备（与 zh-CN 一致）
         var fallbacks = {
-            'settingsTerminal.welcomeLine': 'CyberStrikeAI 终端 - 真实 Shell 会话，直接输入命令；Ctrl+L 清屏',
+            'settingsTerminal.welcomeLine': 'JamesLeeAI 终端 - 真实 Shell 会话，直接输入命令；Ctrl+L 清屏',
             'settingsTerminal.sessionClosed': '[会话已关闭]',
             'settingsTerminal.connectionError': '[终端连接出错]',
             'settingsTerminal.connectFailed': '[无法连接终端服务: {{msg}}]',
@@ -101,7 +101,7 @@
     // 从本地存储中获取当前登录 token（与 auth.js 使用的结构保持一致）
     function getStoredAuthToken() {
         try {
-            var raw = localStorage.getItem('cyberstrike-auth');
+            var raw = localStorage.getItem('jameslee-auth');
             if (!raw) return null;
             var o = JSON.parse(raw);
             if (o && o.token) return o.token;

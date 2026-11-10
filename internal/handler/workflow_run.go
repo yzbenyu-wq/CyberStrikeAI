@@ -6,11 +6,11 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
-	workflowrunner "cyberstrike-ai/internal/workflow"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/security"
+	workflowrunner "jameslee-ai/internal/workflow"
 
 	"github.com/gin-gonic/gin"
 )

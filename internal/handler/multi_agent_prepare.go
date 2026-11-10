@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/security"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

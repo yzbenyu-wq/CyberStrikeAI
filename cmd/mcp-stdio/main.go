@@ -1,11 +1,11 @@
 package main
 
 import (
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/toolguard"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/logger"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/security"
+	"jameslee-ai/internal/toolguard"
 	"flag"
 	"fmt"
 	"os"

@@ -2,7 +2,7 @@ package update
 
 import (
 	"context"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -355,7 +355,7 @@ func TestValidNameRejectsArgumentInjection(t *testing.T) {
 
 func TestInstallBinaryKeepsPrevAndRestoresOnFailedSwap(t *testing.T) {
 	dir := t.TempDir()
-	dst := filepath.Join(dir, "cyberstrike-ai")
+	dst := filepath.Join(dir, "jameslee-ai")
 	src := filepath.Join(dir, "new")
 	writeFile(t, dst, "old")
 	writeFile(t, src, "new")

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-final class CyberStrikeAITab implements ITab {
+final class JamesLeeAITab implements ITab {
     private final JPanel root = new JPanel(new BorderLayout());
 
     private final JTextField hostField = new JTextField("127.0.0.1");
@@ -42,7 +42,7 @@ final class CyberStrikeAITab implements ITab {
     private final JTextArea responseArea = new JTextArea();
     private final JTabbedPane rightTabs = new JTabbedPane();
 
-    private final CyberStrikeAIClient client = new CyberStrikeAIClient();
+    private final JamesLeeAIClient client = new JamesLeeAIClient();
     private final AtomicReference<String> tokenRef = new AtomicReference<>("");
     private final AtomicReference<Thread> validateThreadRef = new AtomicReference<>();
 
@@ -87,7 +87,7 @@ final class CyberStrikeAITab implements ITab {
         }
     }
 
-    CyberStrikeAITab() {
+    JamesLeeAITab() {
         root.add(buildConfigPanel(), BorderLayout.NORTH);
         root.add(buildMainPane(), BorderLayout.CENTER);
         wireActions();
@@ -111,7 +111,7 @@ final class CyberStrikeAITab implements ITab {
         row1.add(hostField);
         row1.add(new JLabel("Port"));
         row1.add(portField);
-        useHttpsBox.setToolTipText("Use https:// for CyberStrikeAI (self-signed certs are trusted automatically)");
+        useHttpsBox.setToolTipText("Use https:// for JamesLeeAI (self-signed certs are trusted automatically)");
         row1.add(useHttpsBox);
         row1.add(new JLabel("Username"));
         row1.add(usernameField);
@@ -438,7 +438,7 @@ final class CyberStrikeAITab implements ITab {
                 cancelValidateInProgress();
                 return;
             }
-            final CyberStrikeAIClient.Config cfg = currentConfig();
+            final JamesLeeAIClient.Config cfg = currentConfig();
             tokenRef.set("");
             setConnectionEditable(false);
             validateButton.setText("Cancel");
@@ -472,7 +472,7 @@ final class CyberStrikeAITab implements ITab {
                         validateButton.setEnabled(true);
                     });
                 }
-            }, "CyberStrikeAI-Validate");
+            }, "JamesLeeAI-Validate");
             validateThreadRef.set(worker);
             worker.start();
         });
@@ -545,7 +545,7 @@ final class CyberStrikeAITab implements ITab {
             stopButton.setEnabled(false);
             new Thread(() -> {
                 try {
-                    CyberStrikeAIClient.Config cfg = currentConfig();
+                    JamesLeeAIClient.Config cfg = currentConfig();
                     client.cancelByConversationId(cfg.baseUrl, token, convId);
                     appendProgressToRun(runId, "\n[info] Cancel requested.\n");
                     setRunStatus(runId, "cancelling");
@@ -554,7 +554,7 @@ final class CyberStrikeAITab implements ITab {
                 } finally {
                     SwingUtilities.invokeLater(() -> stopButton.setEnabled(true));
                 }
-            }, "CyberStrikeAI-Cancel").start();
+            }, "JamesLeeAI-Cancel").start();
         });
 
         searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -566,13 +566,13 @@ final class CyberStrikeAITab implements ITab {
         renderMarkdownBox.addActionListener(e -> refreshOutputView());
     }
 
-    CyberStrikeAIClient.Config currentConfig() {
+    JamesLeeAIClient.Config currentConfig() {
         String host = hostField.getText().trim();
         String port = portField.getText().trim();
         String password = new String(passwordField.getPassword());
         String scheme = useHttpsBox.isSelected() ? "https" : "http";
         String baseUrl = scheme + "://" + host + ":" + port;
-        return new CyberStrikeAIClient.Config(baseUrl, usernameField.getText(), password);
+        return new JamesLeeAIClient.Config(baseUrl, usernameField.getText(), password);
     }
 
     String getToken() {
@@ -867,7 +867,7 @@ final class CyberStrikeAITab implements ITab {
 
     @Override
     public String getTabCaption() {
-        return "CyberStrikeAI";
+        return "JamesLeeAI";
     }
 
     @Override

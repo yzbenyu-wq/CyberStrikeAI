@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/runlease"
-	"cyberstrike-ai/internal/security"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/runlease"
+	"jameslee-ai/internal/security"
 )
 
 func TestTaskCleanupWaitsBeforeReleasingConversation(t *testing.T) {

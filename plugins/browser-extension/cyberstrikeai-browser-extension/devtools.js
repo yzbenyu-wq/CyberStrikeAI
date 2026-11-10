@@ -62,7 +62,7 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
 });
 
 chrome.devtools.panels.create(
-  'CyberStrikeAI',
+  'JamesLeeAI',
   'icons/icon48.png',
   'panel/panel.html',
   () => {}

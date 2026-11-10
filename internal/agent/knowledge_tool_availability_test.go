@@ -1,8 +1,8 @@
 package agent
 
 import (
-	"cyberstrike-ai/internal/knowledge"
-	"cyberstrike-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/knowledge"
+	"jameslee-ai/internal/mcp/builtin"
 	"go.uber.org/zap"
 	"testing"
 )

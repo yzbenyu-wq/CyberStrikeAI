@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 )
 
 // taskDeadlineExceeded distinguishes the task's deadline from a child operation's

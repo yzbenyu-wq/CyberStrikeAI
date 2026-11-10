@@ -138,7 +138,7 @@ Do not produce a final answer until verification is complete.
 
 但真正决定 final 的必须是后端字段和状态机。否则模型只要生成一段像最终结论的自然语言，UI 仍可能误判。
 
-## 四、CyberStrikeAI 当前落地状态
+## 四、JamesLeeAI 当前落地状态
 
 当前项目已经具备一套显式 final gate：
 
@@ -315,7 +315,7 @@ WebShell 侧同理：`response_delta` 可以用于实时预览，但 UI 文案�
 
 ## 八、推荐默认策略
 
-对 CyberStrikeAI，建议默认策略是：
+对 JamesLeeAI，建议默认策略是：
 
 ```text
 eino_single：轻量任务可用，但 final gate 必须开启

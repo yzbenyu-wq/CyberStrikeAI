@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/einomcp"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/einomcp"
 
 	"github.com/cloudwego/eino/adk"
 	"go.uber.org/zap"

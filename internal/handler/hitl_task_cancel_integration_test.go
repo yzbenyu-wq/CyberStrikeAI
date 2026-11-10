@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/database"
 	"errors"
 	"go.uber.org/zap"
 	"path/filepath"

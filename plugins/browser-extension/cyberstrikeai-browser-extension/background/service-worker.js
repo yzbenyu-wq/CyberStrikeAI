@@ -45,7 +45,7 @@ function cleanupOldTabs(activeTabId) {
 }
 
 chrome.runtime.onConnect.addListener((port) => {
-  if (port.name !== 'cyberstrike-panel') return;
+  if (port.name !== 'jameslee-panel') return;
 
   port.onDisconnect.addListener(() => {
     for (const [tabId, set] of portsByTab.entries()) {

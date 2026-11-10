@@ -2,7 +2,7 @@
 
 [返回中文文档](README.md)
 
-本文说明 CyberStrikeAI 对长时间工具、MCP 阻塞、大输出、取消和恢复上下文的治理策略。目标是让 Agent 保持标准工具语义，同时避免工具卡死、上下文爆炸、数据库膨胀或恢复时重新注入历史大输出。
+本文说明 JamesLeeAI 对长时间工具、MCP 阻塞、大输出、取消和恢复上下文的治理策略。目标是让 Agent 保持标准工具语义，同时避免工具卡死、上下文爆炸、数据库膨胀或恢复时重新注入历史大输出。
 
 ## 设计目标
 
@@ -219,7 +219,7 @@ PY
 
 ## 当前边界
 
-- 外部 MCP 的远端 server 内部如何采集输出不由 CyberStrikeAI 控制；CyberStrikeAI 会在结果进入本系统后统一兜底、限并发和熔断。
+- 外部 MCP 的远端 server 内部如何采集输出不由 JamesLeeAI 控制；JamesLeeAI 会在结果进入本系统后统一兜底、限并发和熔断。
 - 超长工具输出会在截断前写入本地 `tmp/reduction/.../trunc/<id>`（或 `reduction_root_dir`），bounded result 中包含可 `read_file` 的绝对路径。
 
 ## 本轮任务的进程生命周期
@@ -262,7 +262,7 @@ security:
 服务启动时会真正创建并回收一个探测进程，验证权限和内核支持；也可在不启动 HTTP/MCP 服务的情况下单独运行：
 
 ```sh
-./cyberstrike-ai --check-process-isolation -config config.yaml
+./jameslee-ai --check-process-isolation -config config.yaml
 ```
 
 输出 `cgroup_v2`、`windows_job` 或 `process_group_watchdog`。运行/历史任务 API 的 `isolationBackend` 字段提供每轮实际采用的后端。systemd 的 `KillMode=control-group` 和失败重启为整个服务额外兜底；它与每任务 cgroup 配合使用。

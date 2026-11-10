@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
 
 	"github.com/google/uuid"
 	"go.uber.org/zap"

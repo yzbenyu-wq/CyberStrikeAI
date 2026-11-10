@@ -1,4 +1,4 @@
-CyberStrike skill package — assets/ smoke test
+JamesLee skill package — assets/ smoke test
 ==============================================
 
 This plain-text file checks that arbitrary subfolders under a skill package

@@ -3,8 +3,8 @@ package workflow
 import (
 	"context"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/einoobserve"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/einoobserve"
 )
 
 func attachWorkflowCallbacks(ctx context.Context, cfg *config.Config, args RunArgs, workflowName string) context.Context {

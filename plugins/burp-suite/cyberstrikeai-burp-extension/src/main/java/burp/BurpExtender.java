@@ -8,8 +8,8 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
     private IBurpExtenderCallbacks callbacks;
     private IExtensionHelpers helpers;
 
-    private CyberStrikeAITab tab;
-    private final CyberStrikeAIClient client = new CyberStrikeAIClient();
+    private JamesLeeAITab tab;
+    private final JamesLeeAIClient client = new JamesLeeAIClient();
     private String lastInstruction = HttpMessageFormatter.defaultInstruction();
 
     @Override
@@ -17,21 +17,21 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
         this.callbacks = callbacks;
         this.helpers = callbacks.getHelpers();
 
-        callbacks.setExtensionName("CyberStrikeAI Extension");
+        callbacks.setExtensionName("JamesLeeAI Extension");
 
-        this.tab = new CyberStrikeAITab();
+        this.tab = new JamesLeeAITab();
         callbacks.addSuiteTab(tab);
 
         callbacks.registerContextMenuFactory(this);
 
-        callbacks.printOutput("CyberStrikeAI extension loaded.");
+        callbacks.printOutput("JamesLeeAI extension loaded.");
     }
 
     @Override
     public List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
         List<JMenuItem> items = new ArrayList<>();
 
-        JMenuItem sendItem = new JMenuItem("Send to CyberStrikeAI (stream test)");
+        JMenuItem sendItem = new JMenuItem("Send to JamesLeeAI (stream test)");
         sendItem.addActionListener(e -> {
             IHttpRequestResponse[] selected = invocation.getSelectedMessages();
             if (selected == null || selected.length == 0) {
@@ -46,12 +46,12 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
 
     private void sendMessage(IHttpRequestResponse msg) {
         if (msg == null) return;
-        CyberStrikeAIClient.Config cfg = tab.currentConfig();
+        JamesLeeAIClient.Config cfg = tab.currentConfig();
         String token = tab.getToken();
         if (token == null || token.trim().isEmpty()) {
             JOptionPane.showMessageDialog(tab.getUiComponent(),
                     "Please click Validate first to obtain a token.",
-                    "CyberStrikeAI", JOptionPane.WARNING_MESSAGE);
+                    "JamesLeeAI", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -74,7 +74,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
         tab.appendProgressToRun(runId, "\n\n");
 
         client.streamTest(cfg, token, prompt, options.role, options.projectId, options.agentMode,
-                new CyberStrikeAIClient.StreamListener() {
+                new JamesLeeAIClient.StreamListener() {
             @Override
             public void onEvent(String type, String message, String rawJson) {
                 if (type == null) type = "";
@@ -183,7 +183,7 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
                 boolean cancelled = message != null && message.toLowerCase().contains("cancel");
                 tab.appendProgressToRun(runId, cancelled ? "\n[info] " + message + "\n" : "\n[error] " + message + "\n");
                 tab.setRunStatus(runId, cancelled ? "cancelled" : "error");
-                callbacks.printError("CyberStrikeAI stream error: " + message);
+                callbacks.printError("JamesLeeAI stream error: " + message);
                 if (e != null) {
                     callbacks.printError(e.toString());
                 }

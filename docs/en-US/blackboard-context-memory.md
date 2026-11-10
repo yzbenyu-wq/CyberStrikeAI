@@ -63,7 +63,7 @@ data/conversation_artifacts/<conversationId>/summarization/
 
 Filename timestamps can order snapshots. A snapshot may be saved before summary generation, including failed attempts, and retries with identical history reuse files. File order therefore does not strictly correspond to the number of successful compactions.
 
-When the database path is empty, temporary snapshots use `<temporary-directory>/cyberstrike-summarization/<conversationId>/summarization/snapshots/` instead of sharing one directory across conversations.
+When the database path is empty, temporary snapshots use `<temporary-directory>/jameslee-summarization/<conversationId>/summarization/snapshots/` instead of sharing one directory across conversations.
 
 Sub-agents, planners, and executors use `summarization/scopes/<scopeHash>/snapshots/`. Summaries provide historical snapshot directories; the Agent can locate `transcript-*.txt` with `glob` and read older evidence on demand. Legacy index files are unused by the new process and are not automatically deleted on upgrade.
 

@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/hitl"
-	"cyberstrike-ai/internal/openai"
-	"cyberstrike-ai/internal/typesafe"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/hitl"
+	"jameslee-ai/internal/openai"
+	"jameslee-ai/internal/typesafe"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

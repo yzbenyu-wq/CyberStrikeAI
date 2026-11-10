@@ -2,7 +2,7 @@
 
 [English](../en-US/contributing-guide.md)
 
-本文定义向 CyberStrikeAI 增加功能、接口、工具、前端页面或文档时的基本要求。
+本文定义向 JamesLeeAI 增加功能、接口、工具、前端页面或文档时的基本要求。
 
 ## 总原则
 

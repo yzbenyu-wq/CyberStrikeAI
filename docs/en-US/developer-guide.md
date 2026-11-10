@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/developer-guide.md)
 
-This guide is for contributors extending CyberStrikeAI. The project is a Go single-service application with a static frontend, SQLite persistence, Agent/MCP orchestration, and optional high-risk security subsystems.
+This guide is for contributors extending JamesLeeAI. The project is a Go single-service application with a static frontend, SQLite persistence, Agent/MCP orchestration, and optional high-risk security subsystems.
 
 ## Project Layout
 
@@ -50,7 +50,7 @@ disagree about why an update was refused.
 |---|---|
 | console | System settings -> One-click update (`#system-update`, the old deep link still works). Opening this section reads the local tree only and does not go online; **Check** is what performs the fetch; **Update** starts a job the page polls; the "exit after updating" tick is pre-ticked when a supervisor is detected (launchd/systemd startup markers), and while the process is down the page watches for its return and reloads itself (sessions live in memory, so a fresh login follows); a rollback button sits below |
 | REST | `GET /api/system/update` (state on disk, no network), `POST /api/system/update/check` (fetch, then report the gap), `POST /api/system/update/apply` (`202` with `job_id`, polled through `GET /api/system/update/job`), `POST /api/system/update/rollback` |
-| CLI | `./cyberstrike-ai -check-update`, `./cyberstrike-ai -update`, `./cyberstrike-ai -update-rollback`. The install root is the directory holding `--config`, or the current directory when `--config` was not given |
+| CLI | `./jameslee-ai -check-update`, `./jameslee-ai -update`, `./jameslee-ai -update-rollback`. The install root is the directory holding `--config`, or the current directory when `--config` was not given |
 
 Permissions are `update:read` (GET) and `update:apply` (the four mutating endpoints). `update:apply`
 additionally requires a global (`all` scope) session: one machine has one source tree, and an
@@ -59,11 +59,11 @@ additionally requires a global (`all` scope) session: one machine has one source
 ### Where the code comes from
 
 From **the update source repository**: one address, the official repository
-`https://github.com/AIPentest/CyberStrikeAI.git` by default, and the update follows that repository's
+`https://github.com/AIPentest/JamesLeeAI.git` by default, and the update follows that repository's
 **own default branch** (nothing about branches is configured, and "main" is not hardcoded), so an
 installation with no configuration at all still has exactly one answer to "where does an update come
 from". `upgrade.sh` is now a thin shell over the same implementation: when this directory is a git
-work tree it just calls `./cyberstrike-ai -update`.
+work tree it just calls `./jameslee-ai -update`.
 
 ### Changing the source (the update section of config.yaml)
 
@@ -73,7 +73,7 @@ the one place to change:
 
 ```yaml
 update:
-  repo: https://github.com/AIPentest/CyberStrikeAI.git  # one repository address; empty/absent = the official repository
+  repo: https://github.com/AIPentest/JamesLeeAI.git  # one repository address; empty/absent = the official repository
 ```
 
 The console's "Update source" block edits and saves this address (saving it empty goes back to the
@@ -135,11 +135,11 @@ version that lands is yours, and the result says so.
 
 ### Rollback
 
-`./cyberstrike-ai -update-rollback`, or the button on the page: `git reset --hard` back to the commit
-the update came from, the binary kept as `cyberstrike-ai.prev` is put back when that update swapped
+`./jameslee-ai -update-rollback`, or the button on the page: `git reset --hard` back to the commit
+the update came from, the binary kept as `jameslee-ai.prev` is put back when that update swapped
 one, and `.update-state.json` is removed. An update whose build failed never swapped a binary, so its
 rollback moves the source only - the binary on disk already belongs to the commit it returns to. It
-refuses when there is no update record (`no_state`), a swap is owed but no `cyberstrike-ai.prev` is
+refuses when there is no update record (`no_state`), a swap is owed but no `jameslee-ai.prev` is
 left (`no_binary`), a recorded commit is not in this repository (`bad_state`), the binary on disk is
 not the one the record pairs with that commit (`binary_changed`), **HEAD has moved since that update**
 (`moved_since_update` - a rollback undoes the update, not the work done after it), or source is

@@ -3,7 +3,7 @@ package reasoning
 import (
 	"testing"
 
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/config"
 	einoopenai "github.com/cloudwego/eino-ext/components/model/openai"
 )
 

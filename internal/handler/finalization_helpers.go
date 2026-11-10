@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/multiagent"
+	"jameslee-ai/internal/agentfinalizer"
+	"jameslee-ai/internal/multiagent"
 
 	"go.uber.org/zap"
 )

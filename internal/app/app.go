@@ -15,26 +15,26 @@ import (
 	"sync"
 	"time"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/audit"
-	"cyberstrike-ai/internal/authctx"
-	"cyberstrike-ai/internal/c2"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/einoobserve"
-	"cyberstrike-ai/internal/handler"
-	"cyberstrike-ai/internal/hitl"
-	"cyberstrike-ai/internal/knowledge"
-	"cyberstrike-ai/internal/logger"
-	"cyberstrike-ai/internal/mcp"
-	"cyberstrike-ai/internal/mcp/builtin"
-	"cyberstrike-ai/internal/monitor"
-	"cyberstrike-ai/internal/multiagent"
-	"cyberstrike-ai/internal/robot"
-	"cyberstrike-ai/internal/security"
-	"cyberstrike-ai/internal/skillpackage"
-	"cyberstrike-ai/internal/storage"
-	"cyberstrike-ai/internal/toolguard"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/audit"
+	"jameslee-ai/internal/authctx"
+	"jameslee-ai/internal/c2"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/einoobserve"
+	"jameslee-ai/internal/handler"
+	"jameslee-ai/internal/hitl"
+	"jameslee-ai/internal/knowledge"
+	"jameslee-ai/internal/logger"
+	"jameslee-ai/internal/mcp"
+	"jameslee-ai/internal/mcp/builtin"
+	"jameslee-ai/internal/monitor"
+	"jameslee-ai/internal/multiagent"
+	"jameslee-ai/internal/robot"
+	"jameslee-ai/internal/security"
+	"jameslee-ai/internal/skillpackage"
+	"jameslee-ai/internal/storage"
+	"jameslee-ai/internal/toolguard"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -353,7 +353,7 @@ func New(cfg *config.Config, log *logger.Logger, configPath string) (*App, error
 		}()
 	}
 
-	// 配置文件路径必须由入口传入（与 flag -config 一致）。勿再用 os.Args[1]，否则 ./cyberstrike-ai --https 会把 --https 当成路径。
+	// 配置文件路径必须由入口传入（与 flag -config 一致）。勿再用 os.Args[1]，否则 ./jameslee-ai --https 会把 --https 当成路径。
 	configPath = strings.TrimSpace(configPath)
 	if configPath == "" {
 		configPath = "config.yaml"

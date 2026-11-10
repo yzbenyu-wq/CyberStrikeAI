@@ -2,7 +2,7 @@
 
 [中文](../zh-CN/frontend-i18n.md)
 
-CyberStrikeAI frontend i18n is static and lightweight. Text is organized in JSON files and applied through `data-i18n` attributes plus JavaScript helper functions.
+JamesLeeAI frontend i18n is static and lightweight. Text is organized in JSON files and applied through `data-i18n` attributes plus JavaScript helper functions.
 
 ## Files
 

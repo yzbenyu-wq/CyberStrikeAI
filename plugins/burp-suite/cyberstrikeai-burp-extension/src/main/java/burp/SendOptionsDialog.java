@@ -14,9 +14,9 @@ final class SendOptionsDialog {
         final String instruction;
         final String projectId;
         final String role;
-        final CyberStrikeAIClient.AgentMode agentMode;
+        final JamesLeeAIClient.AgentMode agentMode;
 
-        Result(String instruction, String projectId, String role, CyberStrikeAIClient.AgentMode agentMode) {
+        Result(String instruction, String projectId, String role, JamesLeeAIClient.AgentMode agentMode) {
             this.instruction = instruction;
             this.projectId = projectId == null ? "" : projectId;
             this.role = role == null ? "" : role;
@@ -26,18 +26,18 @@ final class SendOptionsDialog {
 
     private static String lastProjectId = "";
     private static String lastRole = "";
-    private static CyberStrikeAIClient.AgentMode lastAgentMode = null;
+    private static JamesLeeAIClient.AgentMode lastAgentMode = null;
 
     static Result show(
             Component parent,
-            CyberStrikeAIClient client,
-            CyberStrikeAIClient.Config cfg,
+            JamesLeeAIClient client,
+            JamesLeeAIClient.Config cfg,
             String token,
             String defaultInstruction
     ) {
-        CyberStrikeAIClient.AgentMode defaultMode = lastAgentMode != null
+        JamesLeeAIClient.AgentMode defaultMode = lastAgentMode != null
                 ? lastAgentMode
-                : CyberStrikeAIClient.AgentMode.EINO_SINGLE;
+                : JamesLeeAIClient.AgentMode.EINO_SINGLE;
 
         JPanel panel = new JPanel(new BorderLayout(0, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(4, 4, 0, 4));
@@ -48,22 +48,22 @@ final class SendOptionsDialog {
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.weighty = 0;
 
-        JComboBox<CyberStrikeAIClient.ProjectOption> projectBox = new JComboBox<>();
-        projectBox.addItem(new CyberStrikeAIClient.ProjectOption("", "加载中..."));
+        JComboBox<JamesLeeAIClient.ProjectOption> projectBox = new JComboBox<>();
+        projectBox.addItem(new JamesLeeAIClient.ProjectOption("", "加载中..."));
         projectBox.setEnabled(false);
 
-        JComboBox<CyberStrikeAIClient.RoleOption> roleBox = new JComboBox<>();
-        roleBox.addItem(new CyberStrikeAIClient.RoleOption("", "加载中..."));
+        JComboBox<JamesLeeAIClient.RoleOption> roleBox = new JComboBox<>();
+        roleBox.addItem(new JamesLeeAIClient.RoleOption("", "加载中..."));
         roleBox.setEnabled(false);
 
-        JComboBox<CyberStrikeAIClient.AgentMode> agentBox = new JComboBox<>(CyberStrikeAIClient.AgentMode.values());
+        JComboBox<JamesLeeAIClient.AgentMode> agentBox = new JComboBox<>(JamesLeeAIClient.AgentMode.values());
         agentBox.setSelectedItem(defaultMode);
         agentBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof CyberStrikeAIClient.AgentMode) {
-                    setText(((CyberStrikeAIClient.AgentMode) value).displayName);
+                if (value instanceof JamesLeeAIClient.AgentMode) {
+                    setText(((JamesLeeAIClient.AgentMode) value).displayName);
                 }
                 return this;
             }
@@ -110,30 +110,30 @@ final class SendOptionsDialog {
 
         Thread loader = new Thread(() -> {
             try {
-                List<CyberStrikeAIClient.ProjectOption> projects = client.fetchProjects(cfg, token);
-                List<CyberStrikeAIClient.RoleOption> roles = client.fetchRoles(cfg, token);
+                List<JamesLeeAIClient.ProjectOption> projects = client.fetchProjects(cfg, token);
+                List<JamesLeeAIClient.RoleOption> roles = client.fetchRoles(cfg, token);
                 SwingUtilities.invokeLater(() -> populateProjects(projectBox, projects, lastProjectId));
                 SwingUtilities.invokeLater(() -> populateRoles(roleBox, roles, lastRole));
             } catch (Exception ex) {
                 SwingUtilities.invokeLater(() -> {
                     projectBox.removeAllItems();
-                    projectBox.addItem(new CyberStrikeAIClient.ProjectOption("", "(加载失败)"));
+                    projectBox.addItem(new JamesLeeAIClient.ProjectOption("", "(加载失败)"));
                     projectBox.setEnabled(true);
                     roleBox.removeAllItems();
-                    roleBox.addItem(new CyberStrikeAIClient.RoleOption("", "默认"));
+                    roleBox.addItem(new JamesLeeAIClient.RoleOption("", "默认"));
                     roleBox.setEnabled(true);
                     JOptionPane.showMessageDialog(parent,
                             "加载项目/角色失败: " + ex.getMessage(),
-                            "CyberStrikeAI", JOptionPane.WARNING_MESSAGE);
+                            "JamesLeeAI", JOptionPane.WARNING_MESSAGE);
                 });
             }
-        }, "CyberStrikeAI-LoadCatalog");
+        }, "JamesLeeAI-LoadCatalog");
         loader.start();
 
         int result = JOptionPane.showConfirmDialog(
                 parent,
                 panel,
-                "发送到 CyberStrikeAI",
+                "发送到 JamesLeeAI",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE
         );
@@ -141,9 +141,9 @@ final class SendOptionsDialog {
             return null;
         }
 
-        CyberStrikeAIClient.ProjectOption project = (CyberStrikeAIClient.ProjectOption) projectBox.getSelectedItem();
-        CyberStrikeAIClient.RoleOption role = (CyberStrikeAIClient.RoleOption) roleBox.getSelectedItem();
-        CyberStrikeAIClient.AgentMode agentMode = (CyberStrikeAIClient.AgentMode) agentBox.getSelectedItem();
+        JamesLeeAIClient.ProjectOption project = (JamesLeeAIClient.ProjectOption) projectBox.getSelectedItem();
+        JamesLeeAIClient.RoleOption role = (JamesLeeAIClient.RoleOption) roleBox.getSelectedItem();
+        JamesLeeAIClient.AgentMode agentMode = (JamesLeeAIClient.AgentMode) agentBox.getSelectedItem();
         if (agentMode == null) {
             agentMode = defaultMode;
         }
@@ -162,32 +162,32 @@ final class SendOptionsDialog {
         return new Result(instruction, lastProjectId, lastRole, agentMode);
     }
 
-    private static void populateProjects(JComboBox<CyberStrikeAIClient.ProjectOption> box,
-                                         List<CyberStrikeAIClient.ProjectOption> items,
+    private static void populateProjects(JComboBox<JamesLeeAIClient.ProjectOption> box,
+                                         List<JamesLeeAIClient.ProjectOption> items,
                                          String selectId) {
         box.removeAllItems();
-        for (CyberStrikeAIClient.ProjectOption item : items) {
+        for (JamesLeeAIClient.ProjectOption item : items) {
             box.addItem(item);
         }
         selectComboById(box, selectId);
         box.setEnabled(true);
     }
 
-    private static void populateRoles(JComboBox<CyberStrikeAIClient.RoleOption> box,
-                                      List<CyberStrikeAIClient.RoleOption> items,
+    private static void populateRoles(JComboBox<JamesLeeAIClient.RoleOption> box,
+                                      List<JamesLeeAIClient.RoleOption> items,
                                       String selectName) {
         box.removeAllItems();
-        for (CyberStrikeAIClient.RoleOption item : items) {
+        for (JamesLeeAIClient.RoleOption item : items) {
             box.addItem(item);
         }
         selectComboByName(box, selectName);
         box.setEnabled(true);
     }
 
-    private static void selectComboById(JComboBox<CyberStrikeAIClient.ProjectOption> box, String id) {
+    private static void selectComboById(JComboBox<JamesLeeAIClient.ProjectOption> box, String id) {
         if (id == null) id = "";
         for (int i = 0; i < box.getItemCount(); i++) {
-            CyberStrikeAIClient.ProjectOption item = box.getItemAt(i);
+            JamesLeeAIClient.ProjectOption item = box.getItemAt(i);
             if (item != null && id.equals(item.id)) {
                 box.setSelectedIndex(i);
                 return;
@@ -196,10 +196,10 @@ final class SendOptionsDialog {
         box.setSelectedIndex(0);
     }
 
-    private static void selectComboByName(JComboBox<CyberStrikeAIClient.RoleOption> box, String name) {
+    private static void selectComboByName(JComboBox<JamesLeeAIClient.RoleOption> box, String name) {
         if (name == null) name = "";
         for (int i = 0; i < box.getItemCount(); i++) {
-            CyberStrikeAIClient.RoleOption item = box.getItemAt(i);
+            JamesLeeAIClient.RoleOption item = box.getItemAt(i);
             if (item != null && name.equals(item.name)) {
                 box.setSelectedIndex(i);
                 return;

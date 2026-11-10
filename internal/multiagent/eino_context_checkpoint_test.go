@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/project"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/project"
 
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/schema"

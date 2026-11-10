@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/security"
-	workflowrunner "cyberstrike-ai/internal/workflow"
-	workflowpkg "cyberstrike-ai/internal/workflow/package"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/security"
+	workflowrunner "jameslee-ai/internal/workflow"
+	workflowpkg "jameslee-ai/internal/workflow/package"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

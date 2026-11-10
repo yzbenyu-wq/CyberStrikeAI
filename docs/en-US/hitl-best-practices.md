@@ -131,6 +131,6 @@ If you configured a small audit model, start with **Approval** mode. Use **Revie
 
 - Review **Human-in-the-loop → Audit logs** regularly and tune allowlists/prompts.
 - In high-risk environments, keep `default_reviewer: human` and use the Audit Agent only for recommendations.
-- If the small-model reviewer fails, CyberStrikeAI rejects conservatively by default.
+- If the small-model reviewer fails, JamesLeeAI rejects conservatively by default.
 - After changing `hitl.audit_model`, click **Test audit model** in the settings page.
 - For production, customer, or real business systems, keep a human as the final approver.

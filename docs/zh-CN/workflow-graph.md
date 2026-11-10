@@ -1,4 +1,4 @@
-# CyberStrikeAI 工作流使用说明
+# JamesLeeAI 工作流使用说明
 
 [English](../en-US/workflow-graph.md)
 
@@ -8,7 +8,7 @@
 
 ## 一、在哪里使用工作流
 
-1. 登录 CyberStrikeAI Web 端  
+1. 登录 JamesLeeAI Web 端  
 2. 左侧导航进入 **工作流**  
 3. 在左侧列表选择已有流程，或新建流程  
 4. 在中央画布拖拽、连线、配置节点  

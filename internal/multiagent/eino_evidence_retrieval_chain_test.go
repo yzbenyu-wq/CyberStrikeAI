@@ -2,8 +2,8 @@ package multiagent
 
 import (
 	"context"
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
 	"encoding/json"
 	"fmt"
 	localbk "github.com/cloudwego/eino-ext/adk/backend/local"

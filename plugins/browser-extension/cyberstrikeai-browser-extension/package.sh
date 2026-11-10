@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-OUT="$ROOT/dist/cyberstrikeai-browser-extension.zip"
+OUT="$ROOT/dist/jamesleeai-browser-extension.zip"
 mkdir -p "$ROOT/dist"
 rm -f "$OUT"
 (cd "$ROOT" && zip -r "$OUT" . \

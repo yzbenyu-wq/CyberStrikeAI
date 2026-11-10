@@ -53,7 +53,7 @@ SQLite migrations must be:
 ```bash
 go test ./internal/...
 go test ./cmd/...
-go build -o cyberstrike-ai ./cmd/server
+go build -o jameslee-ai ./cmd/server
 ```
 
 Manual smoke:

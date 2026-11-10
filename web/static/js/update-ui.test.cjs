@@ -19,12 +19,12 @@ const HANDLES = ['startUpdateApply', 'checkForUpdates', 'rollbackUpdate',
     'startRestartNow', 'refreshUpdatePage'];
 
 // The envelope shape GET /api/system/update answers with, plus what the source endpoints return.
-const officialRepo = 'https://github.com/AIPentest/CyberStrikeAI.git';
+const officialRepo = 'https://github.com/AIPentest/JamesLeeAI.git';
 const emptySource = { repo: '', configured: false, defaultRepo: officialRepo };
-const configuredSource = { repo: 'https://github.com/Sycun/CyberStrikeAI.git', configured: true, defaultRepo: officialRepo };
+const configuredSource = { repo: 'https://github.com/Sycun/JamesLeeAI.git', configured: true, defaultRepo: officialRepo };
 const adoptPlan = {
     root: '/srv/csai',
-    source: 'https://github.com/Sycun/CyberStrikeAI.git',
+    source: 'https://github.com/Sycun/JamesLeeAI.git',
     branch: 'main',
     commit: 'abc1234',
     subject: 'target head',
@@ -125,9 +125,9 @@ const succeededJob = {
         commits: 3,
         filesTouched: 27,
         keptContent: ['roles/我的角色.md', 'tools/semgrep.yaml'],
-        binaryPath: '/srv/csai/cyberstrike-ai',
+        binaryPath: '/srv/csai/jameslee-ai',
         binaryBuilt: true,
-        prevBinary: '/srv/csai/cyberstrike-ai.prev',
+        prevBinary: '/srv/csai/jameslee-ai.prev',
         backupDir: '/srv/csai/.update-backup/20261001_040005',
         needsRestart: true,
         duration: '3m12s',
@@ -710,8 +710,8 @@ test('a tree that only owes a build still offers the button, and says it is a bu
         result: {
             fromCommit: 'a1b2c3d', toCommit: 'a1b2c3d',
             commits: 0, filesTouched: 0, keptContent: [],
-            binaryPath: '/srv/csai/cyberstrike-ai',
-            binaryBuilt: true, prevBinary: '/srv/csai/cyberstrike-ai.prev',
+            binaryPath: '/srv/csai/jameslee-ai',
+            binaryBuilt: true, prevBinary: '/srv/csai/jameslee-ai.prev',
             backupDir: '/srv/csai/.update-backup/20261008_100000',
             needsRestart: true, duration: '40s',
         },
@@ -941,7 +941,7 @@ test('the confirm dialog says what the update will do, and cancelling posts noth
     assert.equal(h.confirms.length, 1, 'the operator must be asked before the tree moves');
     assert.match(h.confirms[0], /重新编译/, 'the confirm must say the binary gets rebuilt: ' + h.confirms[0]);
     assert.match(h.confirms[0], /二进制/);
-    assert.match(h.confirms[0], /github\.com\/AIPentest\/CyberStrikeAI/, 'the confirm must name the repository being fetched');
+    assert.match(h.confirms[0], /github\.com\/AIPentest\/JamesLeeAI/, 'the confirm must name the repository being fetched');
     assert.match(h.confirms[0], /a1b2c3d/, 'the confirm must name where this machine is now');
     assert.doesNotMatch(h.confirms[0], /\{\{/, 'the confirm went out un-interpolated: ' + h.confirms[0]);
     assert.deepEqual(h.calls.map(c => c.method + ' ' + c.url), [], 'a cancelled update must not POST');
@@ -1208,7 +1208,7 @@ test('the hint describes the automatic check instead of denying any network use'
 
 test('the source section shows what is in effect, and saving posts the one address', async () => {
     const h = await harness({ status: statusOf({ installed: true }), source: configuredSource });
-    assert.match(h.html(), /https:\/\/github\.com\/Sycun\/CyberStrikeAI\.git/,
+    assert.match(h.html(), /https:\/\/github\.com\/Sycun\/JamesLeeAI\.git/,
         'the effective address must be visible');
     assert.match(h.html(), /update-source-url/, 'the editable address field must be there');
     assert.match(h.html(), /update-source-save-btn/);

@@ -2,7 +2,7 @@
 
 [Back to English documentation](README.md)
 
-This document describes how CyberStrikeAI governs long-running tools, blocking MCP calls, oversized outputs, cancellation, and context restore. The goal is to preserve standard Agent/Eino tool semantics while preventing tool hangs, context blowups, oversized database records, and unsafe resume behavior.
+This document describes how JamesLeeAI governs long-running tools, blocking MCP calls, oversized outputs, cancellation, and context restore. The goal is to preserve standard Agent/Eino tool semantics while preventing tool hangs, context blowups, oversized database records, and unsafe resume behavior.
 
 ## Goals
 
@@ -78,7 +78,7 @@ Typical flow:
 
 ## External MCP Isolation
 
-External MCP servers can hang, disconnect, or return failures. CyberStrikeAI uses three protections:
+External MCP servers can hang, disconnect, or return failures. JamesLeeAI uses three protections:
 
 | Capability | Config | Description |
 |---|---|---|
@@ -98,7 +98,7 @@ agent:
 
 ## Output Governance
 
-CyberStrikeAI uses `multi_agent.eino_middleware.reduction_max_length_for_trunc` as the unified tool result cap. The example configuration uses 50000 bytes.
+JamesLeeAI uses `multi_agent.eino_middleware.reduction_max_length_for_trunc` as the unified tool result cap. The example configuration uses 50000 bytes.
 
 ```yaml
 multi_agent:
@@ -217,7 +217,7 @@ Expected behavior:
 
 ## Boundaries
 
-- CyberStrikeAI cannot control how a remote external MCP server collects output internally; it caps results after they enter CyberStrikeAI and protects calls with concurrency limits and circuit breakers.
+- JamesLeeAI cannot control how a remote external MCP server collects output internally; it caps results after they enter JamesLeeAI and protects calls with concurrency limits and circuit breakers.
 - Oversized tool output is spilled to local `tmp/reduction/.../trunc/<id>` (or `reduction_root_dir`) before truncation; the bounded result includes an absolute path for `read_file`.
 
 ## Task-owned process lifetime
@@ -239,7 +239,7 @@ For Linux production, configure a dedicated systemd service with `Delegate=cpu m
 Startup probes actual process creation and cleanup before accepting requests. Run the probe without starting HTTP/MCP services:
 
 ```sh
-./cyberstrike-ai --check-process-isolation -config config.yaml
+./jameslee-ai --check-process-isolation -config config.yaml
 ```
 
 The result reports `cgroup_v2`, `windows_job`, or `process_group_watchdog`; task APIs expose the actual `isolationBackend`. Systemd's `KillMode=control-group` and restart policy add service-wide recovery.

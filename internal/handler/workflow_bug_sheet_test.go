@@ -10,12 +10,12 @@ import (
 	"strings"
 	"testing"
 
-	agentpkg "cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
-	workflowrunner "cyberstrike-ai/internal/workflow"
+	agentpkg "jameslee-ai/internal/agent"
+	"jameslee-ai/internal/agentfinalizer"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
+	workflowrunner "jameslee-ai/internal/workflow"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

@@ -123,5 +123,5 @@
     }
 
     document.addEventListener('languagechange', () => labels.forEach(refresh => refresh()));
-    window.CyberStrikeAttackChainContext = { render, clear };
+    window.JamesLeeAttackChainContext = { render, clear };
 })();

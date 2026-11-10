@@ -63,7 +63,7 @@ data/conversation_artifacts/<conversationId>/summarization/
 
 可按文件名中的时间排序判断快照先后。快照可能在生成摘要前保存，包括失败尝试；相同历史的重试复用文件，因此文件序号不严格等同于成功压缩次数。
 
-数据库路径为空时，临时快照也使用 `<临时目录>/cyberstrike-summarization/<conversationId>/summarization/snapshots/`，不会退回多个会话共用一个目录。
+数据库路径为空时，临时快照也使用 `<临时目录>/jameslee-summarization/<conversationId>/summarization/snapshots/`，不会退回多个会话共用一个目录。
 
 子代理、规划器和执行器使用 `summarization/scopes/<scopeHash>/snapshots/`。摘要提供历史快照目录，Agent 可用 `glob` 查找 `transcript-*.txt`，按需回读更早证据。已有旧索引文件不参与新流程，也不会在升级时被自动删除。
 

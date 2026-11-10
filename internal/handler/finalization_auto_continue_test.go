@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	agentpkg "cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/agentfinalizer"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
-	"cyberstrike-ai/internal/mcp"
+	agentpkg "jameslee-ai/internal/agent"
+	"jameslee-ai/internal/agentfinalizer"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
+	"jameslee-ai/internal/mcp"
 
 	"go.uber.org/zap"
 )

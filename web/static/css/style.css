@@ -1006,7 +1006,7 @@ html[data-theme="dark"] header {
     color: var(--accent-color);
 }
 
-/* 品牌字标：CyberStrike + AI 渐变 */
+/* 品牌字标：JamesLee + AI 渐变 */
 .brand-wordmark {
     display: inline-flex;
     align-items: baseline;
@@ -6539,6 +6539,22 @@ html[data-theme="dark"] .chat-input-container .send-btn:disabled::before {
     margin: 8px 0 0 0;
     font-size: 0.875rem;
     color: var(--text-secondary);
+}
+
+/* 登录页品牌 Logo：圆角图标样式，居中于标题上方 */
+.login-logo {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 14px;
+    border-radius: 18px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] .login-logo {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .login-form {
@@ -44896,7 +44912,7 @@ html[data-theme="dark"] .project-conversation-row:hover .project-conversation-it
 }
 
 /* ============================================================================
-   Layered chat composer: Codex-style hierarchy with CyberStrikeAI controls
+   Layered chat composer: Codex-style hierarchy with JamesLeeAI controls
    ============================================================================ */
 
 .chat-input-container {

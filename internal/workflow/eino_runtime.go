@@ -3,9 +3,9 @@ package workflow
 import (
 	"context"
 
-	"cyberstrike-ai/internal/agent"
-	"cyberstrike-ai/internal/config"
-	"cyberstrike-ai/internal/database"
+	"jameslee-ai/internal/agent"
+	"jameslee-ai/internal/config"
+	"jameslee-ai/internal/database"
 
 	"go.uber.org/zap"
 )
