@@ -1331,7 +1331,7 @@ function runBatchProbeWebshellConnections() {
 }
 
 function escapeHtml(s) {
-    if (!s) return '';
+    if (s == null) return '';
     const div = document.createElement('div');
     div.textContent = s;
     return div.innerHTML;

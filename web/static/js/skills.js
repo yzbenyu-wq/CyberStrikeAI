@@ -527,7 +527,7 @@ function renderSkillPackageTree() {
         const indent = 8 + skillPackagePathDepth(path) * 14;
         if (f.is_dir) {
             const dirLabel = path.endsWith('/') ? path : path + '/';
-            return `<div class="skill-tree-row skill-tree-dir" style="padding-left:${indent}px" title="${escapeHtml(_t('skillModal.folderHint'))}">` +
+            return `<div class="skill-tree-row skill-tree-dir" style="padding-left:${indent}px" title="${escapeAttr(_t('skillModal.folderHint'))}">` +
                 `<span class="skill-tree-icon" aria-hidden="true">📁</span>` +
                 `<span class="skill-tree-label">${escapeHtml(dirLabel)}</span>` +
                 `</div>`;

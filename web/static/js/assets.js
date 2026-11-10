@@ -1,3 +1,15 @@
+/* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
+   必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
+function escapeAttr(text) {
+    if (text == null) return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 const ASSET_PAGE_SIZE_KEY = 'cyberstrike.asset_page_size';
 const ASSET_SAVED_VIEWS_KEY = 'cyberstrike.asset_saved_views';
 function getAssetPageSize() {
@@ -381,7 +393,7 @@ function renderAssetImportPreview() {
         const result = row.error
             ? `<span class="asset-import-result asset-import-result--error">${escapeHtml(row.error)}</span>`
             : `<span class="asset-import-result asset-import-result--ok">${escapeHtml(assetT('assets.validationPassed', '通过'))}</span>`;
-        return `<tr class="${row.error ? 'has-error' : ''}"><td>${row.rowNumber}</td><td title="${escapeHtml(target)}">${escapeHtml(target)}</td><td>${escapeHtml(row.projectName || row.values.project || '-')}</td><td>${escapeHtml(asset.status || row.values.status || '-')}</td><td>${result}</td></tr>`;
+        return `<tr class="${row.error ? 'has-error' : ''}"><td>${row.rowNumber}</td><td title="${escapeAttr(target)}">${escapeHtml(target)}</td><td>${escapeHtml(row.projectName || row.values.project || '-')}</td><td>${escapeHtml(asset.status || row.values.status || '-')}</td><td>${result}</td></tr>`;
     }).join('');
     const note = document.getElementById('asset-import-preview-note');
     if (note) note.textContent = rows.length > 100 ? assetT('assets.previewLimited', `仅展示前 100 行；提交时将处理全部 ${rows.length} 行`, { count: rows.length }) : '';
@@ -517,7 +529,7 @@ function renderAssetLineChart(rootId, summaryId, points, series) {
     const labelIndexes = [...new Set([0, Math.floor((data.length - 1) / 2), data.length - 1])];
     const labels = labelIndexes.map(index => `<text x="${x(index)}" y="${height - 7}" text-anchor="${index === 0 ? 'start' : index === data.length - 1 ? 'end' : 'middle'}">${escapeHtml(String(data[index].date || '').slice(5))}</text>`).join('');
     const aria = series.map((item, index) => `${item.label} ${totals[index]}`).join('，');
-    root.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(aria)}" preserveAspectRatio="none"><g class="asset-chart-grid">${grid}${labels}</g>${paths}</svg>`;
+    root.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeAttr(aria)}" preserveAspectRatio="none"><g class="asset-chart-grid">${grid}${labels}</g>${paths}</svg>`;
 }
 
 function renderAssetCoverage(coverage, total) {
@@ -663,7 +675,7 @@ function renderAssetSavedViews(selectedName) {
     const select = document.getElementById('asset-saved-view-select');
     if (!select) return;
     const views = readAssetSavedViews();
-    select.innerHTML = `<option value="">${escapeHtml(assetT('assets.savedViews', '保存的筛选视图'))}</option>` + views.map(view => `<option value="${escapeHtml(view.name)}">${escapeHtml(view.name)}</option>`).join('');
+    select.innerHTML = `<option value="">${escapeHtml(assetT('assets.savedViews', '保存的筛选视图'))}</option>` + views.map(view => `<option value="${escapeAttr(view.name)}">${escapeHtml(view.name)}</option>`).join('');
     select.value = selectedName || '';
     syncAssetSelect(select);
 }
@@ -775,7 +787,7 @@ function assetOwnershipMarkup(asset) {
         department ? `${departmentLabel}: ${department}` : ''
     ].filter(Boolean).join(' · ');
     const primary = owner || department;
-    return `<div class="asset-ownership" title="${escapeHtml(title)}">
+    return `<div class="asset-ownership" title="${escapeAttr(title)}">
         <span class="asset-ownership__primary">${escapeHtml(primary)}</span>
         ${owner && department ? `<span class="asset-ownership__secondary">${escapeHtml(department)}</span>` : ''}
     </div>`;
@@ -809,10 +821,10 @@ function renderAssetRows() {
         const risk = assetRiskPresentation(asset.risk_level);
         const statusLabel = asset.status === 'inactive' ? assetT('assets.statusInactive', '停用') : assetT('assets.statusActive', '活跃');
         return `<tr>
-            <td class="asset-check-cell"><input type="checkbox" class="theme-checkbox" ${assetPageState.selected.has(asset.id) ? 'checked' : ''} onchange="toggleAssetSelection(${index},this.checked)" aria-label="${escapeHtml(assetT('assets.selectAsset', '选择资产'))}"></td>
-            <td><button class="asset-target-link" title="${escapeHtml(targetHint)}" onclick="openAssetDetail(${index})">${escapeHtml(assetTargetLabel(asset))}</button></td>
-            <td><span class="asset-service" title="${escapeHtml(service)}">${escapeHtml(service)}</span></td>
-            <td>${asset.project_name ? `<span class="asset-project-badge" title="${escapeHtml(asset.project_name)}">${escapeHtml(asset.project_name)}</span>` : '<span class="muted">-</span>'}</td>
+            <td class="asset-check-cell"><input type="checkbox" class="theme-checkbox" ${assetPageState.selected.has(asset.id) ? 'checked' : ''} onchange="toggleAssetSelection(${index},this.checked)" aria-label="${escapeAttr(assetT('assets.selectAsset', '选择资产'))}"></td>
+            <td><button class="asset-target-link" title="${escapeAttr(targetHint)}" onclick="openAssetDetail(${index})">${escapeHtml(assetTargetLabel(asset))}</button></td>
+            <td><span class="asset-service" title="${escapeAttr(service)}">${escapeHtml(service)}</span></td>
+            <td>${asset.project_name ? `<span class="asset-project-badge" title="${escapeAttr(asset.project_name)}">${escapeHtml(asset.project_name)}</span>` : '<span class="muted">-</span>'}</td>
             <td>${assetOwnershipMarkup(asset)}</td>
             <td>${escapeHtml(lastScan)}</td><td>${vulnerabilityCount > 0 ? `<button class="asset-vulnerability-link" onclick="openAssetVulnerabilities(${index})">${vulnerabilityCount}</button>` : '<span class="muted">0</span>'}</td>
             <td><span class="asset-risk asset-risk--${risk.level}">${escapeHtml(risk.label)}</span></td>

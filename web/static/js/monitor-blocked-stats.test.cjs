@@ -15,6 +15,7 @@ function harness() {
         localStorage: { getItem: () => null },
         monitorState: {},
         escapeHtml,
+        escapeAttr: escapeHtml,
         escapeAttrLocal: escapeHtml,
         formatMonitorToolName: (name) => name,
         monitorToolNamesEqual: (a, b) => a === b,
