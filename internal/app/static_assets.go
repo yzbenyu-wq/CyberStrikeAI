@@ -14,6 +14,14 @@ import (
 // staticRoot 需与 app.go 中 router.Static("/static", "./web/static") 保持一致。
 const staticRoot = "./web/static"
 
+// htmlRouteTemplates 模板渲染的 HTML 页面路由 → 模板文件路径。
+// 用于为 HTML 响应生成 ETag（协商 304）并纳入 gzip 压缩；
+// 路径与 LoadHTMLGlob 一致，均为相对进程工作目录。
+var htmlRouteTemplates = map[string]string{
+	"/":         "web/templates/index.html",
+	"/api-docs": "web/templates/api-docs.html",
+}
+
 // minGzipSize 低于此体积的文件不压缩：gzip 头本身约 20 字节，
 // 小文件压缩后可能反而增大，且省不下往返开销。
 const minGzipSize = 1024
@@ -39,6 +47,33 @@ var gzipTargetExt = map[string]struct{}{
 func staticAssetsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if !strings.HasPrefix(c.Request.URL.Path, "/static/") {
+			// 非 /static 路径：仅处理 GET 的页面/接口响应
+			if c.Request.Method == http.MethodGet {
+				// HTML 页面：ETag + no-cache 协商缓存，模板未变更时 304 零传输
+				if tmplPath, ok := htmlRouteTemplates[c.Request.URL.Path]; ok {
+					if info, statErr := os.Stat(tmplPath); statErr == nil {
+						etag := fmt.Sprintf(`W/"%x-%x"`, info.ModTime().UnixNano(), info.Size())
+						c.Header("ETag", etag)
+						c.Header("Cache-Control", "no-cache")
+						if strings.Contains(c.GetHeader("If-None-Match"), etag) {
+							c.AbortWithStatus(http.StatusNotModified)
+							return
+						}
+					}
+				}
+				// gzip：延迟到 WriteHeader 阶段按最终 Content-Type 决定，
+				// 仅压缩 text/html 与 JSON 等文本响应；SSE（text/event-stream）不压缩。
+				c.Header("Vary", "Accept-Encoding")
+				if strings.Contains(c.GetHeader("Accept-Encoding"), "gzip") {
+					gw := &htmlGzipResponseWriter{ResponseWriter: c.Writer}
+					c.Writer = gw
+					c.Next()
+					if gw.gz != nil {
+						_ = gw.gz.Close()
+					}
+					return
+				}
+			}
 			c.Next()
 			return
 		}
@@ -122,5 +157,51 @@ func (w *gzipResponseWriter) Write(b []byte) (int, error) {
 }
 
 func (w *gzipResponseWriter) WriteString(s string) (int, error) {
+	return w.Write([]byte(s))
+}
+
+// htmlGzipResponseWriter 面向模板渲染页面（非 /static 路径）的延迟 gzip 包装器。
+// 在 WriteHeader 阶段检查最终 Content-Type：仅压缩 text/html（含 JSON API 的文本响应
+// 由 Content-Type 门槛天然排除 SSE 的 text/event-stream）。
+// 惰性创建 gzip.Writer：压缩后长度改变，预设的 Content-Length 必须移除，否则响应被截断。
+type htmlGzipResponseWriter struct {
+	gin.ResponseWriter
+	gz      *gzip.Writer
+	decided bool
+}
+
+func (w *htmlGzipResponseWriter) decide() {
+	if w.decided {
+		return
+	}
+	w.decided = true
+	if strings.HasPrefix(w.Header().Get("Content-Type"), "text/html") {
+		w.Header().Set("Content-Encoding", "gzip")
+		w.Header().Del("Content-Length")
+		w.gz = gzip.NewWriter(w.ResponseWriter)
+	}
+}
+
+// gin 的 c.HTML 先标记状态码、后由 render 设置 Content-Type；
+// 响应头真正发出发生在首次 Write（WriteHeaderNow），因此决策必须延迟到 Write 阶段，
+// 此处 Content-Type 已就绪且头字典仍可修改。
+func (w *htmlGzipResponseWriter) WriteHeader(code int) {
+	w.ResponseWriter.WriteHeader(code)
+}
+
+func (w *htmlGzipResponseWriter) WriteHeaderNow() {
+	w.ResponseWriter.WriteHeaderNow()
+}
+
+func (w *htmlGzipResponseWriter) Write(b []byte) (int, error) {
+	w.decide()
+	if w.gz != nil {
+		w.Header().Del("Content-Length")
+		return w.gz.Write(b)
+	}
+	return w.ResponseWriter.Write(b)
+}
+
+func (w *htmlGzipResponseWriter) WriteString(s string) (int, error) {
 	return w.Write([]byte(s))
 }
