@@ -1,14 +1,6 @@
 /* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
    必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
-function escapeAttr(text) {
-    if (text == null) return '';
-    return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
+
 
 // 设置相关功能
 let currentConfig = null;

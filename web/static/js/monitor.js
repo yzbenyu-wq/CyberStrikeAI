@@ -1,14 +1,6 @@
 /* escapeAttr：属性值转义（含引号）。属性上下文（value=""、title="" 等）
    必须用本函数；escapeHtml 不转义引号，在属性里可被闭合注入。 */
-function escapeAttr(text) {
-    if (text == null) return '';
-    return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
+
 
 const progressTaskState = new Map();
 /** @type {{ progressId: string, conversationId: string } | null} */
@@ -632,19 +624,14 @@ function applyEinoTimelineRole(item, data) {
     }
 }
 
-function escapeHtmlLocal(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = String(text);
-    return div.innerHTML;
-}
+
 
 function escapeJsString(text) {
     return JSON.stringify(String(text == null ? '' : text));
 }
 
 function escapeAttrLocal(text) {
-    return escapeHtmlLocal(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    return escapeHtml(text).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function escapeJsStringAttr(text) {
@@ -1060,7 +1047,7 @@ function formatAssistantMarkdownContent(text) {
         return window.csMarkdownSanitize.formatMarkdownToHtml(text, { profile: 'chat' });
     }
     const raw = text == null ? '' : String(text);
-    return escapeHtmlLocal(raw).replace(/\n/g, '<br>');
+    return escapeHtml(raw).replace(/\n/g, '<br>');
 }
 
 function updateAssistantBubbleContent(assistantMessageId, content, renderMarkdown) {
@@ -1081,7 +1068,7 @@ function updateAssistantBubbleContent(assistantMessageId, content, renderMarkdow
     }
     const html = renderMarkdown
         ? formatAssistantMarkdownContent(newContent)
-        : escapeHtmlLocal(newContent).replace(/\n/g, '<br>');
+        : escapeHtml(newContent).replace(/\n/g, '<br>');
 
     bubble.innerHTML = html;
 

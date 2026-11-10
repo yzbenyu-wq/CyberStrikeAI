@@ -32,12 +32,7 @@
 
     let domPurifyHooksInstalled = false;
 
-    function escapeHtmlLocal(text) {
-        if (text == null || text === '') return '';
-        const div = document.createElement('div');
-        div.textContent = String(text);
-        return div.innerHTML;
-    }
+
 
     function installDomPurifyHooks() {
         if (domPurifyHooksInstalled || typeof DOMPurify === 'undefined' || !DOMPurify.addHook) {
@@ -98,11 +93,11 @@
     }
 
     function escapePlainTextAsHtml(text) {
-        return escapeHtmlLocal(text).replace(/\n/g, '<br>');
+        return escapeHtml(text).replace(/\n/g, '<br>');
     }
 
     function formatHtmlAsEscapedPre(text) {
-        return '<pre class="tool-result sanitized-raw-html-fallback">' + escapeHtmlLocal(text) + '</pre>';
+        return '<pre class="tool-result sanitized-raw-html-fallback">' + escapeHtml(text) + '</pre>';
     }
 
     function normalizeSource(text) {
@@ -198,7 +193,8 @@
         sanitizeRichHtml: sanitizeRichHtml,
         isHeavyRawHtml: isHeavyRawHtml,
         looksLikeMarkdown: looksLikeMarkdown,
-        escapeHtmlLocal: escapeHtmlLocal,
+        /* 兼容别名：历史调用方使用 escapeHtmlLocal 这个名字，统一指向 DomSafe.text */
+        escapeHtmlLocal: escapeHtml,
         stripSuspiciousImages: stripSuspiciousImages,
     };
 
